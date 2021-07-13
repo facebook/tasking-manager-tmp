@@ -99,7 +99,7 @@ export const ProjectDetailFooter = ({ className, projectId }) => {
           // if the user is from project detail page
           state={{ from: pathname }}
         >
-          <Button className="white bg-red h3 w5">
+          <Button className="white bg-primary h3 w5">
             <FormattedMessage {...messages.contribute} />
           </Button>
         </Link>

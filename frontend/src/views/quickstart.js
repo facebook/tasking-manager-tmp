@@ -26,7 +26,7 @@ export function QuickstartPage() {
       message: 'quickstartStep1',
       values: {
         tmHomepage: (
-          <Link className="link red fw5" to="/">
+          <Link className="link primary fw5" to="/">
             Tasking Manager
           </Link>
         ),
@@ -58,7 +58,7 @@ export function QuickstartPage() {
       img: QuickstartStep4Picture,
       values: {
         tmHomepage: (
-          <Link className="link red fw5" to="/">
+          <Link className="link primary fw5" to="/">
             Tasking Manager
           </Link>
         ),
@@ -108,7 +108,7 @@ export function QuickstartPage() {
       img: QuickstartStep8Picture,
       values: {
         learnPage: (
-          <Link className="link red fw5" to="/learn/map">
+          <Link className="link primary fw5" to="/learn/map">
             <FormattedMessage {...messages.learnPages} />
           </Link>
         ),

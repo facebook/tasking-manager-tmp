@@ -97,7 +97,7 @@ export function DeleteModal({
             e.stopPropagation();
           }}
         >
-          <div className="cf tc red">
+          <div className="cf tc primary">
             <AlertIcon height="50px" width="50px" />
           </div>
           <div className="cf blue-dark tc">
@@ -116,7 +116,7 @@ export function DeleteModal({
                   >
                     <FormattedMessage {...messages.cancel} />
                   </Button>
-                  <Button className="bg-red white" onClick={() => deleteEntity()}>
+                  <Button className="bg-primary white" onClick={() => deleteEntity()}>
                     <FormattedMessage {...message} />
                   </Button>
                 </div>

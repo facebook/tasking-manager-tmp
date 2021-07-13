@@ -53,7 +53,7 @@ const UserFilter = ({ filters, setFilters, updateFilters, intl }) => {
                     return { ...p, username: '' };
                   });
                 }}
-                className={`absolute w1 h1 top-0 pt2 pointer pr2 right-0 red ${
+                className={`absolute w1 h1 top-0 pt2 pointer pr2 right-0 primary ${
                   filters.username ? '' : 'dn'
                 }`}
               />
@@ -136,7 +136,7 @@ export const SearchNav = ({ filters, setFilters, initialFilters }) => {
         <RoleFilter filters={filters} setFilters={setFilters} updateFilters={updateFilters} />
       </div>
       {(filters.username || filters.level !== 'ALL' || filters.role !== 'ALL') && (
-        <div className="tr red pointer" onClick={clearFilters}>
+        <div className="tr primary pointer" onClick={clearFilters}>
           <FormattedMessage {...messages.clearFilters} />
         </div>
       )}
@@ -235,7 +235,7 @@ export const UsersTable = ({ filters, setFilters }) => {
 export const UserEditMenu = ({ user, token, close, setStatus }) => {
   const roles = ['MAPPER', 'ADMIN', 'READ_ONLY'];
   const mapperLevels = ['BEGINNER', 'INTERMEDIATE', 'ADVANCED'];
-  const iconClass = 'h1 w1 red';
+  const iconClass = 'h1 w1 primary';
 
   const updateAttribute = (attribute, attributeValue) => {
     const endpoint = {

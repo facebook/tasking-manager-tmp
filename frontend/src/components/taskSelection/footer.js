@@ -223,7 +223,7 @@ const TaskSelectionFooter = ({
       <div className="w-30-ns w-60 fl tr">
         <div className="mt3">
           <Button
-            className="white bg-red fw5"
+            className="white bg-primary fw5"
             onClick={() => {
               if (!token) {
                 navigate('/login', {

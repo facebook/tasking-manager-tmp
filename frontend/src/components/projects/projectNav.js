@@ -153,7 +153,7 @@ export const ProjectNav = ({ isExploreProjectsPage, children }) => {
   delete fullProjectsQueryCopy.omitMapResults;
   const filterIsEmpty = !stringify(fullProjectsQueryCopy);
   const moreFiltersCurrentActiveStyle = moreFiltersAnyActive
-    ? 'bg-red white'
+    ? 'bg-primary white'
     : 'bg-white blue-dark';
   const filterRouteToggled =
     location.pathname.indexOf('filters') > -1

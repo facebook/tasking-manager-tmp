@@ -16,7 +16,7 @@ describe('ProjectsAOILayerCheckBox', () => {
     );
     expect(screen.getByText('Show existing projects AoIs')).toBeInTheDocument();
     expect(screen.getByRole('checkbox').className).toContain('b--grey-light');
-    expect(screen.getByRole('checkbox').className).not.toContain('b--red');
+    expect(screen.getByRole('checkbox').className).not.toContain('b--primary');
     await user.hover(screen.getByText('Show existing projects AoIs'));
     await waitFor(() =>
       expect(
@@ -37,7 +37,7 @@ describe('ProjectsAOILayerCheckBox', () => {
     );
     expect(screen.getByText('Show existing projects AoIs')).toBeInTheDocument();
     expect(screen.getByRole('checkbox').className).not.toContain('b--grey-light');
-    expect(screen.getByRole('checkbox').className).toContain('b--red');
+    expect(screen.getByRole('checkbox').className).toContain('b--primary');
     await user.hover(screen.getByText('Show existing projects AoIs'));
     await waitFor(() =>
       expect(

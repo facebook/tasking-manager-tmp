@@ -27,7 +27,7 @@ describe('Button', () => {
     const user = userEvent.setup();
     const { container } = render(
       <Button
-        className="red bg-white"
+        className="primary bg-white"
         loading={true}
         onClick={() => (testVar = true)}
         icon={<BanIcon className="h1 w1 blue" />}
@@ -36,7 +36,7 @@ describe('Button', () => {
       </Button>,
     );
     expect(screen.getByText('Loading')).toBeInTheDocument();
-    expect(screen.getByRole('button').className).toBe('red bg-white br1 f5 bn o-50');
+    expect(screen.getByRole('button').className).toBe('primary bg-white br1 f5 bn o-50');
     expect(container.querySelector('svg')).toBeInTheDocument(); // loading icon
     expect(container.querySelector('.mr2')).toBeInTheDocument(); // space after icon
     expect(container.querySelector('.blue')).not.toBeInTheDocument(); // ban icon is not present
@@ -49,7 +49,7 @@ describe('Button', () => {
     const user = userEvent.setup();
     const { container } = render(
       <Button
-        className="red bg-white"
+        className="primary bg-white"
         disabled={true}
         onClick={() => (testVar = true)}
         icon={<BanIcon className="h1 w1 blue" />}
@@ -58,7 +58,7 @@ describe('Button', () => {
       </Button>,
     );
     expect(screen.getByText('Cancel')).toBeInTheDocument();
-    expect(screen.getByRole('button').className).toBe('red bg-white br1 f5 bn o-50');
+    expect(screen.getByRole('button').className).toBe('primary bg-white br1 f5 bn o-50');
     expect(container.querySelector('svg')).toBeInTheDocument(); // ban icon
     expect(container.querySelector('.blue')).toBeInTheDocument();
     expect(container.querySelector('.mr2')).toBeInTheDocument(); // space after icon
@@ -89,7 +89,7 @@ describe('CustomButton', () => {
     const user = userEvent.setup();
     const { container } = render(
       <CustomButton
-        className="red bg-white"
+        className="primary bg-white"
         loading={true}
         onClick={() => (testVar = true)}
         icon={<BanIcon className="h1 w1 blue" />}
@@ -98,7 +98,7 @@ describe('CustomButton', () => {
       </CustomButton>,
     );
     expect(screen.getByText('Loading')).toBeInTheDocument();
-    expect(screen.getByRole('button').className).toBe('red bg-white br1 f5 o-50');
+    expect(screen.getByRole('button').className).toBe('primary bg-white br1 f5 o-50');
     expect(container.querySelector('svg')).toBeInTheDocument(); // loading icon
     expect(container.querySelector('.mr2')).toBeInTheDocument(); // space after icon
     expect(container.querySelector('.blue')).not.toBeInTheDocument(); // ban icon is not present
@@ -111,7 +111,7 @@ describe('CustomButton', () => {
     const user = userEvent.setup();
     const { container } = render(
       <CustomButton
-        className="red bg-white"
+        className="primary bg-white"
         disabled={true}
         onClick={() => (testVar = true)}
         icon={<BanIcon className="h1 w1 blue" />}
@@ -120,7 +120,7 @@ describe('CustomButton', () => {
       </CustomButton>,
     );
     expect(screen.getByText('Cancel')).toBeInTheDocument();
-    expect(screen.getByRole('button').className).toBe('red bg-white br1 f5 o-50');
+    expect(screen.getByRole('button').className).toBe('primary bg-white br1 f5 o-50');
     expect(container.querySelector('svg')).toBeInTheDocument(); // ban icon
     expect(container.querySelector('.blue')).toBeInTheDocument();
     expect(container.querySelector('.mr2')).toBeInTheDocument(); // space after icon
@@ -136,6 +136,6 @@ it('children and link props of EditButton', () => {
   expect(screen.getByText('Edit project')).toBeInTheDocument();
   expect(screen.getByText('Edit project').href).toContain('/manage/projects/1/');
   expect(screen.getByText('Edit project').className).toBe(
-    'pointer no-underline br1 fw6 f7 dib pv2 ph3 ba b--red white bg-red mh1 mv1',
+    'pointer no-underline br1 fw6 f7 dib pv2 ph3 ba b--primary white bg-primary mh1 mv1',
   );
 });

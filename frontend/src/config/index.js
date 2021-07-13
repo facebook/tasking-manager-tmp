@@ -80,6 +80,8 @@ export const CHART_COLOURS = {
   orange: '#f09733',
   white: '#fff',
   gray: '#C9C9C9',
+  magenta: '#da26d3',
+  navy: '#101d4b',
 };
 
 const fallbackRasterStyle = {

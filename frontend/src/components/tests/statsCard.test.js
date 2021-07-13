@@ -10,7 +10,7 @@ describe('StatsCardContent', () => {
     const { container } = render(
       <StatsCardContent value={1000} label="tasks mapped" className="w-25-ns w-50 fl tc pt3 pb4" />,
     );
-    expect(screen.getByText('1000').className).toBe('ma0 mb1 barlow-condensed f2 fw5 red');
+    expect(screen.getByText('1000').className).toBe('ma0 mb1 barlow-condensed f2 fw5 primary');
     expect(screen.getByText('tasks mapped').className).toBe('ma0 h2 f7 fw5 blue-grey');
     expect(container.querySelector('div').className).toBe('w-25-ns w-50 fl tc pt3 pb4');
   });
@@ -35,7 +35,7 @@ describe('StartsCard', () => {
     const { container } = render(
       <ReduxIntlProviders>
         <StatsCard
-          icon={<HomeIcon className={'red w1'} />}
+          icon={<HomeIcon className={'primary w1'} />}
           description={'Card description'}
           value={10123}
           className={'w-20-l w-100 w-50-m'}
@@ -43,9 +43,9 @@ describe('StartsCard', () => {
       </ReduxIntlProviders>,
     );
     expect(screen.getByText('Card description').className).toBe('ma0 h2 f7 fw5 blue-grey');
-    expect(screen.getByText('10,123').className).toBe('ma0 mb1 barlow-condensed f2 fw5 red');
+    expect(screen.getByText('10,123').className).toBe('ma0 mb1 barlow-condensed f2 fw5 primary');
     expect(container.querySelectorAll('div')[0].className).toBe(
-      'cf pt3 pb3 ph3 br1 bg-white red shadow-6 flex items-center w-20-l w-100 w-50-m',
+      'cf pt3 pb3 ph3 br1 bg-white primary shadow-6 flex items-center w-20-l w-100 w-50-m',
     );
     expect(container.querySelectorAll('div')[1].className).toBe('w-30 fl ml2');
     expect(container.querySelector('svg')).toBeInTheDocument();
@@ -54,7 +54,7 @@ describe('StartsCard', () => {
     const { container } = render(
       <ReduxIntlProviders>
         <StatsCard
-          icon={<HomeIcon className={'red w1'} />}
+          icon={<HomeIcon className={'primary w1'} />}
           description={'Edits'}
           value={4325}
           invertColors={true}
@@ -65,7 +65,7 @@ describe('StartsCard', () => {
     expect(screen.getByText('Edits').className).toBe('ma0 h2 f7 fw5 white');
     expect(screen.getByText('4,325').className).toBe('ma0 mb1 barlow-condensed f2 fw5 white');
     expect(container.querySelectorAll('div')[0].className).toBe(
-      'cf pt3 pb3 ph3 br1 bg-red white flex items-center w-30-l w-100 w-50-m',
+      'cf pt3 pb3 ph3 br1 bg-primary white flex items-center w-30-l w-100 w-50-m',
     );
     expect(container.querySelectorAll('div')[1].className).toBe('w-30 fl ml2');
   });
@@ -73,7 +73,7 @@ describe('StartsCard', () => {
     render(
       <ReduxIntlProviders>
         <StatsCard
-          icon={<HomeIcon className={'red w1'} />}
+          icon={<HomeIcon className={'primary w1'} />}
           description={'Time'}
           value={'2h 32min'}
           invertColors={true}

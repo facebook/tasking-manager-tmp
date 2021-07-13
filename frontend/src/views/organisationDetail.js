@@ -55,7 +55,7 @@ export function OrganisationDetail() {
             <p className="f5 fw5">{organisation.description}</p>
             <p className="f5 fw5">
               {organisation.url && (
-                <a href={organisation.url} className="link red">
+                <a href={organisation.url} className="link primary">
                   {organisation.url}
                 </a>
               )}

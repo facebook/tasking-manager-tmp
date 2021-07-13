@@ -21,7 +21,7 @@ export const StatsNumber = (props) => {
 export const StatsColumn = ({ label, value }: Object) => {
   return (
     <div className={`tc`}>
-      <div className="fw5 red barlow-condensed stat-number">
+      <div className="fw5 primary barlow-condensed stat-number">
         {value !== undefined ? <StatsNumber value={value} /> : <>&#8211;</>}
       </div>
       <div className="db blue-grey f6 fw7">

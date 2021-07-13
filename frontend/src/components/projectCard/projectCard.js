@@ -79,7 +79,7 @@ export function ProjectCard({
       >
         <FormattedMessage {...messages.editProject} />
       </Link>
-      <Link to={`/projects/${projectId}/tasks`} className={`fr bg-red white bn ${linkCombo}`}>
+      <Link to={`/projects/${projectId}/tasks`} className={`fr bg-primary white bn ${linkCombo}`}>
         <FormattedMessage {...messages.projectTasks} />
       </Link>
     </div>
@@ -97,7 +97,7 @@ export function ProjectCard({
         >
           <div>
             <div className="flex justify-between items-center">
-              <div className="red">
+              <div className="primary">
                 <img
                   className="h2"
                   src={organisationLogo}
