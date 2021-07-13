@@ -139,12 +139,12 @@ export const CheckBoxInput = ({ isActive, changeState, className = '', disabled 
     onKeyPress={disabled ? () => {} : changeState}
     tabIndex="0"
     className={`bg-white w1 h1 ma1 ba bw1 ${
-      disabled ? 'b--grey-light' : 'b--red'
+      disabled ? 'b--grey-light' : 'b--primary'
     } br1 relative pointer ${className}`}
   >
     {isActive ? (
       <div
-        className={`${disabled ? 'bg-grey-light' : 'bg-red'} ba b--white bw1 br1 w-100 h-100`}
+        className={`${disabled ? 'bg-grey-light' : 'bg-primary'} ba b--white bw1 br1 w-100 h-100`}
       ></div>
     ) : (
       <></>
@@ -192,12 +192,12 @@ export const InterestsList = ({ interests, field, changeSelect }) => (
         key={interest.id}
         onClick={() => changeSelect(interest.id)}
         className={`${
-          interest[field] === true ? 'b--red bw1 blue-dark' : 'b--grey-light blue-grey'
+          interest[field] === true ? 'b--primary bw1 blue-dark' : 'b--grey-light blue-grey'
         } bg-white ba br1 tc relative ttc pointer text-break lh-base interest-card `}
       >
         {interest.name}
         {interest[field] === true && (
-          <CheckIcon className="f7 pa1 br-100 bg-red white absolute right-0 top-0" />
+          <CheckIcon className="f7 pa1 br-100 bg-primary white absolute right-0 top-0" />
         )}
       </article>
     ))}
@@ -222,7 +222,7 @@ export const TextField = ({ value, placeholderMsg, onChange, onCloseIconClick })
               <div>
                 <SearchIcon
                   onClick={() => inputRef.current.focus()}
-                  className={`absolute ${!value ? 'blue-grey' : 'red'}`}
+                  className={`absolute ${!value ? 'blue-grey' : 'primary'}`}
                   style={{ top: 11, left: 16 }}
                 />
               </div>
@@ -242,7 +242,7 @@ export const TextField = ({ value, placeholderMsg, onChange, onCloseIconClick })
                 onClick={onCloseIconClick}
                 role="button"
                 aria-label="clear"
-                className={`absolute w1 h1 top-0 pt2 pointer pr2 right-0 red ${
+                className={`absolute w1 h1 top-0 pt2 pointer pr2 right-0 primary ${
                   !value ? 'pr2 right-0 dn ' : 'pr2 right-0'
                 }`}
               />

@@ -14,10 +14,10 @@ test('OSMChaButton with compact False', () => {
   };
   const { container } = render(
     <ReduxIntlProviders>
-      <OSMChaButton project={project} className="pl2 ba b--red" />
+      <OSMChaButton project={project} className="pl2 ba b--primary" />
     </ReduxIntlProviders>,
   );
-  expect(screen.getByText('Changesets in OSMCha').className).toBe('pl2 ba b--red br1 f5 pointer');
+  expect(screen.getByText('Changesets in OSMCha').className).toBe('pl2 ba b--primary br1 f5 pointer');
   expect(container.querySelector('a').href).toBe(formatOSMChaLink(project));
   expect(container.querySelector('svg.pl2')).toBeInTheDocument();
   expect(container.querySelector('svg.pl1')).not.toBeInTheDocument();

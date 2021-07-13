@@ -22,7 +22,7 @@ function ContactCard() {
       </h4>
       <div className="w-100 w-auto-ns">
         <Button
-          className="w-100 tc bg-red white mt5-ns nowrap mt0-m"
+          className="w-100 tc bg-primary white mt5-ns nowrap mt0-m"
           onClick={() => navigate('/contact')}
         >
           <FormattedMessage {...messages.organizationContactButton} />
@@ -37,7 +37,7 @@ export function WhoIsMapping() {
     <div className="bg-blue-dark who-is-mapping mb5-m">
       <div className="ph6-l ph4 white">
         <div className="w-100">
-          <h3 className="bg-red dib fw5 tc lh-copy white ttu barlow-condensed ma0">
+          <h3 className="bg-primary dib fw5 tc lh-copy white ttu barlow-condensed ma0">
             <FormattedMessage {...messages.whoIsMappingTitle} />
           </h3>
         </div>

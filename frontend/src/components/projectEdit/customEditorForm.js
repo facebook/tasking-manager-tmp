@@ -114,7 +114,7 @@ export const CustomEditorForm = ({ languages }) => {
             <p className={styleClasses.pClass}>
               <FormattedMessage {...messages.confirmDeleteCustomEditor} />
             </p>
-            <CustomButton className="red bg-white pv2 ph3 ba b--red" onClick={handleRemove}>
+            <CustomButton className="primary bg-white pv2 ph3 ba b--primary" onClick={handleRemove}>
               <WasteIcon className="pr2 v-top" />
               <FormattedMessage {...messages.removeCustomEditor} />
             </CustomButton>

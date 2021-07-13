@@ -11,8 +11,8 @@ describe('Code', () => {
   });
 
   it('with additional classNames', () => {
-    const { container } = render(<Code className="red f7 db">http://example.url</Code>);
-    expect(container.querySelector('code').className).toBe('f6 i ph1 bg-white o-80 red f7 db');
+    const { container } = render(<Code className="primary f7 db">http://example.url</Code>);
+    expect(container.querySelector('code').className).toBe('f6 i ph1 bg-white o-80 primary f7 db');
     expect(screen.getByText('http://example.url')).toBeInTheDocument();
   });
 });

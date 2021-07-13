@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
-import systemAvatar from '../../assets/img/logo-square.png';
+import systemAvatar from '../../assets/img/mapwithai_logo_only.png';
 import { EyeIcon } from '../svgIcons';
 import { CheckBox } from '../formInputs';
 import { UserAvatar } from '../user/avatar';
@@ -106,7 +106,7 @@ export function NotificationCard({
       onOpen={setMessageAsRead}
       trigger={
         <article className="pointer db base-font w-100 mb2 mw8 bg-white blue-dark br1 shadow-1">
-          <div className={`pv3 pr3 bl bw2 br2 ${read ? 'b--white' : 'b--red'} flex items-center`}>
+          <div className={`pv3 pr3 bl bw2 br2 ${read ? 'b--white' : 'b--primary'} flex items-center`}>
             <div className="ph3 pt1">
               <CheckBox activeItems={selected} toggleFn={setSelected} itemId={messageId} />
             </div>
@@ -158,7 +158,7 @@ export function NotificationCard({
                         role="button"
                         onClick={() => setMessageAsRead()}
                         style={{ width: '20px', height: '20px' }}
-                        className={`dn dib-ns h1 w1 pr1 nr4 mv1 pv1 hover-red blue-light ml3`}
+                        className={`dn dib-ns h1 w1 pr1 nr4 mv1 pv1 hover-primary blue-light ml3`}
                         data-tooltip-id={'setMessageAsReadTooltip'}
                         data-tooltip-content={msg}
                         aria-label="Mark notification as read"
@@ -175,7 +175,7 @@ export function NotificationCard({
               </div>
             )}
             <DeleteButton
-              className={`bg-transparent bw0 w2 h2 lh-copy overflow-hidden blue-light p0 mb1 hover-red`}
+              className={`bg-transparent bw0 w2 h2 lh-copy overflow-hidden blue-light p0 mb1 hover-primary`}
               showText={false}
               onClick={(e) => {
                 e.stopPropagation();
@@ -220,7 +220,7 @@ export function NotificationCardMini({
       onClose={setMessageAsRead}
       trigger={
         <article
-          className="db base-font w-100 hover-red blue-dark pointer"
+          className="db base-font w-100 hover-primary blue-dark pointer"
           style={{ marginBottom: '1.5rem', padding: '0 1.3rem' }}
         >
           <div className="flex" style={{ gap: '1rem' }}>

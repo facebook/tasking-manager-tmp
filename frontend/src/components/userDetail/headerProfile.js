@@ -146,12 +146,12 @@ export const HeaderProfile = ({ userDetails, changesets, selfProfile }) => {
         <div className="fl dib pr3">
           {user.pictureUrl ? (
             <img
-              className="h4 w4 br-100 pa1 ba b--grey-light bw3 red"
+              className="h4 w4 br-100 pa1 ba b--grey-light bw3 primary"
               src={user.pictureUrl}
               alt={user.username}
             />
           ) : (
-            <ProfilePictureIcon className="red" />
+            <ProfilePictureIcon className="primary" />
           )}
         </div>
         <div className="w-70-ns w-100 fl dib tc tl-ns">

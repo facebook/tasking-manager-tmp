@@ -122,7 +122,7 @@ export const MoreFiltersForm = (props) => {
           </Button>
         </Link>
         <Link to={props.currentUrl}>
-          <Button className="white bg-red mr1 f6 dib pv2">
+          <Button className="white bg-primary mr1 f6 dib pv2">
             <FormattedMessage {...messages.apply} />
           </Button>
         </Link>

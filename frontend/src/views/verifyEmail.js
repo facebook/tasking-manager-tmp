@@ -45,7 +45,7 @@ export function EmailVerification() {
               {...messages.successExtraLine}
               values={{
                 link: (
-                  <Link to={'/settings'} className="red link">
+                  <Link to={'/settings'} className="primary link">
                     <FormattedMessage {...messages.profileSettings} />
                   </Link>
                 ),

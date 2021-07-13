@@ -25,7 +25,7 @@ export function OrganisationUsageLevel({ completedActions, orgName }) {
       <div className="cf ph2 bg-white">
         <div className="w-10-l w-20-m w-100 fl">
           <h1
-            className="relative tc w-100 dib red barlow-condensed ma0 ph4 v-mid top--1"
+            className="relative tc w-100 dib primary barlow-condensed ma0 ph4 v-mid top--1"
             style={{ fontSize: '8rem' }}
           >
             {currentLevel.level}
@@ -118,7 +118,7 @@ export function OrganisationTier({ completedActions, type, subscriptionTier }) {
     <div className="w-100 cf pb2">
       <div className="cf ph2 bg-white">
         <div className="w-20-l w-third-m w-100 fl tc">
-          <h1 className="relative f1 tc w-100 dib ttu red barlow-condensed ma0 pt2 mt3">
+          <h1 className="relative f1 tc w-100 dib ttu primary barlow-condensed ma0 pt2 mt3">
             {selectedTier && <FormattedMessage {...messages[`${selectedTier.tier}Tier`]} />}
           </h1>
           <span className={`ma0 h2 f7 b blue-grey`}>

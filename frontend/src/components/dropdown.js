@@ -74,7 +74,7 @@ const DropdownContent = forwardRef((props, ref) => {
             i.internalLink ? (
               <>
                 {i.label}
-                {isActive(i) && <CheckIcon className="red pl4" />}
+                {isActive(i) && <CheckIcon className="primary pl4" />}
               </>
             ) : (
               <a
@@ -85,14 +85,14 @@ const DropdownContent = forwardRef((props, ref) => {
                 className="link blue-grey"
               >
                 {i.label}
-                {isActive(i) && <CheckIcon className="red pl4" />}
+                {isActive(i) && <CheckIcon className="primary pl4" />}
               </a>
             )
           ) : (
             <span onClick={props.toggleDropdown}>
               {i.label}
               {isActive(i) && (
-                <span className="red pl4">
+                <span className="primary pl4">
                   <CheckIcon />
                 </span>
               )}
