@@ -14,7 +14,7 @@ describe('test if projectProgressBar', () => {
   });
   it('validated bar has the correct width', () => {
     expect(
-      testInstance.findByProps({ className: 'absolute bg-red br-pill hhalf hide-child' }).props
+      testInstance.findByProps({ className: 'absolute bg-primary br-pill hhalf hide-child' }).props
         .style,
     ).toEqual({ width: '25%' });
   });
@@ -53,7 +53,7 @@ describe('test if projectProgressBar with value higher than 100%', () => {
   });
   it('to validated returns 100% width', () => {
     expect(
-      testInstance.findByProps({ className: 'absolute bg-red br-pill hhalf hide-child' }).props
+      testInstance.findByProps({ className: 'absolute bg-primary br-pill hhalf hide-child' }).props
         .style,
     ).toEqual({ width: '100%' });
   });

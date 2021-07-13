@@ -15,7 +15,7 @@ test('featuredProjects render title after loading projects', async () => {
   await waitFor(() => screen.getByText('Featured Projects'));
   expect(screen.getByText('Featured Projects').className).toBe('f2 mb0 ttu barlow-condensed fw8');
   // 2 inactive arrows
-  expect(container.querySelectorAll('div.dib.mr2.red.o-50').length).toBe(2);
+  expect(container.querySelectorAll('div.dib.mr2.primary.o-50').length).toBe(2);
   // project is rendered 2 times because a special formatting for mobile devices
   expect(screen.queryAllByText('City Buildings').length).toBe(2);
 });

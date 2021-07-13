@@ -32,7 +32,7 @@ describe('test DueDate', () => {
     await waitFor(() => expect(screen.getByText('Tooltip works')).toBeInTheDocument());
     expect(screen.getByText('Tooltip works')).toBeInTheDocument();
     expect(container.querySelectorAll('span')[0].className).toContain('bg-tan blue-grey');
-    expect(container.querySelectorAll('span')[0].className).not.toContain('bg-red white fw6');
+    expect(container.querySelectorAll('span')[0].className).not.toContain('bg-primary white fw6');
   });
 
   it('relative date formatting in English', () => {
@@ -41,7 +41,7 @@ describe('test DueDate', () => {
         <DueDateBox dueDate={1000 * 540 + Date.now()} intervalMili={true} />
       </ReduxIntlProviders>,
     );
-    expect(container.querySelectorAll('span')[0].className).toContain('bg-red white');
+    expect(container.querySelectorAll('span')[0].className).toContain('bg-primary white');
     expect(container.querySelectorAll('span')[0].className).not.toContain('bg-tan blue-grey');
     expect(screen.getByText('9 minutes left')).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();

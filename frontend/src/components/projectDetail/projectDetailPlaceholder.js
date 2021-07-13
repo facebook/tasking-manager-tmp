@@ -22,7 +22,7 @@ const awesomePlaceholder = (
       </div>
     </div>
     <div className="dn dn-m w-100 w-40-l vh-minus-200-ns fl flex-ns flex-column items-center justify-center">
-      <LoadingIcon className="red h3 w3" style={{ animation: 'spin 1s linear infinite' }} />
+      <LoadingIcon className="primary h3 w3" style={{ animation: 'spin 1s linear infinite' }} />
       <span className="db mt3">Loading map...</span>
     </div>
   </div>

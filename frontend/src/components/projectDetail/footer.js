@@ -93,7 +93,7 @@ export const ProjectDetailFooter = ({ className, projectId }) => {
         <ShareButton projectId={projectId} />
         {userIsloggedIn && <AddToFavorites projectId={projectId} />}
         <Link to={`./tasks`} className="">
-          <Button className="white bg-red h3 w5">
+          <Button className="white bg-primary h3 w5">
             <FormattedMessage {...messages.contribute} />
           </Button>
         </Link>

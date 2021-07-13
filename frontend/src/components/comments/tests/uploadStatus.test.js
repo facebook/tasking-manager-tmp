@@ -50,6 +50,6 @@ describe('DropzoneUploadStatus when', () => {
     );
     expect(screen.queryByText('Uploading file...')).not.toBeInTheDocument();
     expect(screen.queryByText('The image upload failed.')).toBeInTheDocument();
-    expect(screen.queryByText('The image upload failed.').className).toBe('red f6 pt3 db');
+    expect(screen.queryByText('The image upload failed.').className).toBe('primary f6 pt3 db');
   });
 });

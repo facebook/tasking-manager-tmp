@@ -60,7 +60,7 @@ export const PostProjectComment = ({ projectId, refetchComments, contributors })
       <div className="fl w-100 tr pt1 pr0-ns pr1 ml-auto">
         <Button
           onClick={() => saveComment()}
-          className="bg-red white f5"
+          className="bg-primary white f5"
           disabled={comment === ''}
           loading={mutation.isLoading}
         >
@@ -179,7 +179,7 @@ export function CommentList({ userCanEditProject, projectId, comments, retryFn }
                 <DeleteModal
                   id={comment.id}
                   type={'comments'}
-                  className="bg-transparent bw0 w2 h2 lh-copy overflow-hidden blue-light p0 mb1 hover-red"
+                  className="bg-transparent bw0 w2 h2 lh-copy overflow-hidden blue-light p0 mb1 hover-primary"
                   onDelete={retryFn}
                   endpointURL={`projects/${projectId}/comments/${comment.id}/`}
                 />

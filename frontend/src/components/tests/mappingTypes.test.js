@@ -29,21 +29,21 @@ test('test if MappingTypes with ROADS and WATERWAYS option returns the correct i
 });
 
 test('test if MappingTypes with LAND_USE option returns the correct icon color', () => {
-  const element = createComponentWithIntl(<MappingTypes types={['LAND_USE']} colorClass={'red'} />);
+  const element = createComponentWithIntl(<MappingTypes types={['LAND_USE']} colorClass={'primary'} />);
   const testInstance = element.root;
-  expect(testInstance.findByType(TaskIcon).props.className).toBe('ml1 mr3 red');
+  expect(testInstance.findByType(TaskIcon).props.className).toBe('ml1 mr3 primary');
   expect(testInstance.findByType(HomeIcon).props.className).toBe('ml1 mr3 grey-light');
 });
 
 test('test if MappingTypes with OTHER option returns the correct icon color', () => {
-  const element = createComponentWithIntl(<MappingTypes types={['OTHER']} colorClass={'red'} />);
+  const element = createComponentWithIntl(<MappingTypes types={['OTHER']} colorClass={'primary'} />);
   const testInstance = element.root;
-  expect(testInstance.findByType(AsteriskIcon).props.className).toBe('ml1 mr3 red');
+  expect(testInstance.findByType(AsteriskIcon).props.className).toBe('ml1 mr3 primary');
   expect(testInstance.findByType(HomeIcon).props.className).toBe('ml1 mr3 grey-light');
 });
 
 test('test if MappingTypes with empty array returns all icons in grey-light', () => {
-  const element = createComponentWithIntl(<MappingTypes types={[]} colorClass="red" />);
+  const element = createComponentWithIntl(<MappingTypes types={[]} colorClass="primary" />);
   const testInstance = element.root;
   expect(testInstance.findByType(RoadIcon).props.className).toBe('ml1 mr3 grey-light');
   expect(testInstance.findByType(WavesIcon).props.className).toBe('ml1 mr3 grey-light');
@@ -52,17 +52,17 @@ test('test if MappingTypes with empty array returns all icons in grey-light', ()
   expect(testInstance.findByType(AsteriskIcon).props.className).toBe('ml1 mr3 grey-light');
 });
 
-test('test if MappingTypes with all type options returns all icons in red', () => {
+test('test if MappingTypes with all type options returns all icons in primary', () => {
   const element = createComponentWithIntl(
     <MappingTypes
       types={['ROADS', 'LAND_USE', 'BUILDINGS', 'WATERWAYS', 'OTHER']}
-      colorClass="red"
+      colorClass="primary"
     />,
   );
   const testInstance = element.root;
-  expect(testInstance.findByType(RoadIcon).props.className).toBe('ml1 mr3 red');
-  expect(testInstance.findByType(WavesIcon).props.className).toBe('ml1 mr3 red');
-  expect(testInstance.findByType(HomeIcon).props.className).toBe('ml1 mr3 red');
-  expect(testInstance.findByType(TaskIcon).props.className).toBe('ml1 mr3 red');
-  expect(testInstance.findByType(AsteriskIcon).props.className).toBe('ml1 mr3 red');
+  expect(testInstance.findByType(RoadIcon).props.className).toBe('ml1 mr3 primary');
+  expect(testInstance.findByType(WavesIcon).props.className).toBe('ml1 mr3 primary');
+  expect(testInstance.findByType(HomeIcon).props.className).toBe('ml1 mr3 primary');
+  expect(testInstance.findByType(TaskIcon).props.className).toBe('ml1 mr3 primary');
+  expect(testInstance.findByType(AsteriskIcon).props.className).toBe('ml1 mr3 primary');
 });

@@ -301,8 +301,8 @@ export function TeamForm(props) {
                 <div className="w-30-l w-50 h-100 fr dib">
                   <Button
                     onClick={() => handleSubmit()}
-                    className="w-100 h-100 bg-red white"
-                    disabledClassName="bg-red o-50 white w-100 h-100"
+                    className="w-100 h-100 bg-primary white"
+                    disabledClassName="bg-primary o-50 white w-100 h-100"
                   >
                     <FormattedMessage {...messages.save} />
                   </Button>
@@ -421,7 +421,7 @@ export function TeamSideBar({ team, members, managers, requestedToJoin }: Object
           )}
           <div className="cf db mt3">
             {requestedToJoin && (
-              <span className="red pr5-ns">
+              <span className="primary pr5-ns">
                 <FormattedMessage {...messages.waitingApproval} />
               </span>
             )}

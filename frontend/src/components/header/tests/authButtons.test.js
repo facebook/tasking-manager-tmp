@@ -31,14 +31,14 @@ describe('AuthButtons', () => {
     render(
       <ReduxIntlProviders>
         <AuthButtons
-          logInStyle="white bg-red"
+          logInStyle="white bg-primary"
           signUpStyle="bg-orange black ml1 v-mid"
           redirectTo={'/welcome'}
           alternativeSignUpText={true}
         />
       </ReduxIntlProviders>,
     );
-    expect(screen.getByText('Log in').className).toContain('white bg-red');
+    expect(screen.getByText('Log in').className).toContain('white bg-primary');
     expect(screen.getByText('Create an account').className).toContain('bg-orange black ml1 v-mid');
     expect(screen.queryByText('Sign up')).not.toBeInTheDocument();
     expect(screen.queryByText('Name')).not.toBeInTheDocument();

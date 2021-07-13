@@ -10,7 +10,7 @@ export const ProjectSearchBox = ({
 }) => {
   const inputRef = useRef(null);
   const isQueryPresent = Boolean(fullProjectsQuery[searchField]);
-  const iconColor = isQueryPresent ? 'red' : 'blue-grey';
+  const iconColor = isQueryPresent ? 'primary' : 'blue-grey';
 
   const setQuerySearch = useCallback(
     (newValue) =>
@@ -54,7 +54,7 @@ export const ProjectSearchBox = ({
           onClick={() => {
             setQuerySearch(undefined);
           }}
-          className={`absolute w1 h1 red top-0 pt2 pointer pr2 right-0 dn dib-ns`}
+          className={`absolute w1 h1 primary top-0 pt2 pointer pr2 right-0 dn dib-ns`}
         />
       )}
     </div>

@@ -167,8 +167,8 @@ export function OrganisationForm(props) {
                 <div className="w-30-l w-50 h-100 fr dib">
                   <Button
                     onClick={() => handleSubmit()}
-                    className="w-100 h-100 bg-red white"
-                    disabledClassName="bg-red o-50 white w-100 h-100"
+                    className="w-100 h-100 bg-primary white"
+                    disabledClassName="bg-primary o-50 white w-100 h-100"
                   >
                     <FormattedMessage {...messages.save} />
                   </Button>
@@ -291,7 +291,7 @@ export function OrgInformation({ hasSlug, formState }) {
                       className="z-5"
                     />
                     {props.meta.error && props.meta.touched && (
-                      <span className="mt3 red">{props.meta.error}</span>
+                      <span className="mt3 primary">{props.meta.error}</span>
                     )}
                   </>
                 )}
@@ -314,7 +314,7 @@ export function OrgInformation({ hasSlug, formState }) {
                         className="z-4"
                       />
                       {props.meta.error && props.meta.touched && (
-                        <span className="mt3 red">{props.meta.error}</span>
+                        <span className="mt3 primary">{props.meta.error}</span>
                       )}
                     </>
                   )}

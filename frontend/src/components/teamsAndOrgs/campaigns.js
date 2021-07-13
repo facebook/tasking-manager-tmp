@@ -136,8 +136,8 @@ export function CampaignForm({
                 <div className="w-30-l w-50 h-100 fr dib">
                   <Button
                     onClick={() => handleSubmit()}
-                    className="w-100 h-100 bg-red white"
-                    disabledClassName="bg-red o-50 white w-100 h-100"
+                    className="w-100 h-100 bg-primary white"
+                    disabledClassName="bg-primary o-50 white w-100 h-100"
                     loading={updateCampaignAsync.status === 'pending'}
                     disabled={updateCampaignAsync.status === 'pending'}
                   >

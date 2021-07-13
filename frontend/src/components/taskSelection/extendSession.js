@@ -70,7 +70,7 @@ export function SessionAboutToExpire({
           <div className={`flex justify-end ${isSessionExtended || isError ? 'mt4' : ''}`}>
             <Button onClick={close}>Close</Button>
             {!isSessionExtended && (
-              <Button className="bg-red white ml3" onClick={handleTimeExtend}>
+              <Button className="bg-primary white ml3" onClick={handleTimeExtend}>
                 <FormattedMessage {...messages.extendTime} />
               </Button>
             )}
@@ -147,7 +147,7 @@ export function SessionExpired({
           <div className={`flex justify-end ${isTaskRelocked || isError ? 'mt4' : ''}`}>
             <Button onClick={close}>Close</Button>
             {!isTaskRelocked && (
-              <Button className="bg-red white ml3" onClick={handleTimeExtend}>
+              <Button className="bg-primary white ml3" onClick={handleTimeExtend}>
                 <FormattedMessage {...messages.relockTask} values={{ count: tasksIds.length }} />
               </Button>
             )}

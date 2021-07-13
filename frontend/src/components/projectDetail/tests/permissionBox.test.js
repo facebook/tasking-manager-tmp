@@ -5,10 +5,10 @@ import { PermissionBox } from '../permissionBox';
 
 describe('test if PermissionBox', () => {
   it('without validation returns correct style and strings', () => {
-    const element = createComponentWithIntl(<PermissionBox permission="ANY" className="red" />);
+    const element = createComponentWithIntl(<PermissionBox permission="ANY" className="primary" />);
     const testInstance = element.root;
 
-    expect(testInstance.findByType('div').props.className).toBe('tc br1 f6 ba red');
+    expect(testInstance.findByType('div').props.className).toBe('tc br1 f6 ba primary');
     expect(testInstance.findByType(FormattedMessage).props.id).toBe('project.permissions.any');
   });
 
@@ -24,11 +24,11 @@ describe('test if PermissionBox', () => {
 
   it('with validation and TEAMS permission returns correct style and strings', () => {
     const element = createComponentWithIntl(
-      <PermissionBox permission="TEAMS" validation className="red" />,
+      <PermissionBox permission="TEAMS" validation className="primary" />,
     );
     const testInstance = element.root;
 
-    expect(testInstance.findByType('div').props.className).toBe('tc br1 f6 ba red');
+    expect(testInstance.findByType('div').props.className).toBe('tc br1 f6 ba primary');
     expect(testInstance.findAllByType(FormattedMessage)[0].props.id).toBe(
       'project.permissions.teams',
     );
@@ -39,11 +39,11 @@ describe('test if PermissionBox', () => {
 
   it('with validation and TEAMS_LEVEL permission returns correct style and strings', () => {
     const element = createComponentWithIntl(
-      <PermissionBox permission="TEAMS_LEVEL" validation className="red" />,
+      <PermissionBox permission="TEAMS_LEVEL" validation className="primary" />,
     );
     const testInstance = element.root;
 
-    expect(testInstance.findByType('div').props.className).toBe('tc br1 f6 ba red');
+    expect(testInstance.findByType('div').props.className).toBe('tc br1 f6 ba primary');
     expect(testInstance.findAllByType(FormattedMessage)[0].props.id).toBe(
       'project.permissions.teamsAndLevel',
     );
