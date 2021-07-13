@@ -178,7 +178,7 @@ describe('UserAvatar', () => {
     );
 
     elementInstance
-      .findByProps({ className: 'relative top-0 z-1 fr br-100 f7 tc h1 w1 bg-red white pointer' })
+      .findByProps({ className: 'relative top-0 z-1 fr br-100 f7 tc h1 w1 bg-primary white pointer' })
       .props.onClick();
     expect(value).toBe(1);
   });

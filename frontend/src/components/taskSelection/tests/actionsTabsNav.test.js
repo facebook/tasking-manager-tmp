@@ -34,7 +34,7 @@ describe('ActionTabsNav', () => {
       'dib mr4-l mr3 pb2 pointer bb b--red bw1',
     );
     expect(screen.getByText('3').className).toBe(
-      'bg-red white br-100 f6 ml1 flex items-center justify-center',
+      'bg-primary white br-100 f6 ml1 flex items-center justify-center',
     );
     expect(screen.queryByText('Resources')).not.toBeInTheDocument();
     await user.click(screen.getByText('Instructions'));

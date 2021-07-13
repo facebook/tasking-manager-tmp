@@ -102,7 +102,7 @@ const ResetTasksModal = ({ projectId, close }: Object) => {
           <FormattedMessage {...messages.cancel} />
         </Button>
         <Button
-          className={styleClasses.redButtonClass}
+          className={styleClasses.primaryButtonClass}
           onClick={() => resetTasksAsync.execute()}
           loading={resetTasksAsync.status === 'pending'}
           disabled={resetTasksAsync.status === 'pending'}
@@ -146,7 +146,7 @@ const ResetBadImageryModal = ({ projectId, close }: Object) => {
           <FormattedMessage {...messages.cancel} />
         </Button>
         <Button
-          className={styleClasses.redButtonClass}
+          className={styleClasses.primaryButtonClass}
           onClick={() => resetBadImageryAsync.execute()}
           loading={resetBadImageryAsync.status === 'pending'}
           disabled={resetBadImageryAsync.status === 'pending'}
@@ -186,7 +186,7 @@ const ValidateAllTasksModal = ({ projectId, close }: Object) => {
           <FormattedMessage {...messages.cancel} />
         </Button>
         <Button
-          className={styleClasses.redButtonClass}
+          className={styleClasses.primaryButtonClass}
           onClick={() => validateAllTasksAsync.execute()}
           loading={validateAllTasksAsync.status === 'pending'}
           disabled={validateAllTasksAsync.status === 'pending'}
@@ -226,7 +226,7 @@ const InvalidateAllTasksModal = ({ projectId, close }: Object) => {
           <FormattedMessage {...messages.cancel} />
         </Button>
         <Button
-          className={styleClasses.redButtonClass}
+          className={styleClasses.primaryButtonClass}
           onClick={() => invalidateAllTasksAsync.execute()}
           loading={invalidateAllTasksAsync.status === 'pending'}
           disabled={invalidateAllTasksAsync.status === 'pending'}
@@ -263,7 +263,7 @@ const MapAllTasksModal = ({ projectId, close }: Object) => {
           <FormattedMessage {...messages.cancel} />
         </Button>
         <Button
-          className={styleClasses.redButtonClass}
+          className={styleClasses.primaryButtonClass}
           onClick={() => mapAllTasksAsync.execute()}
           loading={mapAllTasksAsync.status === 'pending'}
           disabled={mapAllTasksAsync.status === 'pending'}
@@ -344,7 +344,7 @@ const MessageContributorsModal = ({ projectId, close }: Object) => {
           <FormattedMessage {...messages.cancel} />
         </Button>
         <Button
-          className={styleClasses.redButtonClass}
+          className={styleClasses.primaryButtonClass}
           onClick={() => messageAllContributorsAsync.execute()}
           loading={messageAllContributorsAsync.status === 'pending'}
           disabled={messageAllContributorsAsync.status === 'pending'}
@@ -668,7 +668,7 @@ export const ActionsForm = ({ projectId, projectName, orgId }: Object) => {
           id={projectId}
           name={projectName}
           type={'projects'}
-          className="pointer bg-red white"
+          className="pointer"
         />
       </div>
     </div>

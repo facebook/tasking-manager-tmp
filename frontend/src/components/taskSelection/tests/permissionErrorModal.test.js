@@ -50,8 +50,8 @@ describe('test if UserPermissionErrorContent', () => {
       .props.onClick();
     expect(value).toBeTruthy();
   });
-  it('has a red Button', () => {
-    expect(testInstance.findByType(Button).props.className).toBe('white bg-red');
+  it('has a primary color Button', () => {
+    expect(testInstance.findByType(Button).props.className).toBe('white bg-primary');
   });
   it('has a Button with a correct FormattedMessage', () => {
     expect(testInstance.findByType(Button).props.children.type).toBe(FormattedMessage);

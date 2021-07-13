@@ -55,7 +55,7 @@ export const PostProjectComment = ({ projectId, refetchComments, contributors })
       <div className="fl w-100 tr pt1 pr0-ns pr1 ml-auto">
         <Button
           onClick={() => saveComment()}
-          className="bg-red white f5"
+          className="bg-primary white f5"
           disabled={comment === ''}
           loading={mutation.isLoading}
         >

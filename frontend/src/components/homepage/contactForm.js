@@ -84,8 +84,8 @@ export const ContactForm = (props) => {
                   <div className="w-20-l w-40-m w-50 h-100 fr">
                     <FormSubmitButton
                       disabled={submitting || pristine}
-                      className="w-100 h-100 bg-red white mt3"
-                      disabledClassName="bg-red o-50 white w-100 h-100 mt3"
+                      className="w-100 h-100 bg-primary white mt3"
+                      disabledClassName="bg-primary o-50 white w-100 h-100 mt3"
                     >
                       <FormattedMessage {...messages.contacterSend} />
                     </FormSubmitButton>

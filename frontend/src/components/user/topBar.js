@@ -58,7 +58,7 @@ export function UserTopBar() {
     <div className="cf ph4 pv4 mb2">
       <div className="w-100 w-75-l fl flex flex-column flex-row-ns items-center tc tl-ns">
         <div className="fl dib mr3">
-          <CurrentUserAvatar className="h4 w4 br-100 pa1 ba b--grey-light bw3 red" />
+          <CurrentUserAvatar className="h4 w4 br-100 pa1 ba b--grey-light bw3 primary" />
         </div>
         <ReactPlaceholder
           showLoadingAnimation={true}

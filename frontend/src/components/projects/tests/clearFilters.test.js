@@ -21,13 +21,13 @@ describe('ClearFilters basic properties', () => {
     expect(testInstance.findByType('a').children[0].props.id).toBe('project.nav.clearFilters');
   });
   it('has the correct className', () => {
-    expect(testInstance.findByType('a').props.className).toBe('red link ph3 pv2 f6 ');
+    expect(testInstance.findByType('a').props.className).toBe('primary link ph3 pv2 f6 ');
     const element2 = createComponentWithIntl(
       <MemoryRouter>
         <ClearFilters url="/explore" className="dib mt2" />
       </MemoryRouter>,
     );
     const testInstance2 = element2.root;
-    expect(testInstance2.findByType('a').props.className).toBe('red link ph3 pv2 f6 dib mt2');
+    expect(testInstance2.findByType('a').props.className).toBe('primary link ph3 pv2 f6 dib mt2');
   });
 });

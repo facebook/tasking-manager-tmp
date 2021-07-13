@@ -152,8 +152,8 @@ export function CreateOrganisation() {
               <div className="w-20-l w-40-m w-50 h-100 fr">
                 <FormSubmitButton
                   disabled={submitting || pristine}
-                  className="w-100 h-100 bg-red white"
-                  disabledClassName="bg-red o-50 white w-100 h-100"
+                  className="w-100 h-100 bg-primary white"
+                  disabledClassName="bg-primary o-50 white w-100 h-100"
                 >
                   <FormattedMessage {...messages.createOrganisation} />
                 </FormSubmitButton>
@@ -248,7 +248,7 @@ export function EditOrganisation() {
             <div className="w-auto fr">
               <Link to={`/organisations/${organisation.organisationId}/stats/`}>
                 <CustomButton
-                  className="bg-red ba b--red white pv2 ph3"
+                  className="bg-primary ba b--red white pv2 ph3"
                   icon={<ChartLineIcon className="h1 v-mid" />}
                 >
                   <FormattedMessage {...messages.statistics} />

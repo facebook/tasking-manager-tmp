@@ -45,7 +45,7 @@ describe('TopProjects card', () => {
 
     expect(screen.getByText('Top 5 projects contributed').className).toBe('f125 mv0 fw6 pt3');
     expect(screen.getByText('7')).toBeInTheDocument();
-    const progressBars = container.querySelectorAll('div.bg-red.br-pill.absolute');
+    const progressBars = container.querySelectorAll('div.bg-primary.br-pill.absolute');
     expect(progressBars[0].style.height).toBe('0.5em');
     expect(progressBars[1].style.height).toBe('0.5em');
     expect(progressBars[0].style.width).toBe('100%');

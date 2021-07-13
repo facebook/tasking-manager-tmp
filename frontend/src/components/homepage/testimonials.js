@@ -37,9 +37,9 @@ export function Testimonials() {
             />
           </div>
           <div className="citation-ctr">
-            <p className="bg-red white pv2 pl3 pr1 citation ma0 relative">
+            <p className="bg-primary white pv2 pl3 pr1 citation ma0 relative">
               <FormattedMessage {...person.citation} />
-              <span className="quotes-icon red ma0">&ldquo;</span>
+              <span className="quotes-icon primary ma0">&ldquo;</span>
             </p>
             <div className="w-70-l w-50-m mh3 mh0-ns">
               <h4 className="f5 fw7 mb1 tl-m witness">{person.name},</h4>

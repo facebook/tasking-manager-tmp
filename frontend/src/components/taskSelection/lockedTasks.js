@@ -35,7 +35,7 @@ export function AnotherProjectLock({ projectId, lockedTasksLength, action }: Obj
         />
       </div>
       <Link to={`/projects/${projectId}/${action}/`} state={{ directedFrom: location.pathname }}>
-        <Button className="bg-red white">
+        <Button className="bg-primary white">
           <FormattedMessage {...messages.goToProject} values={{ project: projectId }} />
         </Button>
       </Link>
@@ -61,7 +61,7 @@ export function SameProjectLock({ lockedTasks, action }: Object) {
         />
       </div>
       <Button
-        className="bg-red white"
+        className="bg-primary white"
         onClick={() => navigate(`/projects/${lockedTasks.project}/${action}/`)}
       >
         <FormattedMessage
@@ -108,7 +108,7 @@ export const LicenseError = ({ id, close, lockTasks }) => {
             <Button onClick={() => close()} className="blue-dark bg-white mr2">
               <FormattedMessage {...messages.cancel} />
             </Button>
-            <Button onClick={() => acceptLicense()} className="white bg-red">
+            <Button onClick={() => acceptLicense()} className="white bg-primary">
               <FormattedMessage {...messages.acceptLicense} />
             </Button>
           </div>
@@ -186,12 +186,12 @@ function LockErrorButtons({
     <div className="w-100 pt3 flex justify-end">
       <Button
         onClick={close}
-        className={`mr2 ${shouldShowDeselectButton ? 'bg-transparent black' : 'bg-red white'}`}
+        className={`mr2 ${shouldShowDeselectButton ? 'bg-transparent black' : 'bg-primary white'}`}
       >
         <FormattedMessage {...messages.closeModal} />
       </Button>
       {shouldShowDeselectButton && (
-        <Button onClick={handleDeselectAndValidate} className="bg-red white mr2">
+        <Button onClick={handleDeselectAndValidate} className="bg-primary white mr2">
           <FormattedMessage {...messages.deselectAndValidate} />
         </Button>
       )}

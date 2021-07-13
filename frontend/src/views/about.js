@@ -20,7 +20,7 @@ export function AboutPage() {
             {...messages.osmDescription}
             values={{
               osmLink: (
-                <a className="link red fw5" href="https://openstreetmap.org">
+                <a className="link primary fw5" href="https://openstreetmap.org">
                   OpenStreetMap
                 </a>
               ),
@@ -32,7 +32,7 @@ export function AboutPage() {
             {...messages.osmWiki}
             values={{
               osmWikiLink: (
-                <a className="link red fw5" href="https://wiki.openstreetmap.org/">
+                <a className="link primary fw5" href="https://wiki.openstreetmap.org/">
                   OSM Wiki
                 </a>
               ),
@@ -45,7 +45,7 @@ export function AboutPage() {
             values={{
               faqs: (
                 <a
-                  className="link red fw5"
+                  className="link primary fw5"
                   href="https://docs.google.com/document/d/1p0zGfvANgrynn7vnOND-2rK4HHKbWVha9Xx8jfOwick"
                 >
                   <FormattedMessage {...messages.smFAQ} />
@@ -67,12 +67,12 @@ export function AboutPage() {
                 {...messages.flossDescription}
                 values={{
                   hotLink: (
-                    <a className="link red fw5" href="https://hotosm.org">
+                    <a className="link primary fw5" href="https://hotosm.org">
                       Humanitarian OpenStreetMap Team
                     </a>
                   ),
                   code: (
-                    <a className="link red fw5" href="https://github.com/hotosm/tasking-manager">
+                    <a className="link primary fw5" href="https://github.com/facebook/OSM-HOT-Tasking-Manager">
                       GitHub
                     </a>
                   ),

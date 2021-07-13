@@ -110,7 +110,7 @@ export function TaskCard({
               taskStatus,
             ) && (
               <Link to={taskLink}>
-                <div className={`dn dib-l link pv2 ph3 mh3 mv1 bg-red white f7 fr`}>
+                <div className={`dn dib-l link pv2 ph3 mh3 mv1 bg-primary white f7 fr`}>
                   <ResumeIcon className={`ph1 dib-l dn`} />
                   <FormattedMessage {...messages.resumeTask} />
                 </div>

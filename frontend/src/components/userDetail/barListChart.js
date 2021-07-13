@@ -8,7 +8,7 @@ const ProgressBar = ({ percent }) => (
   <div className="w-100 relative mt2">
     <div
       style={{ height: '0.5em', width: `${percent * 100}%` }}
-      className="bg-red br-pill absolute"
+      className="bg-primary br-pill absolute"
     ></div>
   </div>
 );

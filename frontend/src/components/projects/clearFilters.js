@@ -6,7 +6,7 @@ import messages from './messages';
 
 export default function ClearFilters({ url, className = '' }: Object) {
   return (
-    <Link to={url} className={`red link ph3 pv2 f6 ${className}`}>
+    <Link to={url} className={`primary link ph3 pv2 f6 ${className}`}>
       <FormattedMessage {...messages.clearFilters} />
     </Link>
   );

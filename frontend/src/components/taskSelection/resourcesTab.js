@@ -53,7 +53,7 @@ export const ResourcesTab = ({ project, tasksIds, tasksGeojson }) => {
             />
           )}
           <a href={osmchaLink} target="_blank" rel="noopener noreferrer">
-            <CustomButton className={'bg-red b--red white ba pv2 ph3'} disabled={!activeTask}>
+            <CustomButton className={'bg-primary b--primary white ba pv2 ph3'} disabled={!activeTask}>
               <FormattedMessage {...messages.seeTaskChangesets} />
               <ExternalLinkIcon className="pl2" />
             </CustomButton>

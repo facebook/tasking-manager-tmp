@@ -139,12 +139,12 @@ export const CheckBoxInput = ({ isActive, changeState, className = '', disabled 
     onKeyPress={disabled ? () => {} : changeState}
     tabIndex="0"
     className={`bg-white w1 h1 ma1 ba bw1 ${
-      disabled ? 'b--grey-light' : 'b--red'
+      disabled ? 'b--grey-light' : 'b--primary'
     } br1 relative pointer ${className}`}
   >
     {isActive ? (
       <div
-        className={`${disabled ? 'bg-grey-light' : 'bg-red'} ba b--white bw1 br1 w-100 h-100`}
+        className={`${disabled ? 'bg-grey-light' : 'bg-primary'} ba b--white bw1 br1 w-100 h-100`}
       ></div>
     ) : (
       <></>

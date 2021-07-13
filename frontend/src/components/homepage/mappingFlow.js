@@ -9,7 +9,7 @@ function MappingCard({ image, title, description }: Object) {
   return (
     <div className="w-100 w-third-l pv3 card bg-white">
       <div className="pa4 ph3-m">
-        <div className="red dib">{image}</div>
+        <div className="primary dib">{image}</div>
         <h4 className="blue-dark b f125">
           <FormattedMessage {...title} />
         </h4>

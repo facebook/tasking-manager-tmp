@@ -108,8 +108,8 @@ export function CreateCampaign() {
                 <FormSubmitButton
                   disabled={submitting || pristine || createCampaignAsync.status === 'pending'}
                   loading={submitting || createCampaignAsync.status === 'pending'}
-                  className="w-100 h-100 bg-red white"
-                  disabledClassName="bg-red o-50 white w-100 h-100"
+                  className="w-100 h-100 bg-primary white"
+                  disabledClassName="bg-primary o-50 white w-100 h-100"
                 >
                   <FormattedMessage {...messages.createCampaign} />
                 </FormSubmitButton>

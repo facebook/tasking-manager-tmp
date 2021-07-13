@@ -267,7 +267,7 @@ export const PriorityAreasForm = () => {
             <div>
               <CustomButton
                 className={`bg-white ph3 pv2 mr2 ba ${
-                  activeMode === 'draw_polygon' ? 'red b--red' : 'blue-dark b--grey-light'
+                activeMode === 'draw_polygon' ? 'primary b--primary' : 'blue-dark b--grey-light'
                 }`}
                 onClick={drawPolygonHandler}
               >
@@ -277,7 +277,7 @@ export const PriorityAreasForm = () => {
 
               <CustomButton
                 className={`bg-white ph3 pv2 mr2 ba ${
-                  activeMode === 'draw_rectangle' ? 'red b--red' : 'blue-dark b--grey-light'
+                activeMode === 'draw_rectangle' ? 'primary b--primary' : 'blue-dark b--grey-light'
                 }`}
                 onClick={drawRectangleHandler}
               >

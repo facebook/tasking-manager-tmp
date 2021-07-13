@@ -18,7 +18,7 @@ import { formatOverpassLink } from '../../utils/overpassLink';
 import { pushToLocalJSONAPI } from '../../network/genericJSONRequest';
 import { UserAvatar } from '../user/avatar';
 import { CloseIcon } from '../svgIcons';
-import { ID_EDITOR_URL } from '../../config';
+import { ID_EDITOR_URL, RAPID_EDITOR_URL } from '../../config';
 import { Button, CustomButton } from '../button';
 import { Dropdown } from '../dropdown';
 import { CommentInputField } from '../comments/commentInput';
@@ -62,7 +62,7 @@ const PostComment = ({ projectId, taskId, contributors, setCommentPayload }) => 
       <div className="ml-auto mb5 flex flex-column gap-1 items-end">
         <Button
           onClick={() => saveComment()}
-          className="bg-red white f6"
+          className="bg-primary white f6"
           loading={mutation.isLoading}
           disabled={!comment}
         >
@@ -155,7 +155,7 @@ export const TaskHistory = ({ projectId, taskId }) => {
         ))}
       </div>
       <div className="timeline-container">
-        {/* This can handle displaying a messaage for the no comments section 
+        {/* This can handle displaying a messaage for the no comments section
         because no activities will be handled earlier */}
         {shownHistory.length === 0 ? (
           <div className="ma4 dark-gray tc">
@@ -347,6 +347,17 @@ export const TaskActivity = ({
 
 function EditorDropdown({ project, taskId, bbox }: Object) {
   const loadTaskOnEditor = (arr) => {
+    if (arr[0].value === 'RAPID') {
+      let windowObjectReference = window.open('', `RapiD-${project.projectId}-${taskId}`);
+      const { center, zoom } = viewport(bbox, [window.innerWidth, window.innerHeight]);
+      windowObjectReference.location.href = getIdUrl(
+        project,
+        center,
+        zoom,
+        [taskId],
+        RAPID_EDITOR_URL,
+      );
+    }
     if (arr[0].value === 'ID') {
       let windowObjectReference = window.open('', `iD-${project.projectId}-${taskId}`);
       const { center, zoom } = viewport(bbox, [window.innerWidth, window.innerHeight]);
@@ -366,6 +377,7 @@ function EditorDropdown({ project, taskId, bbox }: Object) {
   return (
     <Dropdown
       options={[
+        { label: 'RapiD', value: 'RAPID' },
         { label: 'iD Editor', value: 'ID' },
         { label: 'JOSM', value: 'JOSM' },
       ]}
@@ -398,7 +410,7 @@ function UndoLastTaskAction({ status, resetFn }: Object) {
             <FormattedMessage {...messages.no} />
           </CustomButton>
           <CustomButton
-            className="mh1 dib link ph3 f6 pv2 bg-red white ba b--red"
+            className="mh1 dib link ph3 f6 pv2 bg-primary white ba b--primary"
             onClick={() => {
               resetFn();
               setShowConfirmation(false);
@@ -409,7 +421,7 @@ function UndoLastTaskAction({ status, resetFn }: Object) {
         </>
       ) : (
         <CustomButton
-          className="mh1 link ph3 f6 pv2 bg-red white ba b--red"
+          className="mh1 link ph3 f6 pv2 bg-primary white ba b--primary"
           onClick={() => setShowConfirmation(true)}
         >
           <FormattedMessage {...messages[`revert${status}`]} />

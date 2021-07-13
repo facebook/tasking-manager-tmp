@@ -8,7 +8,7 @@ import { CustomButton } from '../button';
 import { PlusIcon, WasteIcon } from '../svgIcons';
 
 export const ViewAllLink = ({ link }: Object) => (
-  <Link to={link} className="dib mt2 fr red link">
+  <Link to={link} className="dib mt2 fr primary link">
     <span>
       <FormattedMessage {...messages.viewAll} />
     </span>
@@ -16,7 +16,7 @@ export const ViewAllLink = ({ link }: Object) => (
 );
 
 export const AddButton = () => (
-  <CustomButton className="red bg-transparent ba b--red barlow-condensed pv1">
+  <CustomButton className="primary bg-transparent ba b--primary barlow-condensed pv1">
     <PlusIcon className="v-mid h1 w1" />
     <span className="v-mid f4 fw6 ttu pl2">
       <FormattedMessage {...messages.new} />
@@ -27,7 +27,7 @@ export const AddButton = () => (
 export const DeleteButton = ({ className, onClick, showText = true }: Object) => {
   const intl = useIntl();
   return (
-    <CustomButton className={`red bg-transparent ba b--red pv1 ${className}`} onClick={onClick}>
+    <CustomButton className={`primary bg-transparent ba b--primary pv1 ${className}`} onClick={onClick}>
       <div data-for="Delete" data-tip={!showText ? intl.formatMessage(messages.delete) : ''}>
         <WasteIcon className="v-mid h1 w1" />
         {showText && (
@@ -42,8 +42,8 @@ export const DeleteButton = ({ className, onClick, showText = true }: Object) =>
 };
 
 export function VisibilityBox({ visibility, extraClasses }: Object) {
-  let color = visibility === 'PUBLIC' ? 'blue-grey' : 'red';
-  let borderColor = visibility === 'PUBLIC' ? 'b--grey' : 'b--red';
+  let color = visibility === 'PUBLIC' ? 'blue-grey' : 'primary';
+  let borderColor = visibility === 'PUBLIC' ? 'b--grey' : 'b--primary';
   const text = visibility ? <FormattedMessage {...messages[visibility.toLowerCase()]} /> : '';
 
   return <div className={`tc br1 f7 ttu ba ${borderColor} ${color} ${extraClasses}`}>{text}</div>;
@@ -56,7 +56,7 @@ export function JoinMethodBox(props) {
     BY_INVITE: 'byInvite',
   };
   return (
-    <div className={`tc br1 f7 ttu ba red b--red ${props.className}`}>
+    <div className={`tc br1 f7 ttu ba primary b--primary ${props.className}`}>
       <FormattedMessage {...messages[teamJoinMethods[props.joinMethod]]} />
     </div>
   );

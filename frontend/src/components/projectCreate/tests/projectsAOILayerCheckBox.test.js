@@ -35,7 +35,7 @@ describe('ProjectsAOILayerCheckBox', () => {
     );
     expect(screen.getByText('Show existing projects AoIs')).toBeInTheDocument();
     expect(screen.getByRole('checkbox').className).not.toContain('b--grey-light');
-    expect(screen.getByRole('checkbox').className).toContain('b--red');
+    expect(screen.getByRole('checkbox').className).toContain('b--primary');
     await user.hover(screen.getByText('Show existing projects AoIs'));
     expect(
       screen.getByText("Enable the visualization of the existing projects' areas of interest."),

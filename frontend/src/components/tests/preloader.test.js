@@ -10,5 +10,5 @@ test('Preloader renders correct content', () => {
     'fixed vh-100 w-100 flex justify-center items-center bg-white',
   );
   expect(container.querySelector('svg')).toBeInTheDocument();
-  expect(container.querySelector('.red.h3.w3')).toBeInTheDocument();
+  expect(container.querySelector('.primary.h3.w3')).toBeInTheDocument();
 });

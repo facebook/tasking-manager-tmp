@@ -16,7 +16,7 @@ const HeatmapLegend = () => {
       </span>
       <div className={`dib h1 w1 bg-tan`}></div>
       {indexes.map((i) => (
-        <div key={i} className={`dib h1 w1 bg-red o-${i}`}></div>
+        <div key={i} className={`dib h1 w1 bg-primary o-${i}`}></div>
       ))}
       <span className={legendFontStyle}>
         <FormattedMessage {...messages.heatmapLegendMore} />
@@ -42,19 +42,19 @@ export const ContributionTimeline = ({ userStats }) => {
     const rate = v.count / maxValue;
 
     if (0.0 <= rate && rate < 0.25) {
-      return 'fill-red o-30';
+      return 'fill-primary o-30';
     }
 
     if (0.25 <= rate && rate < 0.5) {
-      return 'fill-red o-50';
+      return 'fill-primary o-50';
     }
 
     if (0.5 <= rate && rate < 0.75) {
-      return 'fill-red o-70';
+      return 'fill-primary o-70';
     }
 
     if (0.75 <= rate && rate <= 1) {
-      return 'fill-red o-100';
+      return 'fill-primary o-100';
     }
   };
 

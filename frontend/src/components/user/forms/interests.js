@@ -74,7 +74,7 @@ export function UserInterestsForm() {
         </span>
       )}
       {success === false && (
-        <span className="bg-red white pa2 db">
+        <span className="bg-primary white pa2 db">
           <FormattedMessage {...messages.interestsUpdateError} />
         </span>
       )}

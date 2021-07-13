@@ -250,7 +250,7 @@ export const MetadataForm = () => {
 const IdDocsLink = () => (
   <a
     href="https://github.com/openstreetmap/iD/blob/develop/API.md#url-parameters"
-    className="red underline link"
+    className="primary underline link"
     target="_blank"
     rel="noopener noreferrer"
   >

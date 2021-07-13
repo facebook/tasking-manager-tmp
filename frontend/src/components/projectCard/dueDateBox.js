@@ -45,7 +45,7 @@ export function DueDateBox({
         <span
           className={`inline-flex items-center lh-solid f8 br1 ph2 link ${
             milliDifference < 60000 * 20 && intervalMili !== undefined
-              ? 'bg-red white'
+              ? 'bg-primary white'
               : 'bg-tan blue-grey'
           } ${intervalMili ? '' : 'mw4'}`}
           data-tip={tooltipMsg}

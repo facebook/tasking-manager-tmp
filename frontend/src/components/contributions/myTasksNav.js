@@ -58,7 +58,7 @@ export const MyTasksNav = (props) => {
               allQueryParams={contributionsQuery}
             />
             {!notAnyFilter && (
-              <Link to="./" className="red link ph3 f6 v-mid dib pv2 mh1 mt1 mt2-ns fr">
+              <Link to="./" className="primary link ph3 f6 v-mid dib pv2 mh1 mt1 mt2-ns fr">
                 <FormattedMessage {...messages.clearFilters} />
               </Link>
             )}

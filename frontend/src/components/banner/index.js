@@ -35,7 +35,7 @@ export function Banner() {
   const privacyPolicyLink = (
     <a
       href={`${ORG_PRIVACY_POLICY_URL}`}
-      className="red underline link fw6"
+      className="primary underline link fw6"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -52,7 +52,7 @@ export function Banner() {
         <p>
           <a
             id="privlink"
-            className="red link f4 fw6"
+            className="primary link f4 fw6"
             href={`${ORG_PRIVACY_POLICY_URL}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -64,10 +64,10 @@ export function Banner() {
           <FormattedMessage {...messages.bannerText} values={{ link: privacyPolicyLink }} />
         </p>
         <div id="optout-buttons">
-          <div className="white bg-red pv2 ph3 mh1 br1 dib fw6 pointer" id="optout-disagree">
+          <div className="white bg-primary pv2 ph3 mh1 br1 dib fw6 pointer" id="optout-disagree">
             <FormattedMessage {...messages.disagree} />
           </div>
-          <div className="white bg-red pv2 ph3 mh1 br1 dib fw6 pointer" id="optout-agree">
+          <div className="white bg-primary pv2 ph3 mh1 br1 dib fw6 pointer" id="optout-agree">
             <FormattedMessage {...messages.agree} />
           </div>
         </div>

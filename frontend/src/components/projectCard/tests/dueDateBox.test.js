@@ -42,7 +42,7 @@ describe('test DueDate', () => {
         <DueDateBox dueDate={1000 * 540 + Date.now()} intervalMili={true} />
       </ReduxIntlProviders>,
     );
-    expect(container.querySelectorAll('span')[0].className).toContain('bg-red white');
+    expect(container.querySelectorAll('span')[0].className).toContain('bg-primary white');
     expect(container.querySelectorAll('span')[0].className).not.toContain('bg-tan blue-grey');
     expect(screen.getByText('9 minutes left')).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();

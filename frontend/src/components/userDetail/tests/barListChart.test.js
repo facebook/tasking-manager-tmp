@@ -20,7 +20,7 @@ test('BarChartItem with link address', () => {
   const linkElement = screen.getByText('Test project');
   expect(linkElement.className).toBe('link blue-dark');
   expect(linkElement.href.endsWith('/projects/1/')).toBeTruthy();
-  const progressBar = container.querySelector('div.bg-red.br-pill.absolute');
+  const progressBar = container.querySelector('div.bg-primary.br-pill.absolute');
   expect(progressBar.style.height).toBe('0.5em');
   expect(progressBar.style.width).toBe('54%');
   expect(screen.getByText('10').className).toBe('b mr1');
@@ -36,7 +36,7 @@ test('BarChartItem without link address', () => {
 
   expect(screen.getByText('Test project').className).toBe('di ma0 f7 b fl');
   expect(container.querySelector('a')).not.toBeInTheDocument();
-  const progressBar = container.querySelector('div.bg-red.br-pill.absolute');
+  const progressBar = container.querySelector('div.bg-primary.br-pill.absolute');
   expect(progressBar.style.height).toBe('0.5em');
   expect(progressBar.style.width).toBe('65%');
   expect(screen.getByText('23').className).toBe('b mr1');
@@ -63,7 +63,7 @@ test('BarListChart renders correct elements', () => {
   expect(container.querySelector('ol').className).toBe('pa0 mt1 mb0');
   expect(container.querySelectorAll('li').length).toBe(3);
   expect(screen.getByText('SOTM 2023').href.endsWith('/projects/7')).toBeTruthy();
-  const progressBars = container.querySelectorAll('div.bg-red.br-pill.absolute');
+  const progressBars = container.querySelectorAll('div.bg-primary.br-pill.absolute');
   expect(progressBars[0].style.width).toBe('100%');
   expect(progressBars[1].style.width).toBe('11%');
   expect(progressBars[2].style.width).toBe('9%');

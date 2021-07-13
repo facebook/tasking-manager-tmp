@@ -21,7 +21,7 @@ const ContactUsPopup = ({ icon, title, body, proceed, proceedFn }) => (
             <h3 className="barlow-condensed f3">{title}</h3>
             <div className="pt3">{body}</div>
             <Button
-              className="bg-red mt3 white"
+              className="bg-primary mt3 white"
               onClick={() => {
                 proceedFn();
                 close();

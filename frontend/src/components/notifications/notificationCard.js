@@ -106,7 +106,7 @@ export function NotificationCard({
       onOpen={setMessageAsRead}
       trigger={
         <article className="pointer db base-font w-100 mb2 mw8 bg-white blue-dark br1 shadow-1">
-          <div className={`pv3 pr3 bl bw2 br2 ${read ? 'b--white' : 'b--red'} flex items-center`}>
+          <div className={`pv3 pr3 bl bw2 br2 ${read ? 'b--white' : 'b--primary'} flex items-center`}>
             <div className="ph3 pt1">
               <CheckBox activeItems={selected} toggleFn={setSelected} itemId={messageId} />
             </div>

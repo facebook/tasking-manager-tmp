@@ -143,7 +143,7 @@ export function NotificationBodyCard({
           />
         </div>
         <DeleteButton
-          className={`fr bg-red br1 white ma2 ph4 pv2`}
+          className={`fr bg-primary br1 white ma2 ph4 pv2`}
           onClick={() => deleteNotification(messageId)}
         />
       </article>

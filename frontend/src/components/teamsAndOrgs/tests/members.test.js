@@ -50,7 +50,7 @@ describe('test JoinRequest list', () => {
   it('Accept and Deny buttons are present', () => {
     expect(testInstance.findAllByType(Button).length).toBe(4);
     expect(testInstance.findAllByProps({ className: 'pr2 blue-dark bg-white' }).length).toBe(2);
-    expect(testInstance.findAllByProps({ className: 'pr2 bg-red white' }).length).toBe(2);
+    expect(testInstance.findAllByProps({ className: 'pr2 bg-primary white' }).length).toBe(2);
   });
   it('no requests message is NOT present', () => {
     expect(() =>
@@ -100,8 +100,8 @@ describe('test JoinRequest list without requests', () => {
     );
     expect(() =>
       testInstance
-        .findAllByProps({ className: 'pr2 bg-red white' })
-        .toThrow(new Error('No instances found with props: {className: "pr2 bg-red white"}')),
+        .findAllByProps({ className: 'pr2 bg-primary white' })
+        .toThrow(new Error('No instances found with props: {className: "pr2 bg-primary white"}')),
     );
   });
   it('no requests message is present', () => {

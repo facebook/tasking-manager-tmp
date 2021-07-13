@@ -61,13 +61,13 @@ export const UpdateEmail = ({ closeModal }) => {
             }}
           </FormattedMessage>
         </p>
-        <Button className="bg-red white" type="submit">
+        <Button className="bg-primary white" type="submit">
           <FormattedMessage {...messages.emailUpdateButton} />
         </Button>
         {ORG_PRIVACY_POLICY_URL && (
           <p className="mb0">
             <a
-              className="link pointer red fw5"
+              className="link pointer primary fw5"
               target="_blank"
               rel="noopener noreferrer"
               href={`${ORG_PRIVACY_POLICY_URL}`}

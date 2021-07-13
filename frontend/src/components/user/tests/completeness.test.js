@@ -104,7 +104,7 @@ it('test with a user who filled all profile fields', () => {
   );
   expect(elementInstance.findByType(FormattedNumber).props.value).toBe(1);
   expect(
-    elementInstance.findByProps({ className: 'absolute bg-red br-pill hhalf hide-child' }).props
+    elementInstance.findByProps({ className: 'absolute bg-primary br-pill hhalf hide-child' }).props
       .style.width,
   ).toBe('100%');
 });
@@ -117,7 +117,7 @@ it('test with a user whose profile is 66.7% filled', () => {
   );
   expect(elementInstance.findByType(FormattedNumber).props.value).toBe(2 / 3);
   expect(
-    elementInstance.findByProps({ className: 'absolute bg-red br-pill hhalf hide-child' }).props
+    elementInstance.findByProps({ className: 'absolute bg-primary br-pill hhalf hide-child' }).props
       .style.width,
   ).toBe('66.7%');
 });
@@ -130,7 +130,7 @@ it('test with a user whose profile is 0% filled', () => {
   );
   expect(elementInstance.findByType(FormattedNumber).props.value).toBe(0);
   expect(
-    elementInstance.findByProps({ className: 'absolute bg-red br-pill hhalf hide-child' }).props
+    elementInstance.findByProps({ className: 'absolute bg-primary br-pill hhalf hide-child' }).props
       .style.width,
   ).toBe('0%');
 });

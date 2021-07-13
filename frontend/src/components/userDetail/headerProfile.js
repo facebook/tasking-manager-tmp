@@ -151,7 +151,7 @@ export const HeaderProfile = ({ userDetails, changesets, selfProfile }) => {
               alt={user.username}
             />
           ) : (
-            <ProfilePictureIcon className="red" />
+            <ProfilePictureIcon className="primary" />
           )}
         </div>
         <div className="w-70-ns w-100 fl dib tc tl-ns">

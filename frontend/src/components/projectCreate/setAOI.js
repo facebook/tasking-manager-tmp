@@ -35,7 +35,7 @@ export default function SetAOI({
         </p>
         <CustomButton
           className={`bg-white ph3 pv2 mr2 ba ${
-            drawIsActive ? 'red b--red' : 'blue-dark b--grey-light'
+            drawIsActive ? 'primary b--primary' : 'blue-dark b--grey-light'
           }`}
           onClick={drawHandler}
           icon={<MappedIcon className="h1 w1 v-mid" />}

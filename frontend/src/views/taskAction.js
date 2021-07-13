@@ -68,7 +68,7 @@ export function TaskAction({ projectId, action }: Object) {
             />
           </p>
           <Button
-            className="bg-red white"
+            className="bg-primary white"
             onClick={() => navigate(`/projects/${projectId}/tasks/`)}
           >
             <FormattedMessage {...messages.goToProjectButton} values={{ project: projectId }} />

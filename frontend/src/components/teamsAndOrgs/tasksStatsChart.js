@@ -29,7 +29,7 @@ const TasksStatsChart = ({ stats }) => {
     label: intl.formatMessage(messages.mappedTasks),
   };
   const validatedTasksConfig = {
-    color: CHART_COLOURS.red,
+    color: CHART_COLOURS.magenta,
     label: intl.formatMessage(messages.validatedTasks),
   };
   const options = {

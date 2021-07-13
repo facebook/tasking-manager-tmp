@@ -24,7 +24,7 @@ export const AddToFavorites = (props) => {
         } input-reset base-font bg-white blue-dark bn pointer flex nowrap items-center ml3`}
       >
         <FlagIcon
-          className={`pr2 v-btm ${isLoading ? 'o-50' : ''} ${isFav ? 'red' : 'blue-grey'}`}
+          className={`pr2 v-btm ${isLoading ? 'o-50' : ''} ${isFav ? 'primary' : 'blue-grey'}`}
         />
         <span className="dn db-ns">
           {isFav ? (

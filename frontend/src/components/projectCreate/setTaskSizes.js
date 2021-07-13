@@ -165,7 +165,7 @@ export default function SetTaskSizes({ metadata, mapObj, updateMetadata }) {
           <div role="group">
             <CustomButton
               className={`bg-white ph3 pv2 mr2 ba ${
-                splitMode === 'click' ? 'red b--red' : 'blue-dark b--grey-light'
+                splitMode === 'click' ? 'primary b--primary' : 'blue-dark b--grey-light'
               }`}
               onClick={() => setSplitMode(splitMode === 'click' ? null : 'click')}
               icon={<CircleIcon className="v-mid" style={{ width: '0.5rem' }} />}
@@ -174,7 +174,7 @@ export default function SetTaskSizes({ metadata, mapObj, updateMetadata }) {
             </CustomButton>
             <CustomButton
               className={`bg-white ph3 pv2 mr2 ba ${
-                splitMode === 'draw' ? 'red b--red' : 'blue-dark b--grey-light'
+                splitMode === 'draw' ? 'primary b--primary' : 'blue-dark b--grey-light'
               }`}
               onClick={splitDrawing}
               icon={<MappedIcon className="h1 w1 v-mid" />}

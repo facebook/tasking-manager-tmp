@@ -321,7 +321,7 @@ const ProjectCreate = () => {
             <div className="cf absolute" style={{ bottom: '3.5rem', left: '0.6rem' }}>
               <p
                 className={`fl mr2 pa1 f7-ns white ${
-                  metadata.area > MAX_AOI_AREA || metadata.area === 0 ? 'bg-red' : 'bg-green'
+              metadata.area > MAX_AOI_AREA || metadata.area === 0 ? 'bg-primary' : 'bg-green'
                 }`}
               >
                 <FormattedMessage

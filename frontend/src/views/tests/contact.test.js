@@ -16,7 +16,7 @@ test('Contact page', async () => {
   expect(screen.getByText('Name')).toBeInTheDocument();
   expect(screen.getByText('Email')).toBeInTheDocument();
   expect(screen.getByText('Message')).toBeInTheDocument();
-  expect(screen.getByText('Send').className).toContain('bg-red o-50 white');
+  expect(screen.getByText('Send').className).toContain('bg-primary o-50 white');
 
   const [name, email] = container.querySelectorAll('input');
   const textArea = container.querySelector('textarea');

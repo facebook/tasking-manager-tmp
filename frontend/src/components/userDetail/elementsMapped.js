@@ -70,7 +70,7 @@ export const TaskStats = ({ userStats, username }) => {
           key={index}
           className="shadow-6 pv3 ph2 bg-white flex flex-column flex-row-ns items-center"
         >
-          <div className="w-75 w-25-ns h-100 pa2 pa0-m red tc">{stat.icon}</div>
+          <div className="w-75 w-25-ns h-100 pa2 pa0-m primary tc">{stat.icon}</div>
           <div className="w-75 mt3 tc f6 b">
             <div className=" w-100">
               <p className="mb1 mt3 mt1-ns f3 fw6" style={{ letterSpacing: '1.25px' }}>
@@ -84,7 +84,7 @@ export const TaskStats = ({ userStats, username }) => {
             <div className="w-100 pt4 flex">
               {stat.items.map((item, index) => (
                 <div key={index} className=" w-33 tc">
-                  <p className="ma0 mb0 barlow-condensed f2 fw5 red">{item.value}</p>
+                  <p className="ma0 mb0 barlow-condensed f2 fw5 primary">{item.value}</p>
                   <p className="mb3 ttl fw6">
                     <FormattedMessage {...item.label} />
                   </p>

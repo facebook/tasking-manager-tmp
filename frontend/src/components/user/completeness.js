@@ -10,7 +10,7 @@ function CompletenessProgressBar({ completeness }: Object) {
       <div className="cf db pt1 flex items-center">
         <div className="w-90 pr3 fl relative">
           <div
-            className={'absolute bg-red br-pill hhalf hide-child'}
+            className={'absolute bg-primary br-pill hhalf hide-child'}
             style={{ width: `${completeness.toPrecision(3) * 100}%` }}
           ></div>
           <div className={'bg-tan br-pill hhalf hide-child overflow-y-hidden'}></div>
