@@ -67,7 +67,7 @@ const Parameters = {
   DatabaseParameterGroupName: {
     Description: 'Name of the customized parameter group for the database',
     Type: 'String',
-    Default: 'tm3-logging-postgres11'
+    Default: 'tm4-logging-postgres11'
   },
   DatabaseSnapshotRetentionPeriod: {
     Description: 'Retention period for automatic (scheduled) snapshots in days',
@@ -199,6 +199,7 @@ const Conditions = {
   DatabaseDumpFileGiven: cf.notEquals(cf.ref('DatabaseDump'), ''),
   IsTaskingManagerProduction: cf.equals(cf.ref('AutoscalingPolicy'), 'production'),
   IsTaskingManagerDemo: cf.equals(cf.ref('AutoscalingPolicy'), 'Demo (max 3)'),
+  IsTaskingManagerDevelopment: cf.equals(cf.ref('AutoscalingPolicy'), 'development'),
   IsHOTOSMUrl: cf.equals(
     cf.select('1', cf.split('.', cf.ref('TaskingManagerURL')))
     , 'hotosm')
@@ -221,7 +222,7 @@ const Resources = {
       },
       TargetGroupARNs: [ cf.ref('TaskingManagerTargetGroup') ],
       HealthCheckType: 'EC2',
-      AvailabilityZones: ['us-east-1a', 'us-east-1b', 'us-east-1c', 'us-east-1d', 'us-east-1f'],
+      AvailabilityZones: ['us-west-1a', 'us-west-1b'],
       Tags: [{
         Key: 'Name',
         PropagateAtLaunch: true,
@@ -230,9 +231,9 @@ const Resources = {
     },
     UpdatePolicy: {
       AutoScalingRollingUpdate: {
-        PauseTime: 'PT15M',
+        PauseTime: cf.if('IsTaskingManagerDevelopment', 'PT0S', 'PT60M'),
         MaxBatchSize: 2,
-        WaitOnResourceSignals: true
+        WaitOnResourceSignals: cf.if('IsTaskingManagerDevelopment', false, true)
       }
     }
   },
@@ -389,7 +390,7 @@ const Resources = {
           EnableResourceNameDnsARecord: true, 
           HostnameType: 'resource-name'
         },
-        SecurityGroupIds: [cf.importValue(cf.join('-', ['hotosm-network-production', cf.ref('NetworkEnvironment'), 'ec2s-security-group', cf.region]))], 
+        SecurityGroupIds: [cf.importValue(cf.join('-', ['mapwithai-network-production', cf.ref('NetworkEnvironment'), 'ec2s-security-group', cf.region]))],
         TagSpecifications: [
           {
             ResourceType: 'instance',
@@ -433,7 +434,7 @@ const Resources = {
           'sudo apt-get -q -y install libgeos-3.9.0 libgeos-dev',
           'sudo apt-get -q -y install libproj19 libproj-dev',
           'sudo apt-get -q -y install libjson-c-dev',
-          'git clone --recursive https://github.com/hotosm/tasking-manager.git /opt/tasking-manager',
+          'git clone --recursive https://github.com/facebook/OSM-HOT-Tasking-Manager.git /opt/tasking-manager',
           'cd /opt/tasking-manager/',
           cf.sub('git reset --hard ${GitSha}'),
           'pip install --upgrade pip pdm==2.7.4',
@@ -651,7 +652,7 @@ const Resources = {
         { "Key": "routing.http2.enabled", "Value": "true" },
         { "Key": "idle_timeout.timeout_seconds", "Value": "180" },
       ],
-      SecurityGroups: [cf.importValue(cf.join('-', ['hotosm-network-production', cf.ref('NetworkEnvironment'), 'elbs-security-group', cf.region]))],
+      SecurityGroups: [cf.importValue(cf.join('-', ['mapwithai-network-production', cf.ref('NetworkEnvironment'), 'elbs-security-group', cf.region]))],
       Subnets: cf.ref('ELBSubnets'),
       Type: 'application',
       Tags: [  { 
@@ -680,10 +681,10 @@ const Resources = {
     Type: "AWS::Route53::RecordSetGroup",
     Properties: {
       Comment: "DNS records pointing to API backend",
-      HostedZoneId: 'Z05223682CWA7KUW593DH', // NOTE: tasks.hotosm.org HostedZone ID on Route53
+      HostedZoneId: 'Z101197737ML3WN063NTD',
       RecordSets: [
         {
-          Name: cf.join('.', [ cf.join('-', ['api', cf.stackName]), 'tasks.hotosm.org']),
+          Name: cf.join('.', [ cf.join('-', ['api', cf.stackName]), 'tasks.mapwith.ai']),
           Type: 'A',
           AliasTarget: {
             DNSName: cf.getAtt('TaskingManagerLoadBalancer', 'DNSName'),
@@ -691,7 +692,7 @@ const Resources = {
           }
         },
         {
-          Name: cf.join('.', [ cf.join('-', ['api', cf.stackName]), 'tasks.hotosm.org']),
+          Name: cf.join('.', [ cf.join('-', ['api', cf.stackName]), 'tasks.mapwith.ai']),
           Type: 'AAAA',
           AliasTarget: {
             DNSName: cf.getAtt('TaskingManagerLoadBalancer', 'DNSName'),
@@ -704,13 +705,13 @@ const Resources = {
   TaskingManagerLoadBalancerRoute53: {
     Type: 'AWS::Route53::RecordSet',
     Properties: {
-      Name: cf.join('-', [cf.stackName, 'api.hotosm.org']),
+      Name: cf.join('-', [cf.stackName, 'api.mapwith.ai']),
       Type: 'A',
       AliasTarget: {
         DNSName: cf.getAtt('TaskingManagerLoadBalancer', 'DNSName'),
         HostedZoneId: cf.getAtt('TaskingManagerLoadBalancer', 'CanonicalHostedZoneID')
       },
-      HostedZoneId: 'Z2O929GW6VWG99',
+      HostedZoneId: 'Z101197737ML3WN063NTD',
     }
   },
   TaskingManagerTargetGroup: {
@@ -725,7 +726,7 @@ const Resources = {
       HealthCheckPath: '/api/v2/system/heartbeat/',
       Port: 8000,
       Protocol: 'HTTP',
-      VpcId: cf.importValue(cf.join('-', ['hotosm-network-production', 'default-vpc', cf.region])),
+      VpcId: cf.importValue(cf.join('-', ['mapwithai-network-production', 'default-vpc', cf.region])),
       Tags: [ 
         { 
           "Key": "stack_name", 
@@ -805,9 +806,9 @@ const Resources = {
         StorageType: 'gp2',
         DBParameterGroupName: cf.ref('DatabaseParameterGroupName'),
         EnableCloudwatchLogsExports: ['postgresql'],
-        DBInstanceClass: cf.ref('DatabaseInstanceType'),
+        DBInstanceClass: cf.if('IsTaskingManagerProduction', cf.ref('DatabaseInstanceType'), 'db.t2.small'),
         DBSnapshotIdentifier: cf.if('UseASnapshot', cf.ref('DBSnapshot'), cf.noValue),
-        VPCSecurityGroups: [cf.importValue(cf.join('-', ['hotosm-network-production', cf.ref('NetworkEnvironment'), 'ec2s-security-group', cf.region]))],
+        VPCSecurityGroups: [cf.importValue(cf.join('-', ['mapwithai-network-production', cf.ref('NetworkEnvironment'), 'ec2s-security-group', cf.region]))],
 	      PubliclyAccessible: false,
         Tags: [   
         {
@@ -980,7 +981,16 @@ const Resources = {
           // ResponseHeadersPolicyId: cf.ref("TaskingManagerReactCloudfrontHeaders")
         },
         ViewerCertificate: {
-          AcmCertificateArn: cf.arn('acm', cf.ref('SSLCertificateIdentifier')),
+          // This one has to be handled specially because a cert for a Cloudfront certificate
+          // MUST be imported to the us-east-1 region regardless of where the rest of the stack lives
+          AcmCertificateArn: cf.sub(
+            'arn:${AWS::Partition}:${service}:${region}:${AWS::AccountId}:certificate/${suffix}',
+            {
+              'service': 'acm',
+              'suffix': cf.ref('SSLCertificateIdentifier'),
+              'region': 'us-east-1',
+            }
+          ),
           MinimumProtocolVersion: 'TLSv1.2_2021',
           SslSupportMethod: 'sni-only'
         }
@@ -1019,7 +1029,7 @@ const Resources = {
   //           Preload: true
   //         },
   //         ContentSecurityPolicy: {
-  //           ContentSecurityPolicy: "default-src 'self'; img-src '*'; script-src '*.hotosm.org'; style-src '*.hotosm.org'; object-src 'none'",
+  //           ContentSecurityPolicy: "default-src 'self'; img-src '*'; script-src '*.mapwith.ai'; style-src '*.mapwith.ai'; object-src 'none'",
   //           Override: true
   //         },
   //         ContentTypeOptions: {
@@ -1045,10 +1055,10 @@ const Resources = {
 
   TaskingManagerDNSEntries: {
     Type: "AWS::Route53::RecordSetGroup",
-    Condition: "IsHOTOSMUrl",
+    // Condition: "IsHOTOSMUrl",
     Properties: {
       Comment: "DNS records pointing to CDN Frontend",
-      HostedZoneId: 'Z2O929GW6VWG99', // This is hotosm.org hosted Zone ID on Route53
+      HostedZoneId: 'Z101197737ML3WN063NTD',
       RecordSets: [
         {
           Name: cf.ref('TaskingManagerURL'),

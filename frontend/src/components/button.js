@@ -73,7 +73,7 @@ export function EditButton({ url, children, className = 'mh1 mv1' }: Object) {
   return (
     <Link
       to={url}
-      className={`pointer no-underline br1 fw6 f7 dib pv2 ph3 ba b--red white bg-red ${className}`}
+      className={`pointer no-underline br1 fw6 f7 dib pv2 ph3 ba b--primary white bg-primary ${className}`}
     >
       {children}
     </Link>

@@ -20,18 +20,18 @@ export const FallbackComponent = () => {
         <p className="pt2">
           {SERVICE_DESK ? (
             <a href={SERVICE_DESK} target="_blank" rel="noreferrer">
-              <Button className="dib tc bg-red white mh1">
+              <Button className="dib tc bg-primary white mh1">
                 <FormattedMessage {...messages.contactUs} />
               </Button>
             </a>
           ) : (
             <Link to="/contact">
-              <Button className="dib tc bg-red white mh1">
+              <Button className="dib tc bg-primary white mh1">
                 <FormattedMessage {...messages.contactUs} />
               </Button>
             </Link>
           )}
-          <Button className="dib tc bg-red white mh1" onClick={() => navigate(-1)}>
+          <Button className="dib tc bg-primary white mh1" onClick={() => navigate(-1)}>
             <FormattedMessage {...messages.return} />
           </Button>
         </p>

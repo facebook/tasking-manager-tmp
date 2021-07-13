@@ -71,7 +71,7 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 
-const RequiredIndicator = () => <span className="ml1 b red">*</span>;
+const RequiredIndicator = () => <span className="ml1 b primary">*</span>;
 
 function _PersonalInformationForm({ userDetails, token, pushUserDetails }) {
   const intl = useIntl();
@@ -157,13 +157,13 @@ function _PersonalInformationForm({ userDetails, token, pushUserDetails }) {
                         pattern="^([a-zA-Z0-9+_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                         required
                       />
-                      {meta.error && meta.touched && <div className="mt1 red">{meta.error}</div>}
+                      {meta.error && meta.touched && <div className="mt1 primary">{meta.error}</div>}
                       {userDetails.emailAddress && !userDetails.isEmailVerified && !meta.dirty && (
-                        <div className="mt2 red lh-base">
+                        <div className="mt2 primary lh-base">
                           <FormattedMessage {...messages.emailConfirmationMsg} />
                           <span
                             onClick={resendEmail}
-                            className="ml2 ma0 pa0 link pointer red b underline-hover"
+                            className="ml2 ma0 pa0 link pointer primary b underline-hover"
                           >
                             <FormattedMessage {...messages.emailResend} />
                           </span>
@@ -177,7 +177,7 @@ function _PersonalInformationForm({ userDetails, token, pushUserDetails }) {
                               ) : (
                                 <CloseIcon
                                   style={{ width: '0.7em', height: '0.7em' }}
-                                  className="ml1 h1 w1 red"
+                                  className="ml1 h1 w1 primary"
                                 />
                               )}
                             </>
@@ -210,7 +210,7 @@ function _PersonalInformationForm({ userDetails, token, pushUserDetails }) {
                         <div>
                           <input {...input} type="text" className={fieldClasses} />
                           {meta.error && meta.touched && (
-                            <div className="mt1 red">{meta.error}</div>
+                            <div className="mt1 primary">{meta.error}</div>
                           )}
                         </div>
                       )}

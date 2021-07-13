@@ -31,6 +31,12 @@ Text colors
 .white {
   color: $white;
 }
+.primary {
+  color: $primary;
+}
+.secondary {
+  color: $secondary;
+}
 
 /*
 Text colors hover
@@ -70,6 +76,14 @@ Text colors hover
 .hover-white:hover,
 .hover-white:focus {
   color: $white;
+}
+.hover-primary:hover,
+.hover-primary:focus {
+  color: $primary;
+}
+.hover-secondary:hover,
+.hover-secondary:focus {
+  color: $secondary;
 }
 
 /*
@@ -111,6 +125,12 @@ Background colors
 .bg-blue-light-paper {
   background-color: rgba($blue-light, 0.1);
 }
+.bg-primary {
+  background-color: $primary;
+}
+.bg-secondary {
+  background-color: $secondary;
+}
 
 /*
 Background colors hover
@@ -151,6 +171,14 @@ Background colors hover
 .hover-bg-white:focus {
   background-color: $white;
 }
+.hover-bg-primary:hover,
+.hover-bg-primary:focus {
+  background-color: $primary;
+}
+.hover-bg-secondary:hover,
+.hover-bg-secondary:focus {
+  background-color: $secondary;
+}
 
 /*
 Border colors
@@ -182,6 +210,12 @@ Border colors
 .b--white {
   border-color: $white;
 }
+.b--primary {
+  border-color: $primary;
+}
+.b--secondary {
+  border-color: $secondary;
+}
 
 /* svg fill colors */
 .fill-red {
@@ -198,4 +232,10 @@ Border colors
 }
 .fill-yellow {
   fill: #f09733;
+}
+.fill-primary {
+  fill: $primary;
+}
+.fill-secondary {
+  fill: $secondary;
 }

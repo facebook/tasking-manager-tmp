@@ -214,7 +214,7 @@ const LearnToManage = ({ section }) => {
     values: {
       organizationsListLink: (
         <a
-          className="link red fw5"
+          className="link primary fw5"
           target="_blank"
           rel="noreferrer"
           href="https://wiki.openstreetmap.org/wiki/Humanitarian_OSM_Team/HOT_Tasking_Manager_Organizations"
@@ -224,7 +224,7 @@ const LearnToManage = ({ section }) => {
       ),
       createNewOrganizationFormLink: (
         <a
-          className="link red fw5"
+          className="link primary fw5"
           target="_blank"
           rel="noreferrer"
           href="https://docs.google.com/forms/d/e/1FAIpQLSdW4O4qVYI7vdway5qdqMxp_gLhSuYVKYAwpq_jUzrcqipNeg/viewform"
@@ -249,12 +249,12 @@ const LearnToManage = ({ section }) => {
       img: <img className="w-35" src={TechnicalLogo} alt={'use the data'} />,
       values: {
         exportToolLink: (
-          <a className="link red fw5" href="https://export.hotosm.org/">
+          <a className="link primary fw5" href="https://export.hotosm.org/">
             HOT Export Tool
           </a>
         ),
         overpassLink: (
-          <a className="link red fw5" href="https://dev.overpass-api.de/overpass-doc/en">
+          <a className="link primary fw5" href="https://dev.overpass-api.de/overpass-doc/en">
             Overpass API
           </a>
         ),
@@ -286,13 +286,13 @@ const LearnToValidate = ({ section }) => {
   };
 
   const items = [
-    { message: 'learnValidateStepIdentify', img: <ValidationIcon className="red" /> },
+    { message: 'learnValidateStepIdentify', img: <ValidationIcon className="primary" /> },
     {
       message: 'learnValidateStepBuild',
-      img: <HumanProcessingIcon className="red" />,
+      img: <HumanProcessingIcon className="primary" />,
       values: {
         taggingLink: (
-          <a className="link red fw5" href="https://wiki.openstreetmap.org/wiki/Map_Features">
+          <a className="link primary fw5" href="https://wiki.openstreetmap.org/wiki/Map_Features">
             <FormattedMessage {...messages.osmTaggingSchema} />
           </a>
         ),
@@ -300,15 +300,15 @@ const LearnToValidate = ({ section }) => {
     },
     {
       message: 'learnValidateStepCollaborate',
-      img: <WorldNodesIcon className="red" />,
+      img: <WorldNodesIcon className="primary" />,
       values: {
         mailingListLink: (
-          <a className="link red fw5" href="https://wiki.openstreetmap.org/wiki/Mailing_lists">
+          <a className="link primary fw5" href="https://wiki.openstreetmap.org/wiki/Mailing_lists">
             <FormattedMessage {...messages.mailingLists} />
           </a>
         ),
         forumLink: (
-          <a className="link red fw5" href="https://forum.openstreetmap.org/">
+          <a className="link primary fw5" href="https://forum.openstreetmap.org/">
             <FormattedMessage {...messages.forum} />
           </a>
         ),
@@ -348,11 +348,11 @@ const LearnToMap = ({ section }) => {
   const items = [
     {
       message: 'learnMapStepSelectProject',
-      img: <SelectProject className="red" />,
+      img: <SelectProject className="primary" />,
       titleLink: '/explore',
     },
-    { message: 'learnMapStepSelectTask', img: <SelectTask className="red" /> },
-    { message: 'learnMapStepMapOSM', img: <PolygonIcon className="red" /> },
+    { message: 'learnMapStepSelectTask', img: <SelectTask className="primary" /> },
+    { message: 'learnMapStepMapOSM', img: <PolygonIcon className="primary" /> },
   ];
 
   const tutorials = [

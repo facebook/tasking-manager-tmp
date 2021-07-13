@@ -47,7 +47,7 @@ export function UserPermissionErrorContent({ project, userLevel, close }: Object
         </div>
       )}
       <div className="pa2">
-        <Button className="white bg-red" onClick={() => navigate('/explore')}>
+        <Button className="white bg-primary" onClick={() => navigate('/explore')}>
           <FormattedMessage {...messages.selectAnotherProject} />
         </Button>
       </div>

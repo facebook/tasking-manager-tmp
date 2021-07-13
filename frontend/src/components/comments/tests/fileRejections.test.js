@@ -25,9 +25,9 @@ describe('FileRejections', () => {
     ];
     const { container } = render(<FileRejections files={files} />);
     expect(container.querySelectorAll('li').length).toBe(2);
-    expect(container.querySelectorAll('li')[0].className).toBe('red');
-    expect(screen.queryByText(/file.csv/).className).toBe('red');
-    expect(screen.queryByText(/file.txt/).className).toBe('red');
+    expect(container.querySelectorAll('li')[0].className).toBe('primary');
+    expect(screen.queryByText(/file.csv/).className).toBe('primary');
+    expect(screen.queryByText(/file.txt/).className).toBe('primary');
     expect(screen.queryAllByText(/Format not supported/).length).toBe(2);
     expect(screen.queryAllByText(/Format not supported/)[0].className).toBe('dib pr2');
     expect(screen.queryByText(/Size bigger than 100kb/).className).toBe('dib pr2');

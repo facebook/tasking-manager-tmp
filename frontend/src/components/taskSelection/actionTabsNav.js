@@ -52,7 +52,7 @@ export const ActionTabsNav = ({
           <FormattedMessage {...messages.history} />
           {activeTasks.length === 1 && taskHistoryLength > 1 && (
             <span
-              className="bg-red white br-100 f6 ml1 flex items-center justify-center"
+              className="bg-primary white br-100 f6 ml1 flex items-center justify-center"
               style={{ height: '1.125rem', width: '1.125rem' }}
             >
               {taskHistoryLength}

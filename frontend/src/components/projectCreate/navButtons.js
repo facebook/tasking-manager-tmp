@@ -105,7 +105,7 @@ const NavButtons = (props) => {
       {props.index === 4 ? (
         <Button
           onClick={() => createProjectAsync.execute()}
-          className="white bg-red"
+          className="white bg-primary"
           loading={createProjectAsync.status === 'pending'}
         >
           {props.cloneProjectData.name === null ? (
@@ -115,7 +115,7 @@ const NavButtons = (props) => {
           )}
         </Button>
       ) : (
-        <Button onClick={stepHandler} className="white bg-red">
+        <Button onClick={stepHandler} className="white bg-primary">
           <FormattedMessage {...messages.next} />
         </Button>
       )}

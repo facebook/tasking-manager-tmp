@@ -32,11 +32,11 @@ export default function ProjectTimeline({ tasksByDay }: Object) {
   const intl = useIntl();
   const unit = useTimeDiff(tasksByDay);
   const mappedTasksConfig = {
-    color: CHART_COLOURS.orange,
+    color: CHART_COLOURS.navy,
     label: intl.formatMessage(messages.mappedTasks),
   };
   const validatedTasksConfig = {
-    color: CHART_COLOURS.red,
+    color: CHART_COLOURS.magenta,
     label: intl.formatMessage(messages.validatedTasks),
   };
 

@@ -12,7 +12,7 @@ export const CompletionStats = ({ tasksByStatus }: Object) => {
   return (
     <div className="w-100 fl tc">
       <div className="w-100-l w-50 fl pv4">
-        <h3 className="ma0 mb2 barlow-condensed f1 b red">
+        <h3 className="ma0 mb2 barlow-condensed f1 b primary">
           <FormattedNumber value={tasksToMap} />
           <span className="dib f3 pl2 blue-grey">/ {tasksByStatus.totalTasks}</span>
         </h3>
@@ -21,7 +21,7 @@ export const CompletionStats = ({ tasksByStatus }: Object) => {
         </span>
       </div>
       <div className="w-100-l w-50 fl pv4">
-        <h3 className="ma0 mb2 barlow-condensed f1 b red">
+        <h3 className="ma0 mb2 barlow-condensed f1 b primary">
           <FormattedNumber value={tasksToValidate} />
         </h3>
         <span className="ma0 h2 f4 fw6 blue-grey ttl">

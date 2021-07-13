@@ -23,13 +23,13 @@ function FeaturedProjectPaginateArrows({ pages, activeProjectCardPage, mobile, d
   return (
     <div className="fr dib f2 mr2 pv3 pr6-l pr3">
       <div
-        className={`dib mr2 red ${enableLeft ? 'dim pointer' : 'o-50'}`}
+        className={`dib mr2 primary ${enableLeft ? 'dim pointer' : 'o-50'}`}
         onClick={() => enableLeft && dispatch({ type: `LAST_PAGE${mobileActionType}` })}
       >
         <LeftIcon />
       </div>
       <div
-        className={`dib red ${enableRight ? 'dim pointer' : 'o-50'}`}
+        className={`dib primary ${enableRight ? 'dim pointer' : 'o-50'}`}
         onClick={() => enableRight && dispatch({ type: `NEXT_PAGE${mobileActionType}` })}
       >
         <RightIcon />
