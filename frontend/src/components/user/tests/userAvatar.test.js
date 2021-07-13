@@ -10,7 +10,7 @@ describe('UserAvatar', () => {
     act(() => {
       element = TestRenderer.create(
         <MemoryRouter>
-          <UserAvatar username={'Mary'} picture={'http://image.xyz/photo.jpg'} colorClasses="red" />
+          <UserAvatar username={'Mary'} picture={'http://image.xyz/photo.jpg'} colorClasses="primary" />
         </MemoryRouter>,
       );
     });
@@ -20,7 +20,7 @@ describe('UserAvatar', () => {
       'url("http://image.xyz/photo.jpg")',
     );
     expect(elementInstance.findByProps({ title: 'Mary' }).props.className).toBe(
-      'dib mh1 br-100 tc v-mid cover red user-picture-medium f5',
+      'dib mh1 br-100 tc v-mid cover primary user-picture-medium f5',
     );
   });
 
@@ -52,13 +52,13 @@ describe('UserAvatar', () => {
     act(() => {
       element = TestRenderer.create(
         <MemoryRouter>
-          <UserAvatar username={'Mary'} size="large" colorClasses="white bg-red" />
+          <UserAvatar username={'Mary'} size="large" colorClasses="white bg-primary" />
         </MemoryRouter>,
       );
     });
     const elementInstance = element.root;
     expect(elementInstance.findByType('div').props.className).toBe(
-      'dib mh1 br-100 tc v-mid cover white bg-red h3 w3 f2',
+      'dib mh1 br-100 tc v-mid cover white bg-primary h3 w3 f2',
     );
     expect(elementInstance.findByType('span').props.children).toContain('M');
     expect(elementInstance.findByType('span').props.style).toStrictEqual({
@@ -71,13 +71,13 @@ describe('UserAvatar', () => {
     act(() => {
       element = TestRenderer.create(
         <MemoryRouter>
-          <UserAvatar username={'Mary'} name={'Mary Poppins'} colorClasses="white bg-red" />
+          <UserAvatar username={'Mary'} name={'Mary Poppins'} colorClasses="white bg-primary" />
         </MemoryRouter>,
       );
     });
     const elementInstance = element.root;
     expect(elementInstance.findByType('div').props.className).toBe(
-      'dib mh1 br-100 tc v-mid cover white bg-red user-picture-medium f5',
+      'dib mh1 br-100 tc v-mid cover white bg-primary user-picture-medium f5',
     );
     expect(elementInstance.findByType('span').props.children).toContain('MP');
     expect(elementInstance.findByType('span').props.style).toStrictEqual({
@@ -93,7 +93,7 @@ describe('UserAvatar', () => {
           <UserAvatar
             username={'Mary'}
             name={'Mary Poppins Long Name'}
-            colorClasses="white bg-red"
+            colorClasses="white bg-primary"
           />
         </MemoryRouter>,
       );
@@ -107,7 +107,7 @@ describe('UserAvatar', () => {
     act(() => {
       element = TestRenderer.create(
         <MemoryRouter>
-          <UserAvatar username={'Mary Poppins Long Name'} colorClasses="white bg-red" />
+          <UserAvatar username={'Mary Poppins Long Name'} colorClasses="white bg-primary" />
         </MemoryRouter>,
       );
     });
@@ -125,7 +125,7 @@ describe('UserAvatar', () => {
         <MemoryRouter>
           <UserAvatar
             username={'Mary Poppins Long Name'}
-            colorClasses="white bg-red"
+            colorClasses="white bg-primary"
             editMode={true}
           />
         </MemoryRouter>,
@@ -145,7 +145,7 @@ describe('UserAvatar', () => {
         <MemoryRouter>
           <UserAvatar
             username={'Mary Poppins Long Name'}
-            colorClasses="white bg-red"
+            colorClasses="white bg-primary"
             removeFn={() => console.log('no')}
           />
         </MemoryRouter>,
@@ -164,7 +164,7 @@ describe('UserAvatar', () => {
       <MemoryRouter>
         <UserAvatar
           username={'Mary'}
-          colorClasses="white bg-red"
+          colorClasses="white bg-primary"
           removeFn={() => (value = 1)}
           editMode={true}
         />
@@ -177,7 +177,7 @@ describe('UserAvatar', () => {
     );
 
     elementInstance
-      .findByProps({ className: 'relative top-0 z-1 fr br-100 f7 tc h1 w1 bg-red white pointer' })
+      .findByProps({ className: 'relative top-0 z-1 fr br-100 f7 tc h1 w1 bg-primary white pointer' })
       .props.onClick();
     expect(value).toBe(1);
   });
@@ -185,7 +185,7 @@ describe('UserAvatar', () => {
   it('without disableLink prop has a link', () => {
     const element = TestRenderer.create(
       <MemoryRouter>
-        <UserAvatar username={'jean'} colorClasses="white bg-red" />
+        <UserAvatar username={'jean'} colorClasses="white bg-primary" />
       </MemoryRouter>,
     );
     const elementInstance = element.root;
@@ -197,7 +197,7 @@ describe('UserAvatar', () => {
   it('without disableLink, but with editMode prop, has a link', () => {
     const element = TestRenderer.create(
       <MemoryRouter>
-        <UserAvatar username={'jean'} colorClasses="white bg-red" editMode={true} />
+        <UserAvatar username={'jean'} colorClasses="white bg-primary" editMode={true} />
       </MemoryRouter>,
     );
     const elementInstance = element.root;
@@ -209,7 +209,7 @@ describe('UserAvatar', () => {
   it('without disableLink, but with removeFn prop, has a link', () => {
     const element = TestRenderer.create(
       <MemoryRouter>
-        <UserAvatar username={'jean'} colorClasses="white bg-red" removeFn={() => 123} />
+        <UserAvatar username={'jean'} colorClasses="white bg-primary" removeFn={() => 123} />
       </MemoryRouter>,
     );
     const elementInstance = element.root;
@@ -221,7 +221,7 @@ describe('UserAvatar', () => {
   it('with disableLink prop has not a link', () => {
     const element = TestRenderer.create(
       <MemoryRouter>
-        <UserAvatar username={'jean'} colorClasses="white bg-red" disableLink={true} />
+        <UserAvatar username={'jean'} colorClasses="white bg-primary" disableLink={true} />
       </MemoryRouter>,
     );
     const json_element = element.toJSON();
@@ -246,13 +246,13 @@ describe('UserAvatarList', () => {
     act(() => {
       element = TestRenderer.create(
         <MemoryRouter>
-          <UserAvatarList users={users} bgColor="bg-red" size="large" />
+          <UserAvatarList users={users} bgColor="bg-primary" size="large" />
         </MemoryRouter>,
       );
     });
     const elementInstance = element.root;
     expect(elementInstance.findAllByType(UserAvatar).length).toBe(users.length);
-    expect(elementInstance.findAllByType(UserAvatar)[0].props.colorClasses).toBe('white bg-red');
+    expect(elementInstance.findAllByType(UserAvatar)[0].props.colorClasses).toBe('white bg-primary');
     expect(elementInstance.findAllByProps({ className: 'dib' }).length).toBe(users.length);
     expect(elementInstance.findAllByProps({ className: 'dib' })[0].props.style).toStrictEqual({
       marginLeft: '',

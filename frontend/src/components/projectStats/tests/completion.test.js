@@ -22,10 +22,10 @@ describe('', () => {
       </ReduxIntlProviders>,
     );
     expect(screen.getByText('Tasks to map').className).toBe('ma0 h2 f4 fw6 blue-grey ttl');
-    expect(screen.getByText('177').className).toBe('ma0 mb2 barlow-condensed f1 b red');
+    expect(screen.getByText('177').className).toBe('ma0 mb2 barlow-condensed f1 b primary');
     expect(screen.getByText('/ 213').className).toBe('dib f3 pl2 blue-grey');
     expect(screen.getByText('Tasks to validate').className).toBe('ma0 h2 f4 fw6 blue-grey ttl');
-    expect(screen.getByText('202').className).toBe('ma0 mb2 barlow-condensed f1 b red');
+    expect(screen.getByText('202').className).toBe('ma0 mb2 barlow-condensed f1 b primary');
     expect(container.querySelectorAll('h3').length).toBe(2);
   });
 });

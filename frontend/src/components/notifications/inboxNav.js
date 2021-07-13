@@ -65,7 +65,7 @@ export const InboxNavMini = ({ setPopoutFocus }) => {
               setPopoutFocus(false);
             }}
           >
-            <div className="flex justify-between items-center fr br2 bg-red f7 lh-solid white ph2 pv1">
+            <div className="flex justify-between items-center fr br2 bg-primary f7 lh-solid white ph2 pv1">
               {unreadNotificationCount === 1 ? (
                 <FormattedMessage {...messages.oneNewNotification} />
               ) : (
@@ -86,7 +86,7 @@ export const InboxNavMiniBottom = (props) => {
     /* mb1 mb2-ns (removed for map, but now small gap for more-filters) */
     <footer className={`relative h2 w-100 ${props.className || ''}`}>
       <Link
-        className="absolute flex items-center justify-center hover-darken tc pv2 w-100 b--grey-light bg-red white f5 no-underline br2 br--bottom"
+        className="absolute flex items-center justify-center hover-darken tc pv2 w-100 b--grey-light bg-primary white f5 no-underline br2 br--bottom"
         to="/inbox"
         onClick={(e) => {
           props.setPopoutFocus(false);
@@ -134,7 +134,7 @@ export const InboxNav = (props) => {
           allQueryParams={inboxQuery}
         />
         {!notAnyFilter && (
-          <Link to="./" className="red link ph3 f6 v-mid pv2 mh1 mt1 mt2-ns dib">
+          <Link to="./" className="primary link ph3 f6 v-mid pv2 mh1 mt1 mt2-ns dib">
             <FormattedMessage {...messages.clearFilters} />
           </Link>
         )}

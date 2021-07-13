@@ -135,7 +135,7 @@ describe('TaskCard', () => {
     await user.hover(screen.getByText('Available for mapping'));
     expect(screen.getByText('Resume task')).toBeInTheDocument();
     expect(screen.getByText('Resume task').className).toBe(
-      'dn dib-l link pv2 ph3 mh3 mv1 bg-red white f7 fr',
+      'dn dib-l link pv2 ph3 mh3 mv1 bg-primary white f7 fr',
     );
     expect(container.querySelectorAll('a')[1].href).toContain('/projects/9983/tasks?search=543');
     // unhover

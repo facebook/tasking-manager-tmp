@@ -33,7 +33,7 @@ export const UserOrganisations = ({ userId }) => {
             {org.logo ? (
               <img alt={org.name} src={org.logo} className="object-fit-contain h2 v-mid" />
             ) : (
-              <span className="bg-red-light red truncate">{org.name}</span>
+              <span className="bg-primary-light primary truncate">{org.name}</span>
             )}
           </div>
         ))}

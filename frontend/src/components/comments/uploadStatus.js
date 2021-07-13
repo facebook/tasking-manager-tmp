@@ -6,7 +6,7 @@ const DropzoneUploadStatus = ({ uploadError, uploading }: Object) => {
   return (
     <>
       {uploadError && (
-        <span className="red f6 pt3 db">
+        <span className="primary f6 pt3 db">
           <FormattedMessage {...messages.imageUploadFailed} />
         </span>
       )}

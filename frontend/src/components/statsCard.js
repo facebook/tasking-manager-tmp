@@ -5,7 +5,7 @@ export const StatsCard = ({ icon, description, value, className, invertColors = 
   return (
     <div
       className={`cf pt3 pb3 ph3 br1 ${
-        invertColors ? 'bg-red white' : 'bg-white red shadow-6'
+        invertColors ? 'bg-primary white' : 'bg-white primary shadow-6'
       } flex items-center ${className || ''}`}
     >
       <div className="w-30 fl ml2">{icon}</div>
@@ -21,7 +21,7 @@ export const StatsCard = ({ icon, description, value, className, invertColors = 
 
 export const StatsCardContent = ({ value, label, className, invertColors = false }: Object) => (
   <div className={className}>
-    <h3 className={`ma0 mb1 barlow-condensed f2 fw5 ${invertColors ? 'white' : 'red'}`}>{value}</h3>
+    <h3 className={`ma0 mb1 barlow-condensed f2 fw5 ${invertColors ? 'white' : 'primary'}`}>{value}</h3>
     <span className={`ma0 h2 f7 fw5 ${invertColors ? 'white' : 'blue-grey'}`}>{label}</span>
   </div>
 );

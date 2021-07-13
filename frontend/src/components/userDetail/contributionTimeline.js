@@ -15,7 +15,7 @@ const HeatmapLegend = () => {
       </span>
       <div className={`dib h1 w1 bg-tan`}></div>
       {indexes.map((i) => (
-        <div key={i} className={`dib h1 w1 bg-red o-${i}`}></div>
+        <div key={i} className={`dib h1 w1 bg-primary o-${i}`}></div>
       ))}
       <span className={legendFontStyle}>
         <FormattedMessage {...messages.heatmapLegendMore} />

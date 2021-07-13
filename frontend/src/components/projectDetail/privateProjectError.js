@@ -18,7 +18,7 @@ const PrivateProjectError = () => {
         <p>
           <FormattedMessage {...messages.inaccessibleProjectDescription} />
         </p>
-        <Button onClick={() => navigate(`/explore`)} className="bg-red white f5 mt3">
+        <Button onClick={() => navigate(`/explore`)} className="bg-primary white f5 mt3">
           <FormattedMessage {...messages.exploreOtherProjects} />
         </Button>
       </div>

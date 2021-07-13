@@ -27,7 +27,7 @@ const StatsRow = ({ stats }) => {
       {fields.map((t, n) => (
         <div key={n} className="ph2 w-25-l w-50-m w-100 fl mv1">
           <div className="cf pa3 bg-white shadow-4">
-            <div className="w-30 fl red">
+            <div className="w-30 fl primary">
               {t.indexOf('Mapping') !== -1 ? (
                 <MappedIcon className="v-mid w-50-ns w-25" />
               ) : (

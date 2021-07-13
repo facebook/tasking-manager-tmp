@@ -14,7 +14,7 @@ describe('OrganisationUsageLevel', () => {
       </ReduxIntlProviders>,
     );
     expect(container.querySelector('h1').className).toBe(
-      'relative tc w-100 dib red barlow-condensed ma0 ph4 v-mid top--1',
+      'relative tc w-100 dib primary barlow-condensed ma0 ph4 v-mid top--1',
     );
     expect(container.querySelector('h1').style.fontSize).toBe('8rem');
     expect(within(container.querySelector('h1')).getByText('1')).toBeTruthy();
@@ -93,7 +93,7 @@ describe('OrganisationTier', () => {
       </ReduxIntlProviders>,
     );
     expect(container.querySelector('h1').className).toBe(
-      'relative f1 tc w-100 dib ttu red barlow-condensed ma0 pt2 mt3',
+      'relative f1 tc w-100 dib ttu primary barlow-condensed ma0 pt2 mt3',
     );
     expect(within(container.querySelector('h1')).getByText('Low')).toBeTruthy();
     expect(screen.getAllByRole('progressbar')[1].style.width).toBe('10%');
