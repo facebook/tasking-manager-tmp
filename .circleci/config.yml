@@ -119,7 +119,7 @@ jobs:
           name: Find the instance ID of the database in the stack to backup
           command: |
             RDS_ID=$(aws rds describe-db-instances \
-              --query 'DBInstances[?contains(TagList[].Key, `aws:cloudformation:stack-name`) && contains(TagList[].Value, `tasking-manager-<< parameters.stack_name >>`)].[DBInstanceIdentifier]' \
+              --query 'DBInstances[?contains(TagList[].Key, `aws:cloudformation:stack-name`) && contains(TagList[].Value, `mwai-tasking-manager-<< parameters.stack_name >>`)].[DBInstanceIdentifier]' \
               --output text)
             echo "export RDS_ID=$RDS_ID" >> $BASH_ENV
             echo "RDS ID is: $RDS_ID"
@@ -199,7 +199,7 @@ jobs:
           name: Download and patch Cloudformation parameter JSON file
           command: |
             tmpfile=$(mktemp)
-            aws s3 cp s3://hot-cfn-config/tasking-manager/tasking-manager-<< parameters.stack_name >>-${AWS_REGION}.cfn.json /tmp/tasking-manager.cfn.json
+            aws s3 cp s3://mapwithai-cfn-config/mwai-tasking-manager/mwai-tasking-manager-<< parameters.stack_name >>-${AWS_REGION}.cfn.json /tmp/tasking-manager.cfn.json
             jq --compact-output \
               --arg GITSHA "<< parameters.gitsha >>" \
               --arg AMI "<< parameters.host_ami >>" \
@@ -216,7 +216,7 @@ jobs:
             export NODE_PATH=/usr/local/share/.config/yarn/global/node_modules/
             validate-template $CIRCLE_WORKING_DIRECTORY/scripts/aws/cloudformation/tasking-manager.template.js
             export JSON_CONFIG="$(< $CIRCLE_WORKING_DIRECTORY/cfn-config-<< parameters.stack_name >>.json)"
-            cfn-config update << parameters.stack_name >> $CIRCLE_WORKING_DIRECTORY/scripts/aws/cloudformation/tasking-manager.template.js -f -c hot-cfn-config -t hot-cfn-config -r $AWS_REGION -p "$JSON_CONFIG"
+            cfn-config update << parameters.stack_name >> $CIRCLE_WORKING_DIRECTORY/scripts/aws/cloudformation/tasking-manager.template.js -f -c mapwithai-cfn-config -t mapwithai-cfn-config -r $AWS_REGION -p "$JSON_CONFIG"
 
   backend_deploy_containers:
     working_directory: /home/circleci/tasking-manager
@@ -256,9 +256,9 @@ jobs:
             export TM_ENVIRONMENT=<< parameters.stack_name >>
             yarn
             CI=true GENERATE_SOURCEMAP=true yarn build
-            aws s3 sync build/ s3://tasking-manager-<< parameters.stack_name >>-react-app --delete --cache-control max-age=31536000
-            aws s3 cp s3://tasking-manager-<< parameters.stack_name >>-react-app s3://tasking-manager-<< parameters.stack_name >>-react-app --recursive --exclude "*" --include "*.html" --metadata-directive REPLACE --cache-control no-cache --content-type text/html
-            export DISTRIBUTION_ID=`aws cloudformation list-exports --output=text --query "Exports[?Name=='tasking-manager-<< parameters.stack_name >>-cloudfront-id-${AWS_REGION}'].Value"`
+            aws s3 sync build/ s3://mwai-tasking-manager-<< parameters.stack_name >>-react-app --delete --cache-control max-age=31536000
+            aws s3 cp s3://mwai-tasking-manager-<< parameters.stack_name >>-react-app s3://mwai-tasking-manager-<< parameters.stack_name >>-react-app --recursive --exclude "*" --include "*.html" --metadata-directive REPLACE --cache-control no-cache --content-type text/html
+            export DISTRIBUTION_ID=`aws cloudformation list-exports --output=text --query "Exports[?Name=='mwai-tasking-manager-<< parameters.stack_name >>-cloudfront-id-${AWS_REGION}'].Value"`
             aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
 
 workflows:
