@@ -177,6 +177,12 @@ a:active {
     background-color: $white; // @extend .bg-moon-gray;
     border-color: $red;
   }
+
+  .checkbox-toggle-sm {
+    left: 1rem; // @extend .left-1;
+    background-color: $white; // @extend .bg-moon-gray;
+    border-color: $red;
+  }
 }
 
 .switch-ctr {
