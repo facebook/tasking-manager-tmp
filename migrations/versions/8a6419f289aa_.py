@@ -1,4 +1,4 @@
-"""empty message
+"""Add RapiD power user field to projects model
 
 Revision ID: 8a6419f289aa
 Revises: 2ee4bca188a9
