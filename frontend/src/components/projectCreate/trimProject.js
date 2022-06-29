@@ -39,6 +39,9 @@ const removeTinyTasks = (metadata, updateMetadata) => {
 export default function TrimProject({ metadata, mapObj, updateMetadata }) {
   const token = useSelector((state) => state.auth.token);
   const [clipStatus, setClipStatus] = useState(false);
+  const [roadStatus, setRoadStatus] = useState(false);
+  const [waterStatus, setWaterStatus] = useState(false);
+
   const [tinyTasksNumber, setTinyTasksNumber] = useState(0);
 
   const trimTaskGridAsync = useAsync(trimTaskGrid);
@@ -72,6 +75,28 @@ export default function TrimProject({ metadata, mapObj, updateMetadata }) {
               onChange={() => setClipStatus(!clipStatus)}
               label={<FormattedMessage {...messages.trimToAOI} />}
             />
+
+          <div className="pt3">
+            <SwitchToggle
+              isChecked={waterStatus}
+              labelPosition="right"
+              onChange={() => {
+                setWaterStatus(!waterStatus);
+              }}
+              label={<FormattedMessage {...messages.trimExcludeWater} />}
+            />
+          </div>
+          <div className="pt3">
+            <SwitchToggle
+              isChecked={roadStatus}
+              labelPosition="right"
+              onChange={() => {
+                setRoadStatus(!roadStatus);
+              }}
+                label={<FormattedMessage {...messages.trimCoverPathsRoads} />}
+              />
+            </div>
+
             <div className="pt3">
               <CustomButton
                 onClick={() =>

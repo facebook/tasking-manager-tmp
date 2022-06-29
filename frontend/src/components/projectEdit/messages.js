@@ -647,6 +647,34 @@ export default defineMessages({
     defaultMessage:
       'This will remove the custom editor from the project. Are you sure you don\'t want to disable the custom editor by toggling the "Enabled" checkbox above?',
   },
+  imageCaptureMode: {
+    id: 'projects.formInputs.imageCaptureMode',
+    defaultMessage: 'Image capture mode',
+  },
+  imageCaptureModeInfo: {
+    id: 'projects.formInputs.imageCaptureMode.info',
+    defaultMessage: 'Adapts Tasking Manager to street imagery capture workflow.',
+  },
+  imageryCaptureDate: {
+    id: 'projects.formInputs.imageryCaptureDate',
+    defaultMessage: 'Imagery capture date',
+  },
+  imageryCaptureDateAfter: {
+    id: 'projects.formInputs.imageryCaptureDate.after',
+    defaultMessage: 'After',
+  },
+  mapillaryOrganizationId: {
+    id: 'projects.formInputs.mapillaryOrganizationId',
+    defaultMessage: 'Mapillary organization ID',
+  },
+  mapillaryOrganizationIdInfo: {
+    id: 'projects.formInputs.mapillaryOrganizationId.info',
+    defaultMessage: '15-digit identifier to filter Mapillary contributions.',
+  },
+  mapillaryOrganizationSelected: {
+    id: 'projects.formInputs.mapillaryOrganizationId.selected',
+    defaultMessage: 'Organization',
+  },
   noMappingEditor: {
     id: 'projects.formInputs.noMappingEditor',
     defaultMessage: 'At least one editor must be enabled for mapping',
