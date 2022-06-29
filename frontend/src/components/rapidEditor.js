@@ -61,9 +61,11 @@ function updateUrl(hashParams) {
  * @param {string | undefined} gpxUrl The task boundaries
  * @param {boolean | undefined} powerUser if the user should be shown advanced options
  * @param {string | undefined} imagery The imagery to use for the task
+ * @param {string | undefined} earliestStreetImagery The earliest street imagery to show
+ * @param {boolean} imageCaptureMode If we want the user to capture photos
  * @return {module:url.URLSearchParams | boolean} the new URL search params or {@code false} if no parameters changed
  */
-function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery }) {
+function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery,  imageCaptureMode = false}) {
   const hashParams = new URLSearchParams(window.location.hash.substring(1));
   if (comment) {
     hashParams.set('comment', comment);
@@ -84,6 +86,13 @@ function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery }) 
       hashParams.set('background', imagery);
     }
   }
+  if (imageCaptureMode) {
+    if (earliestStreetImagery) {
+      hashParams.set('photo_dates', earliestStreetImagery.substring(0, 10) + '_');
+    }
+    hashParams.set('photo_overlay', 'mapillary,mapillary-map-features,mapillary-signs')
+  }
+
   if (equalsUrlParameters(hashParams, new URLSearchParams(window.location.hash.substring(1)))) {
     return false;
   }
@@ -135,6 +144,8 @@ function updateDisableState(setDisable, editSystem) {
  * @param {string} gpxUrl The task boundary url
  * @param {boolean} powerUser true if the user should be shown advanced options
  * @param {boolean} showSidebar Changes are used to resize the Rapid mapview
+ * @param {string | undefined} earliestStreetImagery The earliest imagery to show
+ * @param {boolean} imageCaptureMode If we want to use image capture mode
  * @returns {JSX.Element} The element to add to the DOM
  * @constructor
  */
@@ -146,6 +157,8 @@ function RapidEditor({
   gpxUrl,
   powerUser = false,
   showSidebar = true,
+  earliestStreetImagery = undefined,
+  imageCaptureMode = false,
 }) {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.auth.session);
@@ -222,11 +235,11 @@ function RapidEditor({
   }, [showSidebar, context]);
 
   useEffect(() => {
-    const newParams = generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery });
+    const newParams = generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery, imageCaptureMode });
     if (newParams) {
       updateUrl(newParams);
     }
-  }, [comment, presets, gpxUrl, powerUser, imagery]);
+  }, [comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery, imageCaptureMode]);
 
   useEffect(() => {
     const containerRoot = document.getElementById('rapid-container-root');

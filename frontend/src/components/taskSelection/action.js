@@ -224,6 +224,8 @@ export function TaskMapAction({ project, tasks, activeTasks, getTasks, action, e
                     setDisable={setDisable}
                     comment={project.changesetComment}
                     presets={project.idPresets}
+                    earliestStreetImagery={project.earliestStreetImagery}
+                    imageCaptureMode={project.imageCaptureMode}
                     imagery={formatImageryUrlCallback(project.imagery)}
                     gpxUrl={getTaskGpxUrlCallback(project.projectId, tasksIds)}
                   />
@@ -232,6 +234,8 @@ export function TaskMapAction({ project, tasks, activeTasks, getTasks, action, e
                     setDisable={setDisable}
                     comment={project.changesetComment}
                     presets={project.idPresets}
+                    earliestStreetImagery={project.earliestStreetImagery}
+                    imageCaptureMode={project.imageCaptureMode}
                     imagery={formatImageryUrlCallback(project.imagery)}
                     gpxUrl={getTaskGpxUrlCallback(project.projectId, tasksIds)}
                     powerUser={project.rapidPowerUser}
