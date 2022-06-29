@@ -1,16 +1,21 @@
 import { useContext, useState, useLayoutEffect } from 'react';
 import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
-
+import DatePicker from 'react-datepicker';
+import { SwitchToggle } from '../formInputs';
 import messages from './messages';
 import { StateContext, styleClasses } from '../../views/projectEdit';
 import { Code } from '../code';
 import { fetchLocalJSONAPI } from '../../network/genericJSONRequest';
 import { useImageryOption, IMAGERY_OPTIONS } from '../../hooks/UseImageryOption';
+import { MAPILLARY_TOKEN } from '../../config';
+import axios from 'axios';
 
 export const ImageryForm = () => {
   const { projectInfo, setProjectInfo } = useContext(StateContext);
   const [licenses, setLicenses] = useState(null);
+
+  const [organization, setOrganization] = useState(null);
 
   useLayoutEffect(() => {
     const fetchLicenses = async () => {
@@ -20,6 +25,15 @@ export const ImageryForm = () => {
     };
     fetchLicenses();
   }, [setLicenses]);
+
+  if (projectInfo.mapillaryOrganizationId) {
+    axios
+      .get(
+        `https://graph.mapillary.com/${projectInfo.mapillaryOrganizationId}?access_token=${MAPILLARY_TOKEN}&fields=name`,
+      )
+      .then((resp) => setOrganization(resp.data.name))
+      .catch(() => setOrganization(null));
+  }
 
   let defaultValue = null;
   if (licenses !== null && projectInfo.licenseId !== null) {
@@ -34,6 +48,7 @@ export const ImageryForm = () => {
         </label>
         <ImageryField imagery={projectInfo.imagery} setProjectInfo={setProjectInfo} />
       </div>
+
       <div className={styleClasses.divClass}>
         <label className={styleClasses.labelClass}>
           <FormattedMessage {...messages.license} />
@@ -54,6 +69,76 @@ export const ImageryForm = () => {
           className="w-50 z-1"
         />
       </div>
+
+      <div className={styleClasses.divClass}>
+        <label className={styleClasses.labelClass}>
+          <FormattedMessage {...messages.imageCaptureMode} />
+        </label>
+        <p className={styleClasses.pClass}>
+          <FormattedMessage {...messages.imageCaptureModeInfo} />
+        </p>
+        <SwitchToggle
+          label={<FormattedMessage {...messages.imageCaptureMode} />}
+          labelPosition="right"
+          isChecked={projectInfo.imageCaptureMode}
+          onChange={() =>
+            setProjectInfo({ ...projectInfo, imageCaptureMode: !projectInfo.imageCaptureMode })
+          }
+        />
+      </div>
+
+      {projectInfo.imageCaptureMode && (
+        <>
+          <div className={styleClasses.divClass}>
+            <label className={styleClasses.labelClass}>
+              <FormattedMessage {...messages.imageryCaptureDate} />
+            </label>
+            <FormattedMessage {...messages.imageryCaptureDateAfter} />
+            <span>: &nbsp;&nbsp;</span>
+            <DatePicker
+              selected={Date.parse(projectInfo.earliestStreetImagery)}
+              onChange={(date) =>
+                setProjectInfo({
+                  ...projectInfo,
+                  earliestStreetImagery: date,
+                })
+              }
+              placeholderText="DD/MM/YYYY"
+              dateFormat="dd/MM/yyyy"
+              className={styleClasses.inputClass}
+              showYearDropdown
+              scrollableYearDropdown
+            />
+          </div>
+
+          <div className={styleClasses.divClass}>
+            <label className={styleClasses.labelClass}>
+              <FormattedMessage {...messages.mapillaryOrganizationId} />
+            </label>
+            <p className={styleClasses.pClass}>
+              <FormattedMessage {...messages.mapillaryOrganizationIdInfo} />
+            </p>
+
+            <b>
+              <FormattedMessage {...messages.mapillaryOrganizationSelected} />
+            </b>
+            <span>:&nbsp;{organization}</span>
+
+            <input
+              className={styleClasses.inputClass}
+              type="text"
+              name="mapillaryOrganizationId"
+              value={projectInfo.mapillaryOrganizationId || ''}
+              onChange={(e) => {
+                setProjectInfo({
+                  ...projectInfo,
+                  mapillaryOrganizationId: e.target.value,
+                });
+              }}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -420,6 +420,14 @@ a[href="https://www.mapbox.com/map-feedback/"]
   box-shadow: 0 1px 0 1px #d0d7de, 0 0 0 #d0d7de, 0 1px 1px #d0d7de;
 }
 
+div.react-datepicker-popper {
+  z-index: 5;
+}
+
+.comment-textarea {
+  box-sizing: border-box;
+}
+
 .sticky-top {
   position: sticky !important;
   top: 0;
