@@ -146,6 +146,7 @@ class Project(db.Model):
         db.String
     )  # Optional custom filter id for filtering on OSMCha
     due_date = db.Column(db.DateTime)
+    earliestStreetImagery = db.Column(db.DateTime)
     imagery = db.Column(db.String)
     josm_preset = db.Column(db.String)
     id_presets = db.Column(ARRAY(db.String))
@@ -401,6 +402,7 @@ class Project(db.Model):
         self.difficulty = ProjectDifficulty[project_dto.difficulty.upper()].value
         self.changeset_comment = project_dto.changeset_comment
         self.due_date = project_dto.due_date
+        self.earliestStreetImagery = project_dto.earliestStreetImagery
         self.imagery = project_dto.imagery
         self.josm_preset = project_dto.josm_preset
         self.id_presets = project_dto.id_presets
@@ -852,6 +854,8 @@ class Project(db.Model):
         summary.country_tag = self.country
         summary.changeset_comment = self.changeset_comment
         summary.due_date = self.due_date
+        summary.earliestStreetImagery = self.earliestStreetImagery
+
         summary.created = self.created
         summary.last_updated = self.last_updated
         summary.osmcha_filter_id = self.osmcha_filter_id
@@ -1011,6 +1015,7 @@ class Project(db.Model):
         base_dto.changeset_comment = self.changeset_comment
         base_dto.osmcha_filter_id = self.osmcha_filter_id
         base_dto.due_date = self.due_date
+        base_dto.earliestStreetImagery = self.earliestStreetImagery
         base_dto.imagery = self.imagery
         base_dto.josm_preset = self.josm_preset
         base_dto.id_presets = self.id_presets

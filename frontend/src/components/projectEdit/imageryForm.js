@@ -1,7 +1,7 @@
 import React, { useContext, useState, useLayoutEffect } from 'react';
 import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
-
+import DatePicker from 'react-datepicker';
 import messages from './messages';
 import { StateContext, styleClasses } from '../../views/projectEdit';
 import { Code } from '../code';
@@ -33,7 +33,9 @@ export const ImageryForm = () => {
           <FormattedMessage {...messages.imagery} />
         </label>
         <ImageryField imagery={projectInfo.imagery} setProjectInfo={setProjectInfo} />
+
       </div>
+
       <div className={styleClasses.divClass}>
         <label className={styleClasses.labelClass}>
           <FormattedMessage {...messages.license} />
@@ -54,6 +56,26 @@ export const ImageryForm = () => {
           className="w-50 z-1"
         />
       </div>
+
+      <div className={styleClasses.divClass}>
+        <label className={styleClasses.labelClass}>
+          Earliest street imagery capture
+        </label>
+        <DatePicker
+          selected={Date.parse(projectInfo.earliestStreetImagery)}
+          onChange={(date) =>
+            setProjectInfo({
+              ...projectInfo,
+              earliestStreetImagery: date,
+            })
+          }
+          dateFormat="dd/MM/yyyy"
+          className={styleClasses.inputClass}
+          showYearDropdown
+          scrollableYearDropdown
+        />
+      </div>
+
     </div>
   );
 };

@@ -215,6 +215,7 @@ class ProjectDTO(Model):
     enforce_random_task_selection = BooleanType(
         required=False, default=False, serialized_name="enforceRandomTaskSelection"
     )
+    earliestStreetImagery = UTCDateTimeType(serialized_name="earliestStreetImagery")
 
     private = BooleanType(required=True)
     changeset_comment = StringType(serialized_name="changesetComment")
@@ -479,6 +480,7 @@ class ProjectSummary(Model):
     author = StringType()
     created = UTCDateTimeType()
     due_date = UTCDateTimeType(serialized_name="dueDate")
+    earliestStreetImagery = UTCDateTimeType(serialized_name="earliestStreetImagery")
     last_updated = UTCDateTimeType(serialized_name="lastUpdated")
     priority = StringType(serialized_name="projectPriority")
     campaigns = ListType(ModelType(CampaignDTO), default=[])
