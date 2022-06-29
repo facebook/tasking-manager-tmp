@@ -374,6 +374,18 @@ export default defineMessages({
     id: 'project.tasks.list.linkCopied',
     defaultMessage: 'Task link copied to the clipboard',
   },
+  taskStatus_PENDING_IMAGE_CAPTURE: {
+    id: 'project.tasks.pending_image_capture',
+    defaultMessage: 'Pending image capture',
+  },
+  taskStatus_MORE_IMAGES_NEEDED: {
+    id: 'project.tasks.more_images_needed',
+    defaultMessage: 'More images needed',
+  },
+  taskStatus_IMAGE_CAPTURE_DONE: {
+    id: 'project.tasks.image_capture_done',
+    defaultMessage: 'Image capture done',
+  },
   taskStatus_PRIORITY_AREAS: {
     id: 'project.tasks.priority_areas',
     defaultMessage: 'Priority areas',
