@@ -70,6 +70,9 @@ export const TASK_COLOURS = {
   INVALIDATED: '#fceca4',
   BADIMAGERY: '#d8dae4',
   PRIORITY_AREAS: '#efd1d1',
+  PENDING_IMAGE_CAPTURE: '#f8e8fb',
+  MORE_IMAGES_NEEDED: '#d497e2',
+  IMAGE_CAPTURE_DONE: '#7fc874',
 };
 
 export const CHART_COLOURS = {

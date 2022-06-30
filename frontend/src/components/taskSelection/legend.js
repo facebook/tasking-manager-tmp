@@ -20,6 +20,15 @@ export function TasksMapLegend() {
       {expand && (
         <div>
           <p className={lineClasses}>
+            <TaskStatus status="PENDING_IMAGE_CAPTURE" />
+          </p>
+          <p className={lineClasses}>
+            <TaskStatus status="MORE_IMAGES_NEEDED" />
+          </p>
+          <p className={lineClasses}>
+            <TaskStatus status="IMAGE_CAPTURE_DONE" />
+          </p>
+          <p className={lineClasses}>
             <TaskStatus status="READY" />
           </p>
           <p className={lineClasses}>

@@ -85,6 +85,14 @@ export default defineMessages({
     id: 'management.projects.create.trim_tasks.trim_to_aoi',
     defaultMessage: 'Trim the tasks to define the exact Area of Interest for mapping.',
   },
+  trimExcludeWater: {
+    id: 'management.projects.create.trim_tasks.trim_exclude_water',
+    defaultMessage: 'Trim the tasks to exclude water areas.',
+  },
+  trimCoverPathsRoads: {
+    id: 'management.projects.create.trim_tasks.trim_cover_paths_roads',
+    defaultMessage: 'Trim the tasks to only cover paths and roads.',
+  },
   tinyTasks: {
     id: 'management.projects.create.trim_tasks.tiny_tasks',
     defaultMessage:

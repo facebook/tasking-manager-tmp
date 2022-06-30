@@ -72,6 +72,25 @@ export default function TrimProject({ metadata, mapObj, updateMetadata }) {
               onChange={() => setClipStatus(!clipStatus)}
               label={<FormattedMessage {...messages.trimToAOI} />}
             />
+
+            <div className="pt3">
+              <SwitchToggle
+                isChecked={clipStatus}
+                labelPosition="right"
+                onChange={() => {}}
+                label={<FormattedMessage {...messages.trimExcludeWater} />}
+              />
+            </div>
+            <div className="pt3">
+              <SwitchToggle
+                isChecked={clipStatus}
+                labelPosition="right"
+                onChange={() => {}}
+                label={<FormattedMessage {...messages.trimCoverPathsRoads} />}
+              />
+            </div>
+            
+            
             <div className="pt3">
               <CustomButton
                 onClick={() =>
