@@ -8,7 +8,7 @@ import '@hotosm/id/dist/iD.css';
 import { OSM_CLIENT_ID, OSM_CLIENT_SECRET, OSM_REDIRECT_URI, OSM_SERVER_URL } from '../config';
 import messages from './messages';
 
-export default function Editor({ setDisable, comment, presets, imagery, gpxUrl }) {
+export default function Editor({ setDisable, comment, presets, imagery, gpxUrl, earliestStreetImagery }) {
   const dispatch = useDispatch();
   const intl = useIntl();
   const session = useSelector((state) => state.auth.session);
@@ -114,6 +114,9 @@ export default function Editor({ setDisable, comment, presets, imagery, gpxUrl }
           setDisable(false);
         }
       });
+
+      iDContext.photos().setDateFilter("fromDate", earliestStreetImagery.substr(0, 10), false);
+      window.location.href = window.location.href + "&photo_overlay=mapillary,mapillary-map-features,mapillary-signs";
     }
   }, [session, iDContext, setDisable, presets, locale, gpxUrl, intl]);
 
