@@ -64,6 +64,7 @@ function generateStartingHash({
   powerUser,
   imagery,
   earliestStreetImagery,
+  imageCaptureMode,
 }) {
   const hashParams = new URLSearchParams(window.location.hash.substring(1));
   if (comment) {
@@ -85,7 +86,7 @@ function generateStartingHash({
       hashParams.set('background', imagery);
     }
   }
-  if (earliestStreetImagery) {
+  if (imageCaptureMode && earliestStreetImagery) {
     hashParams.set('photo_overlay', 'mapillary,mapillary-map-features,mapillary-signs');
     hashParams.set('photo_dates', earliestStreetImagery.substring(0, 10) + '_');
   }
@@ -151,6 +152,7 @@ function RapidEditor({
   imagery,
   gpxUrl,
   earliestStreetImagery,
+  imageCaptureMode,
   powerUser = false,
   showSidebar = true,
 }) {
@@ -235,11 +237,12 @@ function RapidEditor({
       powerUser,
       imagery,
       earliestStreetImagery,
+      imageCaptureMode
     });
     if (newParams) {
       updateUrl(newParams);
     }
-  }, [comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery]);
+  }, [comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery, imageCaptureMode]);
 
   useEffect(() => {
     const containerRoot = document.getElementById('rapid-container-root');
