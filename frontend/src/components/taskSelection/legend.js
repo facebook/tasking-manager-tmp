@@ -5,7 +5,7 @@ import messages from './messages';
 import { TaskStatus } from './taskList';
 import { LockIcon, ChevronDownIcon, ChevronUpIcon } from '../svgIcons';
 
-export function TasksMapLegend() {
+export function TasksMapLegend({ imageCaptureMode }) {
   const lineClasses = 'mv2 blue-dark f5';
   const [expand, setExpand] = useState(true);
   return (
@@ -19,30 +19,36 @@ export function TasksMapLegend() {
       </h4>
       {expand && (
         <div>
-          <p className={lineClasses}>
-            <TaskStatus status="PENDING_IMAGE_CAPTURE" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="MORE_IMAGES_NEEDED" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="IMAGE_CAPTURE_DONE" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="READY" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="MAPPED" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="INVALIDATED" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="VALIDATED" />
-          </p>
-          <p className={lineClasses}>
-            <TaskStatus status="BADIMAGERY" />
-          </p>
+          {imageCaptureMode && <>
+            <p className={lineClasses}>
+              <TaskStatus status="PENDING_IMAGE_CAPTURE" />
+            </p>
+            <p className={lineClasses}>
+              <TaskStatus status="MORE_IMAGES_NEEDED" />
+            </p>
+            <p className={lineClasses}>
+              <TaskStatus status="IMAGE_CAPTURE_DONE" />
+            </p>
+          </>
+          }
+          {!imageCaptureMode && (<>
+            <p className={lineClasses}>
+              <TaskStatus status="READY" />
+            </p>
+            <p className={lineClasses}>
+              <TaskStatus status="MAPPED" />
+            </p>
+            <p className={lineClasses}>
+              <TaskStatus status="INVALIDATED" />
+            </p>
+            <p className={lineClasses}>
+              <TaskStatus status="VALIDATED" />
+            </p>
+            <p className={lineClasses}>
+              <TaskStatus status="BADIMAGERY" />
+            </p>
+          </>)
+          }
           <p className={lineClasses}>
             <TaskStatus status="PRIORITY_AREAS" />
           </p>
