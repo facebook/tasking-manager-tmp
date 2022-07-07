@@ -216,7 +216,8 @@ class ProjectDTO(Model):
         required=False, default=False, serialized_name="enforceRandomTaskSelection"
     )
     earliestStreetImagery = UTCDateTimeType(serialized_name="earliestStreetImagery")
-
+    imageCaptureMode=BooleanType(required=False, default=False, serialized_name="imageCaptureMode")
+    mapillaryOrganizationId=StringType(serialized_name="mapillaryOrganizationId")
     private = BooleanType(required=True)
     changeset_comment = StringType(serialized_name="changesetComment")
     osmcha_filter_id = StringType(serialized_name="osmchaFilterId")
@@ -481,6 +482,8 @@ class ProjectSummary(Model):
     created = UTCDateTimeType()
     due_date = UTCDateTimeType(serialized_name="dueDate")
     earliestStreetImagery = UTCDateTimeType(serialized_name="earliestStreetImagery")
+    imageCaptureMode=BooleanType(required=False, default=False, serialized_name="imageCaptureMode")
+    mapillaryOrganizationId=StringType(serialized_name="mapillaryOrganizationId")
     last_updated = UTCDateTimeType(serialized_name="lastUpdated")
     priority = StringType(serialized_name="projectPriority")
     campaigns = ListType(ModelType(CampaignDTO), default=[])

@@ -148,6 +148,8 @@ class Project(db.Model):
     due_date = db.Column(db.DateTime)
     earliestStreetImagery = db.Column(db.DateTime)
     imagery = db.Column(db.String)
+    imageCaptureMode = db.Column(db.Boolean, default=False)
+    mapillaryOrganizationId = db.Column(db.String)
     josm_preset = db.Column(db.String)
     id_presets = db.Column(ARRAY(db.String))
     extra_id_params = db.Column(db.String)
@@ -403,6 +405,8 @@ class Project(db.Model):
         self.changeset_comment = project_dto.changeset_comment
         self.due_date = project_dto.due_date
         self.earliestStreetImagery = project_dto.earliestStreetImagery
+        self.imageCaptureMode = project_dto.imageCaptureMode
+        self.mapillaryOrganizationId = project_dto.mapillaryOrganizationId
         self.imagery = project_dto.imagery
         self.josm_preset = project_dto.josm_preset
         self.id_presets = project_dto.id_presets
@@ -855,6 +859,8 @@ class Project(db.Model):
         summary.changeset_comment = self.changeset_comment
         summary.due_date = self.due_date
         summary.earliestStreetImagery = self.earliestStreetImagery
+        summary.imageCaptureMode = self.imageCaptureMode
+        summary.mapillaryOrganizationId = self.mapillaryOrganizationId
 
         summary.created = self.created
         summary.last_updated = self.last_updated
@@ -1016,6 +1022,8 @@ class Project(db.Model):
         base_dto.osmcha_filter_id = self.osmcha_filter_id
         base_dto.due_date = self.due_date
         base_dto.earliestStreetImagery = self.earliestStreetImagery
+        base_dto.imageCaptureMode = self.imageCaptureMode
+        base_dto.mapillaryOrganizationId = self.mapillaryOrganizationId
         base_dto.imagery = self.imagery
         base_dto.josm_preset = self.josm_preset
         base_dto.id_presets = self.id_presets
