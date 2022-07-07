@@ -118,7 +118,7 @@ export default function Editor({ setDisable, comment, presets, imagery, gpxUrl, 
       iDContext.photos().setDateFilter("fromDate", earliestStreetImagery.substr(0, 10), false);
       window.location.href = window.location.href + "&photo_overlay=mapillary,mapillary-map-features,mapillary-signs";
     }
-  }, [session, iDContext, setDisable, presets, locale, gpxUrl, intl]);
+  }, [session, iDContext, setDisable, presets, locale, gpxUrl, earliestStreetImagery, intl]);
 
   return <div className="w-100 vh-minus-69-ns" id="id-container"></div>;
 }

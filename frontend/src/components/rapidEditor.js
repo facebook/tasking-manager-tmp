@@ -57,7 +57,14 @@ function updateUrl(hashParams) {
  * @param {string | undefined} imagery The imagery to use for the task
  * @return {module:url.URLSearchParams | boolean} the new URL search params or {@code false} if no parameters changed
  */
-function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery }) {
+function generateStartingHash({
+  comment,
+  presets,
+  gpxUrl,
+  powerUser,
+  imagery,
+  earliestStreetImagery,
+}) {
   const hashParams = new URLSearchParams(window.location.hash.substring(1));
   if (comment) {
     hashParams.set('comment', comment);
@@ -77,6 +84,10 @@ function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery }) 
     } else {
       hashParams.set('background', imagery);
     }
+  }
+  if (earliestStreetImagery) {
+    hashParams.set('photo_overlay', 'mapillary,mapillary-map-features,mapillary-signs');
+    hashParams.set('photo_dates', earliestStreetImagery.substring(0, 10) + '_');
   }
   if (equalsUrlParameters(hashParams, new URLSearchParams(window.location.hash.substring(1)))) {
     return false;
@@ -127,6 +138,7 @@ function updateDisableState(setDisable, editSystem) {
  * @param {[string]|null|undefined} presets The presets to allow the user to use
  * @param {string|null|undefined} imagery The imagery to default to for the user
  * @param {string} gpxUrl The task boundary url
+ * @param earliestImagery The earliest imagery to show the user
  * @param {boolean} powerUser true if the user should be shown advanced options
  * @param {boolean} showSidebar Changes are used to resize the Rapid mapview
  * @returns {JSX.Element} The element to add to the DOM
@@ -138,6 +150,7 @@ function RapidEditor({
   presets,
   imagery,
   gpxUrl,
+  earliestStreetImagery,
   powerUser = false,
   showSidebar = true,
 }) {
@@ -215,11 +228,18 @@ function RapidEditor({
   }, [showSidebar, context]);
 
   useEffect(() => {
-    const newParams = generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery });
+    const newParams = generateStartingHash({
+      comment,
+      presets,
+      gpxUrl,
+      powerUser,
+      imagery,
+      earliestStreetImagery,
+    });
     if (newParams) {
       updateUrl(newParams);
     }
-  }, [comment, presets, gpxUrl, powerUser, imagery]);
+  }, [comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery]);
 
   useEffect(() => {
     const containerRoot = document.getElementById('rapid-container-root');
