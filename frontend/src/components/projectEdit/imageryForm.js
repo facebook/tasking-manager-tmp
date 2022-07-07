@@ -8,10 +8,14 @@ import { StateContext, styleClasses } from '../../views/projectEdit';
 import { Code } from '../code';
 import { fetchLocalJSONAPI } from '../../network/genericJSONRequest';
 import { useImageryOption, IMAGERY_OPTIONS } from '../../hooks/UseImageryOption';
+import { MAPILLARY_TOKEN } from '../../config';
+import axios from 'axios';
 
 export const ImageryForm = () => {
   const { projectInfo, setProjectInfo } = useContext(StateContext);
   const [licenses, setLicenses] = useState(null);
+
+  const [organization, setOrganization] = useState(null);
 
   useLayoutEffect(() => {
     const fetchLicenses = async () => {
@@ -21,6 +25,12 @@ export const ImageryForm = () => {
     };
     fetchLicenses();
   }, [setLicenses]);
+
+  if (projectInfo.mapillaryOrganizationId) {
+    axios.get(`https://graph.mapillary.com/${projectInfo.mapillaryOrganizationId}?access_token=${MAPILLARY_TOKEN}&fields=name`)
+      .then(resp => setOrganization(resp.data.name))
+      .catch(() => setOrganization(null))
+  }
 
   let defaultValue = null;
   if (licenses !== null && projectInfo.licenseId !== null) {
@@ -104,6 +114,10 @@ export const ImageryForm = () => {
             <p className={styleClasses.pClass}>
               <FormattedMessage {...messages.mapillaryOrganizationIdInfo} />
             </p>
+
+            <b><FormattedMessage {...messages.mapillaryOrganizationSelected} /></b>
+            <span>{organization}</span>
+
             <input
               className={styleClasses.inputClass}
               type="text"

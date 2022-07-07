@@ -699,4 +699,9 @@ export default defineMessages({
     defaultMessage:
       '15-digit identifier to filter Mapillary contributions.'
   },
+  mapillaryOrganizationSelected: {
+    id: "projects.formInputs.mapillaryOrganizationId.selected",
+    defaultMessage:
+      'Organization: '
+  },
 });
