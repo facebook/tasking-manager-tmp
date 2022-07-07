@@ -2,6 +2,7 @@ import React, { useContext, useState, useLayoutEffect } from 'react';
 import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
 import DatePicker from 'react-datepicker';
+import { SwitchToggle } from '../formInputs';
 import messages from './messages';
 import { StateContext, styleClasses } from '../../views/projectEdit';
 import { Code } from '../code';
@@ -59,23 +60,66 @@ export const ImageryForm = () => {
 
       <div className={styleClasses.divClass}>
         <label className={styleClasses.labelClass}>
-          Earliest street imagery capture
+          <FormattedMessage {...messages.imageCaptureMode} />
         </label>
-        <DatePicker
-          selected={Date.parse(projectInfo.earliestStreetImagery)}
-          onChange={(date) =>
-            setProjectInfo({
-              ...projectInfo,
-              earliestStreetImagery: date,
-            })
-          }
-          dateFormat="dd/MM/yyyy"
-          className={styleClasses.inputClass}
-          showYearDropdown
-          scrollableYearDropdown
+        <p className={styleClasses.pClass}>
+          <FormattedMessage {...messages.imageCaptureModeInfo} />
+        </p>
+        <SwitchToggle
+          label={<FormattedMessage {...messages.imageCaptureMode} />}
+          labelPosition="right"
+          isChecked={projectInfo.imageCaptureMode}
+          onChange={() => setProjectInfo({ ...projectInfo, imageCaptureMode: !projectInfo.imageCaptureMode })}
         />
       </div>
 
+      {projectInfo.imageCaptureMode && (
+        <>
+          <div className={styleClasses.divClass}>
+            <label className={styleClasses.labelClass}>
+              <FormattedMessage {...messages.imageryCaptureDate} />
+            </label>
+            <FormattedMessage {...messages.imageryCaptureDateAfter} />
+            <span>&nbsp;&nbsp;</span>
+            <DatePicker
+              selected={Date.parse(projectInfo.earliestStreetImagery)}
+              onChange={(date) =>
+                setProjectInfo({
+                  ...projectInfo,
+                  earliestStreetImagery: date,
+                })
+              }
+              placeholderText="DD/MM/YYYY"
+              dateFormat="dd/MM/yyyy"
+              className={styleClasses.inputClass}
+              showYearDropdown
+              scrollableYearDropdown
+            />
+          </div>
+
+          <div className={styleClasses.divClass}>
+            <label className={styleClasses.labelClass}>
+              <FormattedMessage {...messages.mapillaryOrganizationId} />
+            </label>
+            <p className={styleClasses.pClass}>
+              <FormattedMessage {...messages.mapillaryOrganizationIdInfo} />
+            </p>
+            <input
+              className={styleClasses.inputClass}
+              type="text"
+              name="mapillaryOrganizationId"
+              value={projectInfo.mapillaryOrganizationId || ''}
+              onChange={(e) => {
+                setProjectInfo({
+                  ...projectInfo,
+                  mapillaryOrganizationId: e.target.value,
+                });
+              }}
+            />
+          </div>
+        </>
+      )
+      }
     </div>
   );
 };

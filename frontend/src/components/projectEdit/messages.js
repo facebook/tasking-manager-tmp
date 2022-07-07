@@ -669,4 +669,34 @@ export default defineMessages({
     id: 'projects.formInputs.extraIdParams.iDAPIDocs',
     defaultMessage: 'iD editor documentation',
   },
+  imageCaptureMode: {
+    id: 'projects.formInputs.imageCaptureMode',
+    defaultMessage:
+      'Image capture mode',
+  },
+  imageCaptureModeInfo: {
+    id: 'projects.formInputs.imageCaptureMode.info',
+    defaultMessage:
+      'Adapts Tasking Manager to street imagery capture workflow.',
+  },
+  imageryCaptureDate: {
+    id: 'projects.formInputs.imageryCaptureDate',
+    defaultMessage:
+      'Imagery capture date'
+  },
+  imageryCaptureDateAfter: {
+    id: 'projects.formInputs.imageryCaptureDate.after',
+    defaultMessage:
+      'After:'
+  },
+  mapillaryOrganizationId: {
+    id: "projects.formInputs.mapillaryOrganizationId",
+    defaultMessage:
+      'Mapillary organization ID'
+  },
+  mapillaryOrganizationIdInfo: {
+    id: "projects.formInputs.mapillaryOrganizationId.info",
+    defaultMessage:
+      '15-digit identifier to filter Mapillary contributions.'
+  },
 });
