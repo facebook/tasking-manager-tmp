@@ -10,7 +10,11 @@ describe('UserAvatar', () => {
     act(() => {
       element = TestRenderer.create(
         <MemoryRouter>
-          <UserAvatar username={'Mary'} picture={'http://image.xyz/photo.jpg'} colorClasses="primary" />
+          <UserAvatar
+          username={'Mary'}
+          picture={'http://image.xyz/photo.jpg'}
+          colorClasses="primary"
+        />
         </MemoryRouter>,
       );
     });
@@ -177,7 +181,9 @@ describe('UserAvatar', () => {
     );
 
     elementInstance
-      .findByProps({ className: 'relative top-0 z-1 fr br-100 f7 tc h1 w1 bg-primary white pointer' })
+      .findByProps({
+        className: 'relative top-0 z-1 fr br-100 f7 tc h1 w1 bg-primary white pointer',
+      })
       .props.onClick();
     expect(value).toBe(1);
   });
@@ -252,7 +258,9 @@ describe('UserAvatarList', () => {
     });
     const elementInstance = element.root;
     expect(elementInstance.findAllByType(UserAvatar).length).toBe(users.length);
-    expect(elementInstance.findAllByType(UserAvatar)[0].props.colorClasses).toBe('white bg-primary');
+    expect(elementInstance.findAllByType(UserAvatar)[0].props.colorClasses).toBe(
+      'white bg-primary',
+    );
     expect(elementInstance.findAllByProps({ className: 'dib' }).length).toBe(users.length);
     expect(elementInstance.findAllByProps({ className: 'dib' })[0].props.style).toStrictEqual({
       marginLeft: '',

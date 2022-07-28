@@ -675,12 +675,7 @@ export const ActionsForm = ({ projectId, projectName, orgId }: Object) => {
           </span>
           <FormattedMessage {...messages.canNotUndo} />
         </p>
-        <DeleteModal
-          id={projectId}
-          name={projectName}
-          type={'projects'}
-          className="pointer"
-        />
+        <DeleteModal id={projectId} name={projectName} type={'projects'} className="pointer" />
       </div>
     </div>
   );
