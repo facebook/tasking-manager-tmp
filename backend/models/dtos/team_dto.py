@@ -7,6 +7,7 @@ from schematics.types import (
     LongType,
     ListType,
     ModelType,
+    DateType,
 )
 
 from backend.models.dtos.stats_dto import Pagination
@@ -195,3 +196,42 @@ class TeamSearchDTO(Model):
     paginate = BooleanType(serialized_name="paginate", default=False)
     page = IntType(serialized_name="page", default=1)
     per_page = IntType(serialized_name="perPage", default=10)
+
+
+class TeamMembersStatsQuery(Model):
+    team_id = IntType()
+    start_date = DateType()
+    end_date = DateType()
+    project_id = IntType()
+    page = IntType()
+
+
+class TeamMemberStats(Model):
+    """ Model containing statistics about the member """
+
+    user_id = LongType(serialized_name="userId")
+    username = StringType()
+    picture_url = StringType(serialized_name="pictureUrl")
+    total_time_spent = IntType(serialized_name="totalTimeSpent")
+    time_spent_mapping = IntType(serialized_name="timeSpentMapping")
+    average_mapping_time = IntType(serialized_name="averageMappingTime")
+    average_validation_time = IntType(serialized_name="averageValidationTime")
+    time_spent_validating = IntType(serialized_name="timeSpentValidating")
+    projects_mapped = IntType(serialized_name="projectsMapped")
+    tasks_mapped = IntType(serialized_name="tasksMapped")
+    tasks_validated = IntType(serialized_name="tasksValidated")
+    tasks_invalidated = IntType(serialized_name="tasksInvalidated")
+    tasks_invalidated_by_others = IntType(serialized_name="tasksInvalidatedByOthers")
+    tasks_validated_by_others = IntType(serialized_name="tasksValidatedByOthers")
+
+
+class TeamMembersStatsDTO(Model):
+    """ DTO containing statistics about team members """
+
+    def __init__(self):
+        super().__init__()
+        self.members_stats = []
+
+    members_stats = ListType(
+        ModelType(TeamMemberStats), serialized_name="teamMembersStats"
+    )

@@ -222,7 +222,11 @@ export const ProjectDetail = (props) => {
             <p>
               <FormattedMessage {...messages.createdBy} values={{ user: userLink }} />
             </p>
-            <UserAvatar username={props.project.author} size="large" colorClasses="white bg-primary" />
+            <UserAvatar
+              username={props.project.author}
+              size="large"
+              colorClasses="white bg-primary"
+            />
           </>
         )}
       </div>
