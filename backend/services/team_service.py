@@ -11,6 +11,8 @@ from backend.models.dtos.team_dto import (
     ProjectTeamDTO,
     TeamDetailsDTO,
     TeamSearchDTO,
+    TeamMembersStatsQuery,
+    TeamMembersStatsDTO,
 )
 
 from backend.models.dtos.message_dto import MessageDTO
@@ -620,3 +622,8 @@ class TeamService:
                     messages.append(dict(message=message, user=user))
 
             MessageService._push_messages(messages)
+
+    @staticmethod
+    def get_team_members_stats(query: TeamMembersStatsQuery) -> TeamMembersStatsDTO:
+        """Gets paginated stats of team members"""
+        return Team.get_team_members_stats(query)
