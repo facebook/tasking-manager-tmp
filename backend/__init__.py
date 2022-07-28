@@ -329,6 +329,7 @@ def add_api_endpoints(app):
         TeamsActionsLeaveAPI,
         TeamsActionsMessageMembersAPI,
     )
+    from backend.api.teams.statistics import TeamMemberStatisticsAPI
 
     # Notifications API endpoint
     from backend.api.notifications.resources import (
@@ -837,6 +838,13 @@ def add_api_endpoints(app):
     api.add_resource(
         TeamsActionsMessageMembersAPI,
         format_url("teams/<int:team_id>/actions/message-members/"),
+    )
+
+    # Teams statistics endpoints
+    api.add_resource(
+        TeamMemberStatisticsAPI,
+        format_url("teams/<int:team_id>/statistics/"),
+        methods=["GET"],
     )
 
     # Campaigns REST endpoints
