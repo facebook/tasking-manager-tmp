@@ -5,6 +5,9 @@ from backend.models.dtos.team_dto import (
     NewTeamDTO,
     TeamMembersDTO,
     TeamProjectDTO,
+    TeamMembersStatsDTO,
+    TeamMembersStatsQuery,
+    TeamMemberStats,
 )
 from backend.models.dtos.organisation_dto import OrganisationTeamsDTO
 from backend.models.postgis.organisation import Organisation
@@ -15,6 +18,10 @@ from backend.models.postgis.statuses import (
     TeamRoles,
 )
 from backend.models.postgis.user import User
+from backend.models.postgis.task import TaskHistory
+
+from sqlalchemy.sql.expression import cast, or_
+from sqlalchemy import func, Time
 
 
 class TeamMembers(db.Model):
@@ -287,3 +294,110 @@ class Team(db.Model):
         return TeamMembers.query.filter_by(
             team_id=self.id, function=role.value, active=True
         ).count()
+
+    @staticmethod
+    def get_team_members_stats(query: TeamMembersStatsQuery) -> TeamMembersStatsDTO:
+        """Get team stats by member """
+        team = Team.get(query.team_id)
+        members = team.members
+        projects = team.projects
+        project_ids = [project.project_id for project in projects]
+
+        team_stats = TeamMembersStatsDTO()
+        for member in members:
+            user = User.get_by_id(member.user_id)
+            member_stats = TeamMemberStats()
+            member_stats.user_id = user.id
+            member_stats.username = user.username
+            member_stats.picture_url = user.picture_url
+
+            member_stats.total_time_spent = 0
+            member_stats.tasks_mapped = 0
+            member_stats.tasks_validated = 0
+            member_stats.time_spent_mapping = 0
+            member_stats.time_spent_validating = 0
+            member_stats.average_mapping_time = 0
+            member_stats.average_validation_time = 0
+
+            map_stats = (
+                db.session.query(
+                    func.sum(
+                        cast(
+                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
+                            Time,
+                        )
+                    ),
+                    func.count(TaskHistory.task_id),
+                    func.avg(
+                        cast(
+                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
+                            Time,
+                        )
+                    ),
+                )
+                .filter(
+                    or_(
+                        TaskHistory.action == "LOCKED_FOR_MAPPING",
+                        TaskHistory.action == "AUTO_UNLOCKED_FOR_MAPPING",
+                    )
+                )
+                .filter(TaskHistory.user_id == user.id)
+                .filter(TaskHistory.project_id.in_(project_ids))
+                .filter(
+                    TaskHistory.action_date.between(query.start_date, query.end_date)
+                )
+            )
+
+            for time, tasks_mapped, avg_mapping_time in map_stats:
+                if time:
+                    member_stats.time_spent_mapping = time.total_seconds()
+                    member_stats.total_time_spent += member_stats.time_spent_mapping
+                member_stats.tasks_mapped = tasks_mapped
+                member_stats.average_mapping_time = (
+                    avg_mapping_time.total_seconds()
+                    if avg_mapping_time is not None
+                    else 0
+                )
+
+            validation_stats = (
+                db.session.query(
+                    func.sum(
+                        cast(
+                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
+                            Time,
+                        )
+                    ),
+                    func.count(TaskHistory.task_id),
+                    func.avg(
+                        cast(
+                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
+                            Time,
+                        )
+                    ),
+                )
+                .filter(
+                    or_(
+                        TaskHistory.action == "LOCKED_FOR_VALIDATION",
+                        TaskHistory.action == "AUTO_UNLOCKED_FOR_VALIDATION",
+                    )
+                )
+                .filter(TaskHistory.user_id == user.id)
+                .filter(TaskHistory.project_id.in_(project_ids))
+                .filter(
+                    TaskHistory.action_date.between(query.start_date, query.end_date)
+                )
+            )
+
+            for time, tasks_validated, avg_validation_time in validation_stats:
+                if time:
+                    member_stats.time_spent_validating = time.total_seconds()
+                    member_stats.total_time_spent += member_stats.time_spent_validating
+                member_stats.tasks_validated = tasks_validated
+                member_stats.average_validation_time = (
+                    avg_validation_time.total_seconds()
+                    if avg_validation_time is not None
+                    else 0
+                )
+
+            team_stats.members_stats.append(member_stats)
+        return team_stats

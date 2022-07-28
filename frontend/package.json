@@ -40,6 +40,7 @@
     "mapbox-gl": "^1.13.3",
     "mapbox-gl-draw-rectangle-mode": "^1.0.4",
     "marked": "^4.3.0",
+    "moment": "^2.29.4",
     "osmtogeojson": "^3.0.0-beta.5",
     "prop-types": "^15.8.1",
     "query-string": "^8.2.0",
@@ -47,6 +48,7 @@
     "react-accessible-accordion": "^5.0.0",
     "react-calendar-heatmap": "^1.9.0",
     "react-chartjs-2": "^5.2.0",
+    "react-data-table-component": "^7.5.3",
     "react-datepicker": "^4.14.1",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
@@ -59,6 +61,7 @@
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
     "react-select": "^5.7.3",
+    "react-tabs": "^4.2.1",
     "react-tooltip": "^5.26.3",
     "reactjs-popup": "^2.0.6",
     "redux": "^4.2.1",
@@ -68,6 +71,7 @@
     "short-number": "^1.0.7",
     "shpjs": "^4.0.4",
     "slug": "^8.2.3",
+    "styled-components": "^6.1.11",
     "swiper": "^11.1.4",
     "tachyons": "^4.12.0",
     "tributejs": "^5.1.3",
@@ -85,10 +89,12 @@
     "copy-static": "bash -c \"mkdir -p public/static/rapid; if ! (test -a public/static/rapid/rapid.js); then cp -R node_modules/@rapideditor/rapid/dist/* public/static/rapid; fi\"",
     "copy-id-static": "bash -c \"mkdir -p public/static/id; if ! (test -a public/static/id/data); then cp -R node_modules/@hotosm/id/dist/data public/static/id && cp -R node_modules/@hotosm/id/dist/img public/static/id && cp -R node_modules/@hotosm/id/dist/locales public/static/id; fi;\"",
     "update-static": "bash -c \"mkdir -p public/static/rapid; cp -R node_modules/@rapideditor/rapid/dist/* public/static/rapid;\"",
-    "update-id-static": "bash -c \"mkdir -p public/static/id; cp -R node_modules/@hotosm/id/dist/data public/static/id && cp -R node_modules/@hotosm/id/dist/img public/static/id && cp -R node_modules/@hotosm/id/dist/locales public/static/id;\"",    "patch-rapid": "bash -c \"cp patch/rapid-imagery.min.json public/static/rapid/data/imagery.min.json\"",
+    "update-id-static": "bash -c \"mkdir -p public/static/id; cp -R node_modules/@hotosm/id/dist/data public/static/id && cp -R node_modules/@hotosm/id/dist/img public/static/id && cp -R node_modules/@hotosm/id/dist/locales public/static/id;\"",
+    "patch-rapid": "bash -c \"cp patch/rapid-imagery.min.json public/static/rapid/data/imagery.min.json\"",
     "preparation": "bash -c \"if (test -a ../tasking-manager.env); then grep -hs ^ ../tasking-manager.env .env.expand > .env; else cp .env.expand .env; fi\"",
     "start": "npm run preparation && npm run copy-static && npm run copy-id-static && npm run patch-rapid && craco start",
-    "build": "npm run preparation && npm run update-static && npm run update-id-static && npm run patch-rapid && craco build && npm run sentry:sourcemaps",    "prettier": "prettier --write 'src/**/*.js'",
+    "build": "npm run preparation && npm run update-static && npm run update-id-static && npm run patch-rapid && craco build && npm run sentry:sourcemaps",
+    "prettier": "prettier --write 'src/**/*.js'",
     "lint": "eslint src",
     "test": "npm run lint && craco test --env=jsdom",
     "coverage": "npm run test -- --coverage --watchAll=false",
@@ -143,5 +149,6 @@
   },
   "volta": {
     "node": "18.19.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
