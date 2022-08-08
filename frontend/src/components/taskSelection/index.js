@@ -327,7 +327,7 @@ export function TaskSelection({ project }: Object) {
               priorityAreas={priorityAreas}
               animateZoom={false}
             />
-            <TasksMapLegend imageCaptureMode={project.imageCaptureMode}/>
+            <TasksMapLegend imageCaptureMode={project.imageCaptureMode} />
           </ReactPlaceholder>
         </div>
       </div>

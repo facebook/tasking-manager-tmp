@@ -117,9 +117,10 @@ export default function Editor({ setDisable, comment, presets, imagery, gpxUrl, 
 
       if (imageCaptureMode) {
         if (earliestStreetImagery) {
-          iDContext.photos().setDateFilter("fromDate", earliestStreetImagery.substr(0, 10), false);
+          iDContext.photos().setDateFilter('fromDate', earliestStreetImagery.substr(0, 10), false);
         }
-        window.location.href = window.location.href + "&photo_overlay=mapillary,mapillary-map-features,mapillary-signs";
+        window.location.href =
+          window.location.href + '&photo_overlay=mapillary,mapillary-map-features,mapillary-signs';
       }
     }
   }, [session, iDContext, setDisable, presets, locale, gpxUrl, earliestStreetImagery, imageCaptureMode, intl]);

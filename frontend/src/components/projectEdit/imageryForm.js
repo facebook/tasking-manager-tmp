@@ -27,9 +27,12 @@ export const ImageryForm = () => {
   }, [setLicenses]);
 
   if (projectInfo.mapillaryOrganizationId) {
-    axios.get(`https://graph.mapillary.com/${projectInfo.mapillaryOrganizationId}?access_token=${MAPILLARY_TOKEN}&fields=name`)
-      .then(resp => setOrganization(resp.data.name))
-      .catch(() => setOrganization(null))
+    axios
+      .get(
+        `https://graph.mapillary.com/${projectInfo.mapillaryOrganizationId}?access_token=${MAPILLARY_TOKEN}&fields=name`,
+      )
+      .then((resp) => setOrganization(resp.data.name))
+      .catch(() => setOrganization(null));
   }
 
   let defaultValue = null;
@@ -44,7 +47,6 @@ export const ImageryForm = () => {
           <FormattedMessage {...messages.imagery} />
         </label>
         <ImageryField imagery={projectInfo.imagery} setProjectInfo={setProjectInfo} />
-
       </div>
 
       <div className={styleClasses.divClass}>
@@ -79,7 +81,9 @@ export const ImageryForm = () => {
           label={<FormattedMessage {...messages.imageCaptureMode} />}
           labelPosition="right"
           isChecked={projectInfo.imageCaptureMode}
-          onChange={() => setProjectInfo({ ...projectInfo, imageCaptureMode: !projectInfo.imageCaptureMode })}
+          onChange={() =>
+            setProjectInfo({ ...projectInfo, imageCaptureMode: !projectInfo.imageCaptureMode })
+          }
         />
       </div>
 
@@ -90,7 +94,7 @@ export const ImageryForm = () => {
               <FormattedMessage {...messages.imageryCaptureDate} />
             </label>
             <FormattedMessage {...messages.imageryCaptureDateAfter} />
-            <span>&nbsp;&nbsp;</span>
+            <span>: &nbsp;&nbsp;</span>
             <DatePicker
               selected={Date.parse(projectInfo.earliestStreetImagery)}
               onChange={(date) =>
@@ -115,8 +119,10 @@ export const ImageryForm = () => {
               <FormattedMessage {...messages.mapillaryOrganizationIdInfo} />
             </p>
 
-            <b><FormattedMessage {...messages.mapillaryOrganizationSelected} /></b>
-            <span>{organization}</span>
+            <b>
+              <FormattedMessage {...messages.mapillaryOrganizationSelected} />
+            </b>
+            <span>:&nbsp;{organization}</span>
 
             <input
               className={styleClasses.inputClass}
@@ -132,8 +138,7 @@ export const ImageryForm = () => {
             />
           </div>
         </>
-      )
-      }
+      )}
     </div>
   );
 };

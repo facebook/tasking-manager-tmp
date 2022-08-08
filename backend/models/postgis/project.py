@@ -146,10 +146,10 @@ class Project(db.Model):
         db.String
     )  # Optional custom filter id for filtering on OSMCha
     due_date = db.Column(db.DateTime)
-    earliestStreetImagery = db.Column(db.DateTime)
+    earliest_street_imagery = db.Column(db.DateTime)
     imagery = db.Column(db.String)
-    imageCaptureMode = db.Column(db.Boolean, default=False)
-    mapillaryOrganizationId = db.Column(db.String)
+    image_capture_mode = db.Column(db.Boolean, default=False)
+    mapillary_organization_id = db.Column(db.String)
     josm_preset = db.Column(db.String)
     id_presets = db.Column(ARRAY(db.String))
     extra_id_params = db.Column(db.String)
@@ -404,9 +404,9 @@ class Project(db.Model):
         self.difficulty = ProjectDifficulty[project_dto.difficulty.upper()].value
         self.changeset_comment = project_dto.changeset_comment
         self.due_date = project_dto.due_date
-        self.earliestStreetImagery = project_dto.earliestStreetImagery
-        self.imageCaptureMode = project_dto.imageCaptureMode
-        self.mapillaryOrganizationId = project_dto.mapillaryOrganizationId
+        self.earliest_street_imagery = project_dto.earliest_street_imagery
+        self.image_capture_mode = project_dto.image_capture_mode
+        self.mapillary_organization_id = project_dto.mapillary_organization_id
         self.imagery = project_dto.imagery
         self.josm_preset = project_dto.josm_preset
         self.id_presets = project_dto.id_presets
@@ -858,10 +858,9 @@ class Project(db.Model):
         summary.country_tag = self.country
         summary.changeset_comment = self.changeset_comment
         summary.due_date = self.due_date
-        summary.earliestStreetImagery = self.earliestStreetImagery
-        summary.imageCaptureMode = self.imageCaptureMode
-        summary.mapillaryOrganizationId = self.mapillaryOrganizationId
-
+        summary.earliest_street_imagery = self.earliest_street_imagery
+        summary.image_capture_mode = self.image_capture_mode
+        summary.mapillary_organization_id = self.mapillary_organization_id
         summary.created = self.created
         summary.last_updated = self.last_updated
         summary.osmcha_filter_id = self.osmcha_filter_id
@@ -1021,9 +1020,9 @@ class Project(db.Model):
         base_dto.changeset_comment = self.changeset_comment
         base_dto.osmcha_filter_id = self.osmcha_filter_id
         base_dto.due_date = self.due_date
-        base_dto.earliestStreetImagery = self.earliestStreetImagery
-        base_dto.imageCaptureMode = self.imageCaptureMode
-        base_dto.mapillaryOrganizationId = self.mapillaryOrganizationId
+        base_dto.earliest_street_imagery = self.earliest_street_imagery
+        base_dto.image_capture_mode = self.image_capture_mode
+        base_dto.mapillary_organization_id = self.mapillary_organization_id
         base_dto.imagery = self.imagery
         base_dto.josm_preset = self.josm_preset
         base_dto.id_presets = self.id_presets
