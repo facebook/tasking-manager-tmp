@@ -20,8 +20,9 @@ from backend.models.postgis.statuses import (
 from backend.models.postgis.user import User
 from backend.models.postgis.task import TaskHistory
 
+from sqlalchemy.dialects.postgresql import INTERVAL
 from sqlalchemy.sql.expression import cast, or_
-from sqlalchemy import func, Time
+from sqlalchemy import func
 
 
 class TeamMembers(db.Model):
@@ -323,15 +324,15 @@ class Team(db.Model):
                 db.session.query(
                     func.sum(
                         cast(
-                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
-                            Time,
+                            TaskHistory.action_text,
+                            INTERVAL,
                         )
                     ),
                     func.count(TaskHistory.task_id),
                     func.avg(
                         cast(
-                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
-                            Time,
+                            TaskHistory.action_text,
+                            INTERVAL,
                         )
                     ),
                 )
@@ -363,15 +364,15 @@ class Team(db.Model):
                 db.session.query(
                     func.sum(
                         cast(
-                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
-                            Time,
+                            TaskHistory.action_text,
+                            INTERVAL,
                         )
                     ),
                     func.count(TaskHistory.task_id),
                     func.avg(
                         cast(
-                            func.to_timestamp(TaskHistory.action_text, "HH24:MI:SS"),
-                            Time,
+                            TaskHistory.action_text,
+                            INTERVAL,
                         )
                     ),
                 )
