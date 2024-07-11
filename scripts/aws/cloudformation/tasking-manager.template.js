@@ -806,7 +806,7 @@ const Resources = {
         StorageType: 'gp2',
         DBParameterGroupName: cf.ref('DatabaseParameterGroupName'),
         EnableCloudwatchLogsExports: ['postgresql'],
-        DBInstanceClass: cf.if('IsTaskingManagerProduction', cf.ref('DatabaseInstanceType'), 'db.t2.small'),
+        DBInstanceClass: cf.ref('DatabaseInstanceType'),
         DBSnapshotIdentifier: cf.if('UseASnapshot', cf.ref('DBSnapshot'), cf.noValue),
         VPCSecurityGroups: [cf.importValue(cf.join('-', ['mapwithai-network-production', cf.ref('NetworkEnvironment'), 'ec2s-security-group', cf.region]))],
 	      PubliclyAccessible: false,
