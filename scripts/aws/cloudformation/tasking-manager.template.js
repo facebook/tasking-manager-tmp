@@ -98,6 +98,11 @@ const Parameters = {
       Description: 'TM_CLIENT_SECRET',
       Type: 'String'
   },
+  TaskingManagerRepository: {
+    Description: "Tasking Manager source repository",
+    Type: 'String',
+    Default: "https://github.com/facebook/OSM-HOT-Tasking-Manager.git"
+  },
   TaskingManagerSecret: {
     Description: 'TM_SECRET',
     Type: 'String'
@@ -439,7 +444,7 @@ const Resources = {
           'sudo apt-get -q -y install libgeos-3.9.0 libgeos-dev',
           'sudo apt-get -q -y install libproj19 libproj-dev',
           'sudo apt-get -q -y install libjson-c-dev',
-          'git clone --recursive https://github.com/facebook/OSM-HOT-Tasking-Manager.git /opt/tasking-manager',
+          cf.sub('git clone --recursive ${TaskingManagerRepository} /opt/tasking-manager'),
           'cd /opt/tasking-manager/',
           cf.sub('git reset --hard ${GitSha}'),
           'pip install --upgrade pip pdm==2.7.4',
@@ -689,7 +694,7 @@ const Resources = {
       HostedZoneId: 'Z101197737ML3WN063NTD',
       RecordSets: [
         {
-          Name: cf.join('.', [ cf.join('-', ['api', cf.stackName]), 'tasks.mapwith.ai']),
+          Name: cf.join('-', ['api', cf.stackName, 'tasks.mapwith.ai']),
           Type: 'A',
           AliasTarget: {
             DNSName: cf.getAtt('TaskingManagerLoadBalancer', 'DNSName'),
@@ -697,7 +702,7 @@ const Resources = {
           }
         },
         {
-          Name: cf.join('.', [ cf.join('-', ['api', cf.stackName]), 'tasks.mapwith.ai']),
+          Name: cf.join('-', ['api', cf.stackName, 'tasks.mapwith.ai']),
           Type: 'AAAA',
           AliasTarget: {
             DNSName: cf.getAtt('TaskingManagerLoadBalancer', 'DNSName'),
