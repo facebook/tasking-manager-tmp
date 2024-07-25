@@ -119,6 +119,10 @@ const Parameters = {
     Description: 'TM_EMAIL_CONTACT_ADDRESS',
     Type: 'String'
   },
+  TaskingManagerFrontendDeployRole: {
+    Description: 'A role with permissions to push data to the S3 bucket',
+    Type: 'String'
+  },
   TaskingManagerLogLevel: {
     Description: 'TM_LOG_LEVEL',
     Type: 'String',
@@ -901,6 +905,74 @@ const Resources = {
           }
         ]
       }
+    }
+  },
+  TaskingManagerFrontendCodeBuild: {
+    Type: "AWS::CodeBuild::Project",
+    Properties: {
+      Artifacts: {
+        Type: "S3",
+        Location: cf.ref("TaskingManagerReactBucket"),
+        Name: "/",
+        Packaging: "NONE",
+      },
+      Environment: {
+        Type: "LINUX_CONTAINER",
+        ComputeType: "BUILD_GENERAL1_SMALL",
+        Image: "aws/codebuild/standard:5.0",
+        EnvironmentVariables: [
+          {"Name": "TM_APP_BASE_URL", "Value": cf.ref("TaskingManagerAppBaseUrl"), "Type": "String"},
+          {"Name": "TM_APP_API_URL", "Value": cf.join('-', ['api', cf.stackName, 'tasks.mapwith.ai']), "Type": "String"},// FIXME -- if pushed upstream, should match BackendAPIDNSEntries.RecordSets[0].Name
+          {"Name": "TM_APP_API_VERSION", "Value": "v2", "Type": "String"},
+          {"Name": "TM_ORG_NAME", "Value": cf.ref("TaskingManagerOrgName"), "Type": "String"},
+          {"Name": "TM_ORG_CODE", "Value": cf.ref("TaskingManagerOrgCode"), "Type": "String"},
+          {"Name": "TM_ORG_URL", "Value": cf.ref("TaskingManagerOrgDomain"), "Type": "String"},
+          {"Name": "TM_ORG_LOGO", "Value": "https://cdn.mapwith.ai/images/mapwithai_logo_only.svg", "Type": "String"},
+          {"Name": "TM_ORG_PRIVACY_POLICY_URL", "Value": "https://mapwith.ai/doc/license/MapWithAIPrivacyPolicy.pdf", "Type": "String"},
+          {"Name": "TM_ORG_TWITTER", "Value": "https://twitter.com/mapwithai", "Type": "String"},
+          {"Name": "TM_ORG_FB", "Value": "", "Type": "String"},
+          {"Name": "TM_ORG_INSTAGRAM", "Value": "", "Type": "String"},
+          {"Name": "TM_ORG_YOUTUBE", "Value": "", "Type": "String"},
+          {"Name": "TM_ORG_GITHUB", "Value": cf.ref("TaskingManagerRepository"), "Type": "String"},
+          {"Name": "TM_DEFAULT_LOCALE", "Value": "en", "Type": "String"},
+          {"Name": "OHSOME_STATS_TOKEN", "Value": cf.ref("OhsomeStatsToken"), "Type": "String"},
+          {"Name": "TM_CLIENT_ID", "Value": cf.ref("TaskingManagerOAuthClientID"), "Type": "String"},
+          {"Name": "TM_CLIENT_SECRET", "Value": cf.ref("TaskingManagerOAuthClientSecret"), "Type": "String"},
+          {"Name": "TM_REDIRECT_URI", "Value": cf.sub("${TaskingManagerAppBaseUrl}/authorize"), "Type": "String"},
+          {"Name": "OSM_SERVER_URL", "Value": "https://www.openstreetmap.org", "Type": "String"},
+          {"Name": "OSM_SERVER_API_URL", "Value": "https://api.openstreetmap.org", "Type": "String"},
+          {"Name": "OSM_REGISTER_URL", "Value": "https://www.openstreetmap.org/user/new", "Type": "String"},
+          {"Name": "TM_DEFAULT_CHANGESET_COMMENT", "Value": "mapwithai-tm4", "Type": "String"},
+        ]
+      },
+      ServiceRole: cf.ref("TaskingManagerFrontendDeployRole"),
+      Source: {
+        Type: "GITHUB",
+        Location: cf.ref("TaskingManagerRepository"),
+        GitCloneDepth: 1,
+        BuildSpec: `
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - cd "\${CODEBUILD_SRC_DIR}/frontend"
+      - yarn install
+  build:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - cd "\${CODEBUILD_SRC_DIR}/frontend"
+      - yarn build
+artifacts:
+  files:
+    - frontend/build
+cache:
+  paths:
+    - 'frontend/build'`
+      },
+      SourceVersion: cf.ref("GitSha")
     }
   },
   TaskingManagerReactCloudfrontOAC: {
