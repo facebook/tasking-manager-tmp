@@ -119,6 +119,10 @@ const Parameters = {
     Description: 'TM_EMAIL_CONTACT_ADDRESS',
     Type: 'String'
   },
+  TaskingManagerFrontendDeployRole: {
+    Description: 'A role with permissions to push data to the S3 bucket',
+    Type: 'String'
+  },
   TaskingManagerLogLevel: {
     Description: 'TM_LOG_LEVEL',
     Type: 'String',
@@ -484,6 +488,10 @@ const Resources = {
           cf.sub('export TM_IMAGE_UPLOAD_API_URL="${TaskingManagerImageUploadAPIURL}"'),
           cf.sub('export TM_IMAGE_UPLOAD_API_KEY="${TaskingManagerImageUploadAPIKey}"'),
           'psql "host=$POSTGRES_ENDPOINT dbname=$POSTGRES_DB user=$POSTGRES_USER password=$POSTGRES_PASSWORD" -c "CREATE EXTENSION IF NOT EXISTS postgis"',
+          'echo "Updating postgis if necessary (2.5 to 3.3 requires two calls to postgis_extensions_upgrade)"',
+          'psql "host=$POSTGRES_ENDPOINT dbname=$POSTGRES_DB user=$POSTGRES_USER password=$POSTGRES_PASSWORD" -c "SELECT postgis_extensions_upgrade();"',
+          'psql "host=$POSTGRES_ENDPOINT dbname=$POSTGRES_DB user=$POSTGRES_USER password=$POSTGRES_PASSWORD" -c "SELECT postgis_extensions_upgrade();"',
+          'psql "host=$POSTGRES_ENDPOINT dbname=$POSTGRES_DB user=$POSTGRES_USER password=$POSTGRES_PASSWORD" -c "DROP EXTENSION IF EXISTS postgis_raster;"',
           cf.if('DatabaseDumpFileGiven', cf.sub('aws s3 cp ${DatabaseDump} dump.sql; sudo -u postgres psql "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_ENDPOINT/$POSTGRES_DB" < dump.sql'), ''),
           'flask db upgrade',
           'echo "------------------------------------------------------------"',
@@ -902,6 +910,75 @@ const Resources = {
           }
         ]
       }
+    }
+  },
+  TaskingManagerFrontendCodeBuild: {
+    Type: "AWS::CodeBuild::Project",
+    Properties: {
+      Artifacts: {
+        Type: "S3",
+        Location: cf.ref("TaskingManagerReactBucket"),
+        Name: "/",
+        Packaging: "NONE",
+      },
+      Environment: {
+        Type: "LINUX_CONTAINER",
+        ComputeType: "BUILD_GENERAL1_SMALL",
+        Image: "aws/codebuild/standard:5.0",
+        EnvironmentVariables: [
+          {"Name": "TM_APP_BASE_URL", "Value": cf.ref("TaskingManagerAppBaseUrl"), "Type": "PLAINTEXT"},
+          {"Name": "TM_APP_API_URL", "Value": cf.join('-', ['api', cf.stackName, 'tasks.mapwith.ai']), "Type": "PLAINTEXT"},// FIXME -- if pushed upstream, should match BackendAPIDNSEntries.RecordSets[0].Name
+          {"Name": "TM_APP_API_VERSION", "Value": "v2", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_NAME", "Value": cf.ref("TaskingManagerOrgName"), "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_CODE", "Value": cf.ref("TaskingManagerOrgCode"), "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_URL", "Value": cf.ref("TaskingManagerOrgDomain"), "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_LOGO", "Value": "https://cdn.mapwith.ai/images/mapwithai_logo_only.svg", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_PRIVACY_POLICY_URL", "Value": "https://mapwith.ai/doc/license/MapWithAIPrivacyPolicy.pdf", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_TWITTER", "Value": "https://twitter.com/mapwithai", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_FB", "Value": "", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_INSTAGRAM", "Value": "", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_YOUTUBE", "Value": "", "Type": "PLAINTEXT"},
+          {"Name": "TM_ORG_GITHUB", "Value": cf.ref("TaskingManagerRepository"), "Type": "PLAINTEXT"},
+          {"Name": "TM_DEFAULT_LOCALE", "Value": "en", "Type": "PLAINTEXT"},
+          {"Name": "OHSOME_STATS_TOKEN", "Value": cf.ref("OhsomeStatsToken"), "Type": "PLAINTEXT"},
+          {"Name": "TM_CLIENT_ID", "Value": cf.ref("TaskingManagerOAuthClientID"), "Type": "PLAINTEXT"},
+          {"Name": "TM_CLIENT_SECRET", "Value": cf.ref("TaskingManagerOAuthClientSecret"), "Type": "PLAINTEXT"},
+          {"Name": "TM_REDIRECT_URI", "Value": cf.sub("${TaskingManagerAppBaseUrl}/authorize"), "Type": "PLAINTEXT"},
+          {"Name": "OSM_SERVER_URL", "Value": "https://www.openstreetmap.org", "Type": "PLAINTEXT"},
+          {"Name": "OSM_SERVER_API_URL", "Value": "https://api.openstreetmap.org", "Type": "PLAINTEXT"},
+          {"Name": "OSM_REGISTER_URL", "Value": "https://www.openstreetmap.org/user/new", "Type": "PLAINTEXT"},
+          {"Name": "TM_DEFAULT_CHANGESET_COMMENT", "Value": "mapwithai-tm4", "Type": "PLAINTEXT"},
+        ]
+      },
+      ServiceRole: cf.ref("TaskingManagerFrontendDeployRole"),
+      Source: {
+        Type: "GITHUB",
+        Location: cf.ref("TaskingManagerRepository"),
+        GitCloneDepth: 1,
+        BuildSpec: `version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - cd "\${CODEBUILD_SRC_DIR}/frontend"
+  pre_build:
+    commands:
+      - cd "\${CODEBUILD_SRC_DIR}/frontend"
+      - yarn install --network-timeout 1000000
+  build:
+    commands:
+      - cd "\${CODEBUILD_SRC_DIR}/frontend"
+      - yarn build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'frontend/build'
+cache:
+  paths:
+    - '~/.yarn/cache'`
+      },
+      SourceVersion: cf.ref("GitSha")
     }
   },
   TaskingManagerReactCloudfrontOAC: {
