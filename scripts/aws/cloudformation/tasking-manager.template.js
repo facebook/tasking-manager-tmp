@@ -954,27 +954,28 @@ const Resources = {
         Type: "GITHUB",
         Location: cf.ref("TaskingManagerRepository"),
         GitCloneDepth: 1,
-        BuildSpec: `
-version: 0.2
+        BuildSpec: `version: 0.2
 phases:
   install:
     runtime-versions:
       nodejs: 20
     commands:
       - cd "\${CODEBUILD_SRC_DIR}/frontend"
-      - yarn install
+  pre_build:
+    commands:
+      - cd "\${CODEBUILD_SRC_DIR}/frontend"
+      - yarn install --network-timeout 1000000
   build:
-    runtime-versions:
-      nodejs: 20
     commands:
       - cd "\${CODEBUILD_SRC_DIR}/frontend"
       - yarn build
 artifacts:
   files:
-    - frontend/build
+    - '**/*'
+  base-directory: 'frontend/build'
 cache:
   paths:
-    - 'frontend/build'`
+    - '~/.yarn/cache'`
       },
       SourceVersion: cf.ref("GitSha")
     }
