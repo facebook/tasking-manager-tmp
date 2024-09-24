@@ -353,7 +353,7 @@ export const TaskActivity = ({
 function EditorDropdown({ project, taskId, bbox }: Object) {
   const loadTaskOnEditor = (arr) => {
     if (arr[0].value === 'RAPID') {
-      let windowObjectReference = window.open('', `RapiD-${project.projectId}-${taskId}`);
+      let windowObjectReference = window.open('', `Rapid-${project.projectId}-${taskId}`);
       const { center, zoom } = viewport(bbox, [window.innerWidth, window.innerHeight]);
       windowObjectReference.location.href = getIdUrl(
         project,
@@ -382,7 +382,7 @@ function EditorDropdown({ project, taskId, bbox }: Object) {
   return (
     <Dropdown
       options={[
-        { label: 'RapiD', value: 'RAPID' },
+        { label: 'Rapid', value: 'RAPID' },
         { label: 'iD Editor', value: 'ID' },
         { label: 'JOSM', value: 'JOSM' },
       ]}
