@@ -918,6 +918,7 @@ const Resources = {
       Artifacts: {
         Type: "S3",
         Location: cf.ref("TaskingManagerReactBucket"),
+        EncryptionDisabled: true,
         Name: "/",
         Packaging: "NONE",
       },
@@ -927,7 +928,7 @@ const Resources = {
         Image: "aws/codebuild/standard:5.0",
         EnvironmentVariables: [
           {"Name": "TM_APP_BASE_URL", "Value": cf.ref("TaskingManagerAppBaseUrl"), "Type": "PLAINTEXT"},
-          {"Name": "TM_APP_API_URL", "Value": cf.join('-', ['api', cf.stackName, 'tasks.mapwith.ai']), "Type": "PLAINTEXT"},// FIXME -- if pushed upstream, should match BackendAPIDNSEntries.RecordSets[0].Name
+          {"Name": "TM_APP_API_URL", "Value": cf.sub("https://${Domain}", {Domain: cf.join('-', ['api', cf.stackName, 'tasks.mapwith.ai'])}), "Type": "PLAINTEXT"},// FIXME -- if pushed upstream, should match BackendAPIDNSEntries.RecordSets[0].Name
           {"Name": "TM_APP_API_VERSION", "Value": "v2", "Type": "PLAINTEXT"},
           {"Name": "TM_ORG_NAME", "Value": cf.ref("TaskingManagerOrgName"), "Type": "PLAINTEXT"},
           {"Name": "TM_ORG_CODE", "Value": cf.ref("TaskingManagerOrgCode"), "Type": "PLAINTEXT"},
@@ -943,11 +944,11 @@ const Resources = {
           {"Name": "OHSOME_STATS_TOKEN", "Value": cf.ref("OhsomeStatsToken"), "Type": "PLAINTEXT"},
           {"Name": "TM_CLIENT_ID", "Value": cf.ref("TaskingManagerOAuthClientID"), "Type": "PLAINTEXT"},
           {"Name": "TM_CLIENT_SECRET", "Value": cf.ref("TaskingManagerOAuthClientSecret"), "Type": "PLAINTEXT"},
-          {"Name": "TM_REDIRECT_URI", "Value": cf.sub("${TaskingManagerAppBaseUrl}/authorize"), "Type": "PLAINTEXT"},
+          {"Name": "TM_REDIRECT_URI", "Value": cf.sub("${TaskingManagerAppBaseUrl}/authorized"), "Type": "PLAINTEXT"},
           {"Name": "OSM_SERVER_URL", "Value": "https://www.openstreetmap.org", "Type": "PLAINTEXT"},
           {"Name": "OSM_SERVER_API_URL", "Value": "https://api.openstreetmap.org", "Type": "PLAINTEXT"},
           {"Name": "OSM_REGISTER_URL", "Value": "https://www.openstreetmap.org/user/new", "Type": "PLAINTEXT"},
-          {"Name": "TM_DEFAULT_CHANGESET_COMMENT", "Value": "mapwithai-tm4", "Type": "PLAINTEXT"},
+          {"Name": "TM_DEFAULT_CHANGESET_COMMENT", "Value": "${TaskingManagerDefaultChangesetComment}", "Type": "PLAINTEXT"},
         ]
       },
       ServiceRole: cf.ref("TaskingManagerFrontendDeployRole"),
