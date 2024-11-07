@@ -43,8 +43,18 @@ function equalsUrlParameters(first, second) {
  * @param {URLSearchParams} hashParams the URL hash parameters
  */
 function updateUrl(hashParams) {
+  // Rapid doesn't understand fragment encoded comments well. Specifically as it relates to spaces.
+  const comment = hashParams.get('comment');
+  if (comment) {
+    hashParams.delete('comment');
+  }
   const oldUrl = window.location.href;
-  const newUrl = window.location.pathname + window.location.search + '#' + hashParams.toString();
+  const newUrl =
+    window.location.pathname +
+    window.location.search +
+    '#' +
+    hashParams.toString() +
+    (comment ? '&comment=' + encodeURIComponent(comment) : '');
   window.history.pushState(null, '', newUrl);
   window.dispatchEvent(
     new HashChangeEvent('hashchange', {
@@ -65,7 +75,15 @@ function updateUrl(hashParams) {
  * @param {boolean} imageCaptureMode If we want the user to capture photos
  * @return {module:url.URLSearchParams | boolean} the new URL search params or {@code false} if no parameters changed
  */
-function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery,  imageCaptureMode = false}) {
+function generateStartingHash({
+  comment,
+  presets,
+  gpxUrl,
+  powerUser,
+  imagery,
+  earliestStreetImagery,
+  imageCaptureMode = false,
+}) {
   const hashParams = new URLSearchParams(window.location.hash.substring(1));
   if (comment) {
     hashParams.set('comment', comment);
@@ -90,7 +108,7 @@ function generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery, ea
     if (earliestStreetImagery) {
       hashParams.set('photo_dates', earliestStreetImagery.substring(0, 10) + '_');
     }
-    hashParams.set('photo_overlay', 'mapillary,mapillary-map-features,mapillary-signs')
+    hashParams.set('photo_overlay', 'mapillary,mapillary-map-features,mapillary-signs');
   }
 
   if (equalsUrlParameters(hashParams, new URLSearchParams(window.location.hash.substring(1)))) {
@@ -235,7 +253,15 @@ function RapidEditor({
   }, [showSidebar, context]);
 
   useEffect(() => {
-    const newParams = generateStartingHash({ comment, presets, gpxUrl, powerUser, imagery, earliestStreetImagery, imageCaptureMode });
+    const newParams = generateStartingHash({
+      comment,
+      presets,
+      gpxUrl,
+      powerUser,
+      imagery,
+      earliestStreetImagery,
+      imageCaptureMode,
+    });
     if (newParams) {
       updateUrl(newParams);
     }
