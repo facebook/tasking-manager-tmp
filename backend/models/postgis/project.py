@@ -209,10 +209,22 @@ class Project(db.Model):
     # Total tasks are always >= 1
     @hybrid_property
     def percent_mapped(self):
+        total_tasks = 0
+        tasks_mapped = 0
+        tasks_validated = 0
+        tasks_bad_imagery = 0
+        for task in self.tasks:
+            total_tasks += 1
+            if task.task_status == TaskStatus.MAPPED.value:
+                tasks_mapped += 1
+            elif task.task_status == TaskStatus.VALIDATED.value:
+                tasks_validated += 1
+            elif task.task_status == TaskStatus.BADIMAGERY.value:
+                tasks_bad_imagery += 1
         return (
-            (self.tasks_mapped + self.tasks_validated)
+            (tasks_mapped + tasks_validated)
             * 100
-            // (self.total_tasks - self.tasks_bad_imagery)
+            // (total_tasks - tasks_bad_imagery)
         )
 
     @hybrid_property
